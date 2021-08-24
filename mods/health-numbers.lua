@@ -64,7 +64,7 @@ module.enable = function(self)
         cur, max = ShaguTweaks.libhealth:GetUnitHealth(sb.unit)
       end
 
-      if cur == percent then
+      if cur == percent and strfind(sb:GetName(), "Health") then
         string:SetText(percent .. "%")
       elseif sb:GetName() == "TargetFrameHealthBar" and cur < max then
         string:SetText(Abbreviate(cur) .. " - " .. percent .. "%")
