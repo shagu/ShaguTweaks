@@ -14,8 +14,6 @@ All tweaks are made to the default interface and might not take effect if you al
 The addon settings can be controlled ingame via the "Advanced Options" button on the Main Menu (Esc).
 Every of the listed features below can be completely disabled in that menu in case you don't like it.
 
-![preview](_img/settings.jpg)  
-
 ## Installation (Vanilla, 1.12)
 1. Download **[Latest Version](https://github.com/shagu/ShaguTweaks/archive/master.zip)**
 2. Unpack the Zip file
@@ -73,3 +71,6 @@ Every of the listed features below can be completely disabled in that menu in ca
 
 ![preview](_img/castbars.jpg)  
 *Target Frame Castbars*
+
+![preview](_img/settings.jpg)  
+*Settings Window*
