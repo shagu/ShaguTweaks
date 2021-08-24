@@ -54,7 +54,8 @@ module.enable = function(self)
     local string = sb.TextString
 
     if string and sb.unit then
-      sb.lockShow = 1
+      sb.lockShow = 42
+      sb:Show()
 
       local min, max = sb:GetMinMaxValues()
       local cur = sb:GetValue()
