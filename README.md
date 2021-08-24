@@ -80,7 +80,8 @@ Every of the listed features below, can be completely disabled in that menu in c
   *Adds coordinates to the bottom of the World Map.*
 
 - **WorldMap Window**  
-  *Turns the world map into a movable window. The map can be scaled with <Ctrl> + Mousewheel.*
+  *Turns the world map into a movable window. The map can be scaled with \<Ctrl> + Mousewheel.*
+
 
 ![preview](img/castbars.jpg)  
 *Target Frame Castbars*
