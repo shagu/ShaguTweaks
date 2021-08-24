@@ -196,8 +196,6 @@ module.enable = function(self)
         if class then
           local color = RAID_CLASS_COLORS[class]
           _G["WhoFrameButton"..i.."Class"]:SetTextColor(color.r,color.g,color.b,1)
-        else
-          _G["WhoFrameButton"..i.."Class"]:Hide()
         end
 
         local color = GetDifficultyColor(level)
