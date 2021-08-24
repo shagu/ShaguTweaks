@@ -1,6 +1,6 @@
 # ShaguTweaks
 
-<img src="_img/menu.jpg" float="right" align="right">
+<img src="img/menu.jpg" float="right" align="right">
 
 > **A small World of Warcraft (1.12.1) AddOn for all those, who don't want to use any AddOns at all.**
 
@@ -60,14 +60,14 @@ Every of the listed features below, can be completely disabled in that menu in c
 - **WorldMap Window** - *Turns the world map into a movable window. The map can be scaled with <Ctrl> + Mousewheel.*
 
 ## Screenshots
-![preview](_img/dark.jpg)  
+![preview](img/dark.jpg)  
 *All options enabled, except for squared minimap.*
 
-![preview](_img/debufftimers.jpg)  
+![preview](img/debufftimers.jpg)  
 *Debuff Timers & Mob Health*
 
-![preview](_img/castbars.jpg)  
+![preview](img/castbars.jpg)  
 *Target Frame Castbars*
 
-![preview](_img/settings.jpg)  
+![preview](img/settings.jpg)  
 *Settings Window*
