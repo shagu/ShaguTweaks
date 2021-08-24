@@ -4,8 +4,8 @@ local GetExpansion = ShaguTweaks.GetExpansion
 local AddBorder = ShaguTweaks.AddBorder
 
 local module = ShaguTweaks:register({
-  title = "Dark UI Elements",
-  description = "Tint the default UI elements in black color",
+  title = "Darkened UI",
+  description = "Turns the entire interface into darker colors.",
   enabled = nil,
   color = { r = .3, g = .3, b = .3, a = .9}
 })

@@ -5,8 +5,8 @@ local GetExpansion = ShaguTweaks.GetExpansion
 if GetExpansion() == "tbc" then return end
 
 local module = ShaguTweaks:register({
-  title = "UI-Scale Nameplates",
-  description = "Let the nameplates honor the UI-Scale of other elements",
+  title = "Nameplate Scale",
+  description = "Makes all nameplates honor the UI-Scale setting.",
   enabled = true,
 })
 

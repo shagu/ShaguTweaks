@@ -2,8 +2,8 @@ local _G = _G or getfenv(0)
 local GetExpansion = ShaguTweaks.GetExpansion
 
 local module = ShaguTweaks:register({
-  title = "Add Equip Compare Tooltips",
-  description = "Shows currently equipped tooltips while shift key is down",
+  title = "Equip Compare",
+  description = "Shows currently equipped items on tooltips while the shift key is pressed.",
   enabled = true,
 })
 

@@ -2,8 +2,8 @@ local _G = _G or getfenv(0)
 local GetExpansion = ShaguTweaks.GetExpansion
 
 local module = ShaguTweaks:register({
-  title = "Enable Minimap Tweaks",
-  description = "Hide unnecessary minimap buttons and allow to zoom via mousewheel",
+  title = "MiniMap Tweaks",
+  description = "Hides unnecessary mini map buttons and allows to zoom using the mouse wheel.",
   enabled = nil,
 })
 

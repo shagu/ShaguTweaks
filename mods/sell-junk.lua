@@ -2,8 +2,8 @@ local _G = _G or getfenv(0)
 local GetExpansion = ShaguTweaks.GetExpansion
 
 local module = ShaguTweaks:register({
-  title = "Add Button To Sell Junk",
-  description = "Display a \"Sell Junk\" Button on every mechant window.",
+  title = "Sell Junk",
+  description = "Adds a “Sell Junk” button to every merchant window, that sells all grey items.",
   enabled = true,
 })
 

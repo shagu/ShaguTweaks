@@ -2,7 +2,7 @@ local _G = _G or getfenv(0)
 local GetExpansion = ShaguTweaks.GetExpansion
 
 local module = ShaguTweaks:register({
-  title = "Enable Movable World Map",
+  title = "WorldMap Window",
   description = "Turns the world map into a movable window. The map can be scaled with <Ctrl> + Mousewheel.",
   enabled = true,
 })

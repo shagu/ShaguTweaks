@@ -4,8 +4,8 @@ local UnitCastingInfo = ShaguTweaks.UnitCastingInfo
 local UnitChannelInfo = ShaguTweaks.UnitChannelInfo
 
 local module = ShaguTweaks:register({
-  title = "Show Target Frame Castbar",
-  description = "Show castbars on target unit frame",
+  title = "Enemy Castbars",
+  description = "Shows an enemy castbar on target unit frame.",
   enabled = true,
 })
 

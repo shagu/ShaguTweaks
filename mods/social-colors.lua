@@ -9,8 +9,8 @@ local rgbhex = ShaguTweaks.rgbhex
 local strsplit = ShaguTweaks.strsplit
 
 local module = ShaguTweaks:register({
-  title = "Class Colors In Social Frames",
-  description = "Shows class colors in Who, Guild, Friends and Chat",
+  title = "Social Colors",
+  description = "Show class colors in Who, Guild, Friends and Chat.",
   enabled = nil,
 })
 

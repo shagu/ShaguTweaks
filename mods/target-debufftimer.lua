@@ -1,8 +1,8 @@
 local _G = _G or getfenv(0)
 local libdebuff = ShaguTweaks.libdebuff
 local module = ShaguTweaks:register({
-  title = "Show Target Debuff Timers",
-  description = "Show debuff timers on target unit frame",
+  title = "Debuff Timer",
+  description = "Show debuff durations on the target unit frame.",
   enabled = true,
 })
 

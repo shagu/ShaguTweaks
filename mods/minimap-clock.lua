@@ -4,8 +4,8 @@ local GetExpansion = ShaguTweaks.GetExpansion
 if GetExpansion() ~= "vanilla" then return end
 
 local module = ShaguTweaks:register({
-  title = "Show Clock At Minimap",
-  description = "Display a 24h clock at the Minimap",
+  title = "MiniMap Clock",
+  description = "Adds a small 24h clock to the mini map.",
   enabled = nil,
 })
 

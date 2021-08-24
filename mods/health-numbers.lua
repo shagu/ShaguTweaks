@@ -2,8 +2,8 @@ local _G = _G or getfenv(0)
 local Abbreviate = ShaguTweaks.Abbreviate
 local GetColorGradient = ShaguTweaks.GetColorGradient
 local module = ShaguTweaks:register({
-  title = "Health Numbers",
-  description = "Show health and mana numbers on player, pet and target unit frames.",
+  title = "Real Health Numbers",
+  description = "Estimates health numbers, and shows numbers on player, pet and target unit frames.",
   enabled = true,
 })
 

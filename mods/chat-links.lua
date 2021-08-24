@@ -8,8 +8,8 @@ local rgbhex = ShaguTweaks.rgbhex
 local strsplit = ShaguTweaks.strsplit
 
 local module = ShaguTweaks:register({
-  title = "Chat Links",
-  description = "Allows to copy website URLs, transforms CLINK into real items and displays quest links.",
+  title = "Chat Hyperlinks",
+  description = "Copy website URLs from the chat, transforms CLINKs into real items and handles quest links.",
   enabled = true,
 })
 

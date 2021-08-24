@@ -2,8 +2,8 @@ local _G = _G or getfenv(0)
 local GetUnitData = ShaguTweaks.GetUnitData
 
 local module = ShaguTweaks:register({
-  title = "Use Class Colors On Nameplates",
-  description = "Change the nameplate healthbar color to class colors",
+  title = "Nameplate Class Colors",
+  description = "Changes the nameplate health bar color to the class color.",
   enabled = nil,
 })
 

@@ -3736,8 +3736,8 @@ local data_tbc = {
 }
 
 local module = ShaguTweaks:register({
-  title = "Show Vendor Values",
-  description = "Show the vendor sell values on item tooltips",
+  title = "Vendor Values",
+  description = "Shows the vendor sell values on all item tooltips.",
   enabled = true,
 })
 

@@ -2,8 +2,8 @@ local _G = _G or getfenv(0)
 local GetExpansion = ShaguTweaks.GetExpansion
 
 local module = ShaguTweaks:register({
-  title = "Class Color On Unit Frames",
-  description = "Adds class colors to the player and target unitframe",
+  title = "Unit Frame Class Colors",
+  description = "Adds class colors to the player, target and party unit frames.",
   enabled = nil,
 })
 
