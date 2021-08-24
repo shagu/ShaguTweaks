@@ -186,6 +186,11 @@ module.enable = function(self)
       local tex = _G["AuctionFilterButton"..i]:GetNormalTexture()
       tex:SetVertexColor(self.color.r, self.color.g, self.color.b, 1)
     end
+
+    for i = 1, 8 do
+      _G["BrowseButton"..i.."Left"]:SetVertexColor(self.color.r, self.color.g, self.color.b, 1)
+      _G["BrowseButton"..i.."Right"]:SetVertexColor(self.color.r, self.color.g, self.color.b, 1)
+    end
   end)
 
   for addon, data in pairs(addonframes) do
