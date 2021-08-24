@@ -181,6 +181,13 @@ module.enable = function(self)
   DarkenFrame(DropDownList2)
   DarkenFrame(DropDownList3)
 
+  HookAddonOrVariable("Blizzard_AuctionUI", function()
+    for i = 1, 15 do
+      local tex = _G["AuctionFilterButton"..i]:GetNormalTexture()
+      tex:SetVertexColor(self.color.r, self.color.g, self.color.b, 1)
+    end
+  end)
+
   for addon, data in pairs(addonframes) do
     for _, frame in pairs(data) do
       local frame = frame
