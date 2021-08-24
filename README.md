@@ -2,17 +2,14 @@
 
 <img src="_img/menu.jpg" float="right" align="right">
 
-**A Small World of Warcraft AddOn for all those who don't want to make use of AddOns at all.**
+**A small World of Warcraft (1.12.1) AddOn for all those, who don't want to use any AddOns at all.**
 
-The goal of ShaguTweaks is to be as non-intrusive to the default appearance as possible,
-but also giving the user the choice to change additional things if desired.
-
-The pre selected defaults of ShaguTweaks only add quality of life changes to the game, while preserving the look and feel of the original interface. It's up to everyones own preferences to enable more or even disable defaults.
+The goal of ShaguTweaks is to be non-intrusive to the default appearance, but also giving the user the choice to change additional settings if desired. The pre-selected defaults of ShaguTweaks only add those quality of life changes to the game, that are preserving the look and feel of the original interface. It's up to everyones own preferences to enable more or even disable some more.
 
 All tweaks are made to the default interface and might not take effect if you already replaced some of the elements with other addons.
 
-The addon settings can be controlled ingame via the "Advanced Options" button on the Main Menu (Esc).
-Every of the listed features below can be completely disabled in that menu in case you don't like it.
+All addon settings can be controlled in game via the "Advanced Options*" button on the Main Menu (*Esc*).
+Every of the listed features below, can be completely disabled in that menu in case you don't like it.
 
 ## Installation (Vanilla, 1.12)
 1. Download **[Latest Version](https://github.com/shagu/ShaguTweaks/archive/master.zip)**
@@ -40,7 +37,7 @@ Every of the listed features below can be completely disabled in that menu in ca
 
 - **MiniMap Tweaks** - *Hides unnecessary mini map buttons and allows to zoom using the mouse wheel.*
 
-- **Movable Unit Frames** - *Player and Target Unit Frames can be moved while <Shift> and <Ctrl> are pressed together.*
+- **Movable Unit Frames** - *Player and Target Unit Frames can be moved while \<Shift> and \<Ctrl> are pressed together.*
 
 - **Nameplate Class Colors** - *Changes the nameplate health bar color to class color of the unit.*
 
