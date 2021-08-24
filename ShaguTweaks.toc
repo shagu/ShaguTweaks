@@ -1,0 +1,51 @@
+## Interface: 11200
+## Title: |cffffcc00Shagu|cffffffffTweaks
+## Author: Shagu
+## Notes: A collection of tweaks and enhancements to the Default UI
+## Version: GIT
+## SavedVariablesPerCharacter: ShaguTweaks_config, ShaguTweaks_cache
+
+# locales
+locales\locales_deDE.lua
+locales\locales_enUS.lua
+locales\locales_esES.lua
+locales\locales_frFR.lua
+locales\locales_koKR.lua
+locales\locales_ruRU.lua
+locales\locales_zhCN.lua
+
+# basic
+main.lua
+helpers.lua
+config.lua
+
+# libraries
+libs\libtipscan.lua
+libs\libspell.lua
+libs\libcast.lua
+libs\libdebuff.lua
+libs\libunitscan.lua
+libs\libhealth.lua
+libs\libnameplate.lua
+
+# modules
+mods\dark-ui-elements.lua
+mods\equip-compare.lua
+mods\minimap-clock.lua
+mods\minimap-square.lua
+mods\minimap-tweaks.lua
+mods\nameplate-scale.lua
+mods\sell-junk.lua
+mods\unitframes-classcolor.lua
+mods\vendor-values.lua
+mods\worldmap-coordinates.lua
+mods\worldmap-window.lua
+mods\blue-shaman.lua
+mods\nameplate-classcolor.lua
+mods\move-unitframes.lua
+mods\target-castbar.lua
+mods\target-debufftimer.lua
+mods\social-colors.lua
+mods\item-colors.lua
+mods\chat-links.lua
+mods\health-numbers.lua
