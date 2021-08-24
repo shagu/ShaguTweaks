@@ -245,7 +245,7 @@ ShaguTweaks.Abbreviate = function(number)
   if number > 1000000 then
     return ShaguTweaks.round(number/1000000*sign,2) .. "m"
   elseif number > 10000 then
-    return ShaguTweaks.round(number/10000*sign,2) .. "k"
+    return ShaguTweaks.round(number/1000*sign,2) .. "k"
   end
 
   return number
