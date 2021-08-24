@@ -51,6 +51,15 @@ module.enable = function(self)
   PlayerFrameNameBackground:SetVertexColor(class.r, class.g, class.b, 1)
   PlayerFrameBackground:Hide()
 
+  local wait = CreateFrame("Frame")
+  wait:RegisterEvent("PLAYER_ENTERING_WORLD")
+  wait:SetScript("OnEvent", function()
+    local _, class = UnitClass("player")
+    local class = RAID_CLASS_COLORS[class] or { r = .5, g = .5, b = .5, a = 1 }
+    PlayerFrameNameBackground:SetVertexColor(class.r, class.g, class.b, 1)
+    this:UnregisterAllEvents()
+  end)
+
   -- add font outline
   local font, size = PlayerFrame.name:GetFont()
   PlayerFrame.name:SetFont(font, size, "NONE")
