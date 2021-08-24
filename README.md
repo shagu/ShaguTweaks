@@ -14,6 +14,8 @@ All tweaks are made to the default interface and might not take effect if you al
 The addon settings can be controlled ingame via the "Advanced Options" button on the Main Menu (Esc).
 Every of the listed features below can be completely disabled in that menu in case you don't like it.
 
+![preview](_img/settings.jpg)  
+
 ## Installation (Vanilla, 1.12)
 1. Download **[Latest Version](https://github.com/shagu/ShaguTweaks/archive/master.zip)**
 2. Unpack the Zip file
@@ -63,14 +65,11 @@ Every of the listed features below can be completely disabled in that menu in ca
 - **WorldMap Window** - *Turns the world map into a movable window. The map can be scaled with <Ctrl> + Mousewheel.*
 
 ## Screenshots
-![preview](_img/settings.jpg)  
-*Settings Window*
+![preview](_img/dark.jpg)  
+*All options enabled, except for squared minimap.*
 
 ![preview](_img/debufftimers.jpg)  
 *Debuff Timers & Mob Health*
 
 ![preview](_img/castbars.jpg)  
 *Target Frame Castbars*
-
-![preview](_img/dark.jpg)  
-*All options enabled, except for squared minimap.*
