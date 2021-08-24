@@ -11,7 +11,7 @@ local module = ShaguTweaks:register({
 
 local castbar = CreateFrame("StatusBar", nil, TargetFrame)
 
-castbar:SetPoint("TOP", TargetFrame, "BOTTOM", 0, 0)
+castbar:SetPoint("TOP", TargetFrame, "BOTTOM", 0, -20)
 castbar:SetStatusBarTexture("Interface\\TargetingFrame\\UI-StatusBar")
 castbar:SetStatusBarColor(1, .8, 0, 1)
 castbar:SetWidth(120)
