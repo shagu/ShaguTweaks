@@ -49,12 +49,13 @@ module.enable = function(self)
   local HookTextStatusBar_UpdateTextString = TextStatusBar_UpdateTextString
   function TextStatusBar_UpdateTextString(sb)
     if not sb then sb = this end
-    sb.lockShow = 1
 
     HookTextStatusBar_UpdateTextString(sb)
     local string = sb.TextString
 
-    if string then
+    if string and sb.unit then
+      sb.lockShow = 1
+
       local min, max = sb:GetMinMaxValues()
       local cur = sb:GetValue()
       local percent = max > 0 and floor(cur/max*100) or 0
