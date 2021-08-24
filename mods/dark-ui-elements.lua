@@ -1,0 +1,203 @@
+local _G = _G or getfenv(0)
+local HookAddonOrVariable = ShaguTweaks.HookAddonOrVariable
+local GetExpansion = ShaguTweaks.GetExpansion
+local AddBorder = ShaguTweaks.AddBorder
+
+local module = ShaguTweaks:register({
+  title = "Dark UI Elements",
+  description = "Tint the default UI elements in black color",
+  enabled = nil,
+  color = { r = .3, g = .3, b = .3, a = .9}
+})
+
+local blacklist = {
+  ["Solid Texture"] = true,
+  ["WHITE8X8"] = true,
+  ["StatusBar"] = true,
+  ["BarFill"] = true,
+  ["Portrait"] = true,
+  ["Button"] = true,
+  ["Icon"] = true,
+  ["AddOns"] = true,
+  ["StationeryTest"] = true,
+  ["TargetDead"] = true, -- LootFrame Icon
+  ["^KeyRing"] = true, -- bag frame
+  ["GossipIcon"] = true,
+  ["WorldMap\\(.+)\\"] = true,
+  ["PetHappiness"] = true,
+  ["Elite"] = true,
+  ["Rare"] = true,
+}
+
+local backgrounds = {
+  ["^SpellBookFrame$"] = { 325, 355, 17, -74 },
+  ["^QuestLogDetailScrollFrame$"] = {300, 261, 0, 0 },
+  ["^QuestFrame(.+)Panel$"] = { 300, 330, 24, -82 },
+  ["^GossipFrameGreetingPanel$"] = { 300, 330, 24, -82 },
+}
+
+local borders = {
+  ["ShapeshiftButton"] = 3,
+  ["BuffButton"] = 3,
+  ["TempEnchant"] = 3,
+  ["SpellButton"] = 3,
+  ["SpellBookSkillLineTab"] = 3,
+  ["ActionButton"] = 3,
+  ["MultiBar(.+)Button"] = 3,
+  ["Character(.+)Slot$"] = 3,
+  ["Inspect(.+)Slot$"] = 3,
+  ["ContainerFrame(.+)Item"] = 3,
+  ["MainMenuBarBackpackButton$"] = 3,
+  ["CharacterBag(.+)Slot$"] = 3,
+  ["ChatFrame(.+)Button"] = -2,
+  ["PetFrameHappiness"] = 1,
+  ["MicroButton"] = { -20, 1, 1, 1 },
+}
+
+local addonframes = {
+  ["Blizzard_TalentUI"] = { "TalentFrame" },
+  ["Blizzard_AuctionUI"] = { "AuctionFrame", "AuctionDressUpFrame" },
+  ["Blizzard_CraftUI"] = { "CraftFrame" },
+  ["Blizzard_InspectUI"] = { "InspectPaperDollFrame", "InspectHonorFrame", "InspectFrameTab1", "InspectFrameTab2" },
+  ["Blizzard_MacroUI"] = { "MacroFrame", "MacroPopupFrame" },
+  ["Blizzard_RaidUI"] = { "ReadyCheckFrame" },
+  ["Blizzard_TalentUI"] = { "TalentFrame" },
+  ["Blizzard_TradeSkillUI"] = { "TradeSkillFrame" },
+  ["Blizzard_TrainerUI"] = { "ClassTrainerFrame" },
+}
+
+-- sizing is a bit different on tbc
+if GetExpansion() == "tbc" then
+  borders["BuffButton"] = 2
+  borders["TempEnchant"] = 2
+  borders["MicroButton"] = { -22, -1, -1, -1 }
+end
+
+local function IsBlacklisted(texture)
+  local name = texture:GetName()
+  local texture = texture:GetTexture()
+  if not texture then return true end
+
+  if name then
+    for entry in pairs(blacklist) do
+      if string.find(name, entry, 1) then return true end
+    end
+  end
+
+  for entry in pairs(blacklist) do
+    if string.find(texture, entry, 1) then return true end
+  end
+
+  return nil
+end
+
+local function AddSpecialBackground(frame, w, h, x, y)
+  frame.Material = frame.Material or frame:CreateTexture(nil, "OVERLAY")
+  frame.Material:SetTexture("Interface\\Stationery\\StationeryTest1")
+  frame.Material:SetWidth(w)
+  frame.Material:SetHeight(h)
+  frame.Material:SetPoint("TOPLEFT", frame, x, y)
+  frame.Material:SetVertexColor(.8, .8, .8)
+end
+
+local function DarkenFrame(frame, r, g, b, a)
+  -- set defaults
+  if not r and not g and not b then
+    r, g, b, a = module.color.r, module.color.g, module.color.b, module.color.a
+  end
+
+  -- iterate through all subframes
+  if frame and frame.GetChildren then
+    for _, frame in pairs({frame:GetChildren()}) do
+      DarkenFrame(frame, r, g, b, a)
+    end
+  end
+
+  -- set vertex on all regions
+  if frame and frame.GetRegions then
+    -- read name
+    local name = frame.GetName and frame:GetName()
+
+    -- set a dark backdrop border color everywhere
+    frame:SetBackdropBorderColor(module.color.r, module.color.g, module.color.b, module.color.a)
+
+    -- add special backgrounds to quests and such
+    for pattern, inset in pairs(backgrounds) do
+      if name and string.find(name, pattern) then AddSpecialBackground(frame, inset[1], inset[2], inset[3], inset[4]) end
+    end
+
+    -- add black borders around specified buttons
+    for pattern, inset in pairs(borders) do
+      if name and string.find(name, pattern) then AddBorder(frame, inset, module.color) end
+    end
+
+    -- scan through all regions (textures)
+    for _, region in pairs({frame:GetRegions()}) do
+      if region.SetVertexColor and region:GetObjectType() == "Texture" then
+        if region:GetTexture() and string.find(region:GetTexture(), "UI%-Panel%-Button%-Up") then
+          -- region:SetDesaturated(true) -- monochrome buttons
+        end
+
+        if not IsBlacklisted(region) then
+          region:SetVertexColor(r,g,b,a)
+        end
+      end
+    end
+  end
+end
+
+module.enable = function(self)
+  local name, original, r, g, b
+  local hookBuffButton_Update = BuffButton_Update
+  function BuffButton_Update(buttonName, index, filter)
+    hookBuffButton_Update(buttonName, index, filter)
+
+    -- tbc passes buttonName and index arguments, vanilla uses "this" context
+    name = buttonName and index and buttonName .. index or this:GetName()
+    original = _G[name.."Border"]
+
+    if original and this.ShaguTweaks_border then
+      r, g, b = original:GetVertexColor()
+      this.ShaguTweaks_border:SetBackdropBorderColor(r, g, b, 1)
+      original:SetAlpha(0)
+    elseif not original and _G[name] then
+      -- tbc buff buttons don't have borders, so we
+      -- need to manually add a dark one.
+      AddBorder(_G[name], 2, self.color)
+    end
+  end
+
+  TOOLTIP_DEFAULT_COLOR.r = self.color.r
+  TOOLTIP_DEFAULT_COLOR.g = self.color.g
+  TOOLTIP_DEFAULT_COLOR.b = self.color.b
+
+  TOOLTIP_DEFAULT_BACKGROUND_COLOR.r = self.color.r
+  TOOLTIP_DEFAULT_BACKGROUND_COLOR.g = self.color.g
+  TOOLTIP_DEFAULT_BACKGROUND_COLOR.b = self.color.b
+
+  DarkenFrame(UIParent)
+  DarkenFrame(WorldMapFrame)
+  DarkenFrame(DropDownList1)
+  DarkenFrame(DropDownList2)
+  DarkenFrame(DropDownList3)
+
+  for addon, data in pairs(addonframes) do
+    for _, frame in pairs(data) do
+      local frame = frame
+      HookAddonOrVariable(frame, function()
+        DarkenFrame(_G[frame])
+      end)
+    end
+  end
+
+  HookAddonOrVariable("Blizzard_TimeManager", function()
+    DarkenFrame(TimeManagerClockButton)
+  end)
+
+  table.insert(ShaguTweaks.libnameplate.OnUpdate, function()
+    if not this.darkened then
+      this.darkened = true
+      DarkenFrame(this)
+    end
+  end)
+end
