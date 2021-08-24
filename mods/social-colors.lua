@@ -17,7 +17,7 @@ local module = ShaguTweaks:register({
 module.enable = function(self)
   do -- add class colors to chat
     for i=1,NUM_CHAT_WINDOWS do
-      if not _G["ChatFrame"..i].HookAddMessageColor then
+      if not _G["ChatFrame"..i].HookAddMessageColor and not Prat then
         _G["ChatFrame"..i].HookAddMessageColor = _G["ChatFrame"..i].AddMessage
         _G["ChatFrame"..i].AddMessage = function(frame, text, a1, a2, a3, a4, a5)
           for name in gfind(text, "|Hplayer:(.-)|h") do
