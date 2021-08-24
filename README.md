@@ -8,7 +8,7 @@ The goal of ShaguTweaks is to be non-intrusive to the default appearance, but al
 
 All tweaks are made to the default interface and might not take effect if you already replaced some of the elements with other addons.
 
-All addon settings can be controlled in game via the "Advanced Options*" button on the Main Menu (*Esc*).
+All addon settings can be controlled in game via the "Advanced Options" button on the Main Menu (*Esc*).
 Every of the listed features below, can be completely disabled in that menu in case you don't like it.
 
 ## Installation (Vanilla, 1.12)
