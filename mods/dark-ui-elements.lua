@@ -181,6 +181,17 @@ module.enable = function(self)
   DarkenFrame(DropDownList2)
   DarkenFrame(DropDownList3)
 
+  for _, button in pairs({ MinimapZoomOut, MinimapZoomIn }) do
+    for _, func in pairs({ "GetNormalTexture", "GetDisabledTexture", "GetPushedTexture" }) do
+      if button[func] then
+        local tex = button[func](button)
+        if tex then
+          tex:SetVertexColor(self.color.r+.2, self.color.g+.2, self.color.b+.2, 1)
+        end
+      end
+    end
+  end
+
   HookAddonOrVariable("Blizzard_AuctionUI", function()
     for i = 1, 15 do
       local tex = _G["AuctionFilterButton"..i]:GetNormalTexture()
