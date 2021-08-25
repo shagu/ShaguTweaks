@@ -3748,6 +3748,8 @@ if GetExpansion() == "tbc" then
   for k,v in pairs(data_tbc) do data[k] = v end
 end
 
+ShaguTweaks.SellValueDB = data
+
 local function GetItemLinkByName(name)
   for itemID = 1, 25818 do
     local itemName, hyperLink, itemQuality = GetItemInfo(itemID)
