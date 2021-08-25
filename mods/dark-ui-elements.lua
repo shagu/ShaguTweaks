@@ -27,6 +27,12 @@ local blacklist = {
   ["PetHappiness"] = true,
   ["Elite"] = true,
   ["Rare"] = true,
+  ["ColorPickerWheel"] = true,
+}
+
+local regionskips = {
+  -- colorpicker gradient
+  ["ColorPickerFrame"] = { [15] = true }
 }
 
 local backgrounds = {
@@ -132,13 +138,16 @@ local function DarkenFrame(frame, r, g, b, a)
     end
 
     -- scan through all regions (textures)
-    for _, region in pairs({frame:GetRegions()}) do
+    for id, region in pairs({frame:GetRegions()}) do
       if region.SetVertexColor and region:GetObjectType() == "Texture" then
         if region:GetTexture() and string.find(region:GetTexture(), "UI%-Panel%-Button%-Up") then
-          -- region:SetDesaturated(true) -- monochrome buttons
-        end
-
-        if not IsBlacklisted(region) then
+          -- monochrome buttons
+          -- region:SetDesaturated(true)
+        elseif name and id and regionskips[name] and regionskips[name][id] then
+          -- skip special regions
+        elseif IsBlacklisted(region) then
+          -- skip blacklisted texture names
+        else
           region:SetVertexColor(r,g,b,a)
         end
       end
