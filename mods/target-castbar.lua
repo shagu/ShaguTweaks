@@ -10,15 +10,15 @@ local module = ShaguTweaks:register({
 })
 
 local castbar = CreateFrame("StatusBar", nil, TargetFrame)
-castbar:SetPoint("TOP", TargetFrame, "BOTTOM", 0, -20)
+castbar:SetPoint("BOTTOM", TargetFrame, "BOTTOM", -12, -4)
 castbar:SetStatusBarTexture("Interface\\TargetingFrame\\UI-StatusBar")
 castbar:SetStatusBarColor(1, .8, 0, 1)
-castbar:SetWidth(120)
+castbar:SetWidth(140)
 castbar:SetHeight(10)
 castbar:Hide()
 
 castbar.texture = CreateFrame("Frame", nil, castbar)
-castbar.texture:SetPoint("RIGHT", castbar, "LEFT", -4, 0)
+castbar.texture:SetPoint("RIGHT", castbar, "LEFT", -2, 0)
 castbar.texture:SetHeight(20)
 castbar.texture:SetWidth(20)
 
@@ -96,6 +96,16 @@ module.enable = function(self)
         castbar.texture.icon:Show()
       else
         castbar.texture.icon:Hide()
+      end
+
+      if TargetofTargetFrame and TargetofTargetFrame:IsShown() then
+        if not castbar.dodged then
+          castbar:SetPoint("BOTTOM", TargetFrame, "BOTTOM", -12, -24)
+          castbar.dodged = true
+        end
+      elseif castbar.dodged then
+        castbar:SetPoint("BOTTOM", TargetFrame, "BOTTOM", -12, -4)
+        castbar.dodged = nil
       end
     else
       castbar:Hide()
