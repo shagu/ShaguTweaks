@@ -36,7 +36,9 @@ ShaguTweaks.libnameplate:SetScript("OnUpdate", function()
       if IsNamePlate(plate) and not registry[plate] then
         plate.healthbar = plate:GetChildren()
         for i, object in pairs({plate:GetRegions()}) do
-          plate[NAMEPLATE_OBJECTORDER[i]] = object
+          if plate and NAMEPLATE_OBJECTORDER[i] then
+            plate[NAMEPLATE_OBJECTORDER[i]] = object
+          end
         end
 
         -- run OnInit functions
