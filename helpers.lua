@@ -238,13 +238,15 @@ ShaguTweaks.round = function(input, places)
   end
 end
 
-ShaguTweaks.Abbreviate = function(number)
+ShaguTweaks.Abbreviate = function(number, eachk)
   local sign = number < 0 and -1 or 1
   number = math.abs(number)
 
   if number > 1000000 then
     return ShaguTweaks.round(number/1000000*sign,2) .. "m"
-  elseif number > 10000 then
+  elseif not eachk and number > 10000 then
+    return ShaguTweaks.round(number/1000*sign,2) .. "k"
+  elseif eachk and number > 1000 then
     return ShaguTweaks.round(number/1000*sign,2) .. "k"
   end
 
