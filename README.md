@@ -28,9 +28,6 @@ Every of the listed features below, can be completely disabled in that menu in c
 - **Auto Stance**  
   *Automatically switch to the required warrior or druid stance on spell cast.*
 
-- **Tooltip Details**  
-  *Display health, class color, guild name, guild rank and current target on unit tooltips.*
-
 - **Blue Shaman Class Colors**  
   *Changes the class color code of shamans to blue, as known from TBC+.*
 
@@ -48,6 +45,9 @@ Every of the listed features below, can be completely disabled in that menu in c
 
 - **Item Rarity Borders**  
   *Show item rarity as the border color on bags, bank, character and inspect frames.*
+
+- **Tooltip Details**  
+  *Display health, class color, guild name, guild rank and current target on unit tooltips.*
 
 - **MiniMap Clock**  
   *Adds a small 24h clock to the mini map.*
@@ -91,6 +91,8 @@ Every of the listed features below, can be completely disabled in that menu in c
 - **WorldMap Window**  
   *Turns the world map into a movable window. The map can be scaled with \<Ctrl> + Mousewheel.*
 
+- **Hide Errors**  
+  *Hides and ignores all Lua errors produced by broken addons.*
 
 ![preview](img/castbars.jpg)  
 *Target Frame Castbars*
