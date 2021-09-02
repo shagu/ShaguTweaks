@@ -22,6 +22,9 @@ Every of the listed features below, can be completely disabled in that menu in c
 *All options enabled, except for squared minimap.*
 
 ## Features
+- **Auto Dismount**  
+  *Automatically dismounts whenever a spell is casted.*
+
 - **Blue Shaman Class Colors**  
   *Changes the class color code of shamans to blue, as known from TBC+.*
 
