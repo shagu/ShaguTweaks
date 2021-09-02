@@ -25,6 +25,9 @@ Every of the listed features below, can be completely disabled in that menu in c
 - **Auto Dismount**  
   *Automatically dismounts whenever a spell is casted.*
 
+- **Auto Stance**  
+  *Automatically switch to the required warrior or druid stance on spell cast.*
+
 - **Tooltip Details**  
   *Display health, class color, guild name, guild rank and current target on unit tooltips.*
 
