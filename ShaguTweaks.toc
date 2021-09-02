@@ -50,3 +50,4 @@ mods\item-colors.lua
 mods\chat-links.lua
 mods\health-numbers.lua
 mods\auto-dismount.lua
+mods\tooltip-details.lua
