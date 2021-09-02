@@ -4,9 +4,14 @@ SLASH_RELOAD1 = '/rl'
 function SlashCmdList.RELOAD(msg, editbox) ReloadUI() end
 
 message = function(msg)
-  DEFAULT_CHAT_FRAME:AddMessage("|cffcccc33INFO: |cffffff55" .. ( msg or "nil" ))
+  DEFAULT_CHAT_FRAME:AddMessage("|cffffff00" .. ( msg or "nil" ))
 end
 print = message
+
+error = function(msg)
+  DEFAULT_CHAT_FRAME:AddMessage("|cffff0000".. (msg or "nil" ))
+end
+seterrorhandler(error)
 
 ShaguTweaks = CreateFrame("Frame")
 ShaguTweaks.mods = {}
