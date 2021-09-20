@@ -34,6 +34,9 @@ Every of the listed features below, can be completely disabled in that menu in c
 - **Chat Hyperlinks**  
   *Copy website URLs from the chat, transforms CLINKs into real items and handles quest links.*
 
+- **Chat Tweaks**  
+  *Allows to scroll using the mouse wheel and enables sticky chat channels.*
+
 - **Darkened UI**  
   *Turns the entire interface into darker colors.*
 
