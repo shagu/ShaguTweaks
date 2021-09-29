@@ -35,7 +35,7 @@ Every of the listed features below, can be completely disabled in that menu in c
   *Copy website URLs from the chat, transforms CLINKs into real items and handles quest links.*
 
 - **Chat Tweaks**  
-  *Allows to scroll using the mouse wheel and enables sticky chat channels.*
+  *Allows to scroll using the mouse wheel, enables sticky chat channels and repeats message on arrow up.*
 
 - **Darkened UI**  
   *Turns the entire interface into darker colors.*

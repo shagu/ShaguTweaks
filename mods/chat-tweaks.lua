@@ -3,7 +3,7 @@ local scrollspeed = 1
 
 local module = ShaguTweaks:register({
   title = "Chat Tweaks",
-  description = "Allows to scroll using the mouse wheel and enables sticky chat channels.",
+  description = "Allows to scroll using the mouse wheel, enables sticky chat channels and repeats message on arrow up.",
   enabled = true,
 })
 
@@ -33,6 +33,9 @@ module.enable = function(self)
   ChatTypeInfo.OFFICER.sticky = 1
   ChatTypeInfo.RAID_WARNING.sticky = 1
   ChatTypeInfo.CHANNEL.sticky = 1
+
+  -- repeat message without pressing <alt>
+  ChatFrameEditBox:SetAltArrowKeyMode(false)
 
   for i=1, NUM_CHAT_WINDOWS do
     -- enable mouse wheel scrolling
