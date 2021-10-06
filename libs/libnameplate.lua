@@ -3,12 +3,14 @@ local GetExpansion = ShaguTweaks.GetExpansion
 local GetUnitData = ShaguTweaks.GetUnitData
 
 local NAMEPLATE_OBJECTORDER = { "border", "glow", "name", "level", "levelicon", "raidicon" }
+local NAMEPLATE_TYPE = "Button"
 if GetExpansion() == "tbc" then
   NAMEPLATE_OBJECTORDER = { "border", "castborder", "casticon", "glow", "name", "level", "levelicon", "raidicon" }
+  NAMEPLATE_TYPE = "Frame"
 end
 
 local function IsNamePlate(frame)
-  if frame:GetObjectType() ~= "Button" then return nil end
+  if frame:GetObjectType() ~= NAMEPLATE_TYPE then return nil end
   regions = frame:GetRegions()
 
   if not regions then return nil end
