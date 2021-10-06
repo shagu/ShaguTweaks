@@ -1,6 +1,8 @@
 local _G = _G or getfenv(0)
 local Abbreviate = ShaguTweaks.Abbreviate
 local GetColorGradient = ShaguTweaks.GetColorGradient
+local vanilla = ShaguTweaks.GetExpansion() == "vanilla" or nil
+
 local module = ShaguTweaks:register({
   title = "Real Health Numbers",
   description = "Estimates health numbers, and shows numbers on player, pet and target unit frames.",
@@ -54,6 +56,11 @@ module.enable = function(self)
     local string = sb.TextString
 
     if string and sb.unit then
+      -- hide tbc text string element
+      if not vanilla then
+        TargetFrameHealthBarText:Hide()
+      end
+
       sb.lockShow = 42
       sb:Show()
 
