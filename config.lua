@@ -1,5 +1,7 @@
 local _G = _G or getfenv(0)
 local GetExpansion = ShaguTweaks.GetExpansion
+local mod = math.mod or mod
+
 local current_config = {}
 local settings = CreateFrame("Frame", "AdvancedSettingsGUI", UIParent)
 settings:Hide()
@@ -78,7 +80,7 @@ settings.load = function(self)
   settings.entries = settings.entries or {}
   local entry = 1
 
-  for title, mod in pairs(ShaguTweaks.mods) do
+  for title, module in pairs(ShaguTweaks.mods) do
     if not settings.entries[entry] then
       settings.entries[entry] = CreateFrame("CheckButton", "AdvancedSettingsGUI" .. entry, settings, "OptionsCheckButtonTemplate")
     end
@@ -89,9 +91,9 @@ settings.load = function(self)
     button.title = title
     button:SetChecked(current_config[title] == 1 and true or nil)
 
-    button:SetPoint("TOPLEFT", settings, "TOPLEFT", math.mod(entry, 2) == 1 and 17 or 17+200, math.ceil(entry/2)*-30)
+    button:SetPoint("TOPLEFT", settings, "TOPLEFT", mod(entry, 2) == 1 and 17 or 17+200, math.ceil(entry/2)*-30)
 
-    local description = mod.description
+    local description = module.description
     button:SetScript("OnEnter", function()
       GameTooltip:SetOwner(this, "ANCHOR_TOPLEFT");
       GameTooltip:SetText(description, nil, nil, nil, nil, 1)
