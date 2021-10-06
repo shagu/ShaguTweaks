@@ -1,6 +1,7 @@
 local _G = _G or getfenv(0)
 local GetExpansion = ShaguTweaks.GetExpansion
 
+-- tbc already has a clock
 if GetExpansion() ~= "vanilla" then return end
 
 local module = ShaguTweaks:register({

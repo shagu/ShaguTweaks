@@ -1,5 +1,10 @@
 local _G = _G or getfenv(0)
 local libdebuff = ShaguTweaks.libdebuff
+local GetExpansion = ShaguTweaks.GetExpansion
+
+-- there are already debuff timers in tbc+
+if GetExpansion() ~= "vanilla" then return end
+
 local module = ShaguTweaks:register({
   title = "Debuff Timer",
   description = "Show debuff durations on the target unit frame.",
