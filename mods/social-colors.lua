@@ -7,6 +7,7 @@ local GetExpansion = ShaguTweaks.GetExpansion
 local cmatch = ShaguTweaks.cmatch
 local rgbhex = ShaguTweaks.rgbhex
 local strsplit = ShaguTweaks.strsplit
+local friendinfo = gsub(gsub(FRIENDS_LEVEL_TEMPLATE,"%%s","%%s %%s"),"%%d","%%s")
 
 local module = ShaguTweaks:register({
   title = "Social Colors",
@@ -117,9 +118,13 @@ module.enable = function(self)
 
           zone = ( zone == playerzone and "|cffffffff" or "|cffcccccc" ) .. zone .. "|r"
           local cname = rgbhex(ccolor) .. name .. "|r"
+          local clevel = rgbhex(lcolor) .. level .. "|r"
+
           if playerdb[name] then
             playerdb[name].lastseen = date("%a %d-%b-%Y")
             playerdb[name].cname = cname
+            playerdb[name].clevel = clevel
+            playerdb[name].cclass = ccolor
           end
 
           if friendName then
@@ -129,13 +134,13 @@ module.enable = function(self)
             friendLoc:SetText(format(TEXT(FRIENDS_LIST_TEMPLATE), cname, zone, status))
           end
 
-          friendInfo:SetText(format(TEXT(FRIENDS_LEVEL_TEMPLATE), level, class))
+          friendInfo:SetText(format(TEXT(friendinfo), clevel, class, ""))
           caption:SetVertexColor(1,1,1,.9)
           friendInfo:SetVertexColor(1,1,1,.9)
         else
-          if playerdb[name] and playerdb[name].cname and playerdb[name].level and playerdb[name].lastseen then
+          if playerdb[name] and playerdb[name].cname and playerdb[name].clevel and playerdb[name].lastseen then
             caption:SetText(format(TEXT(FRIENDS_LIST_OFFLINE_TEMPLATE), playerdb[name].cname))
-            friendInfo:SetText(format(TEXT(FRIENDS_LEVEL_TEMPLATE), playerdb[name].level, playerdb[name].lastseen))
+            friendInfo:SetText(format(TEXT(friendinfo), playerdb[name].clevel, playerdb[name].lastseen, ""))
           else
             caption:SetText(format(TEXT(FRIENDS_LIST_OFFLINE_TEMPLATE), name.."|r"))
             friendInfo:SetText(TEXT(UNKNOWN))
