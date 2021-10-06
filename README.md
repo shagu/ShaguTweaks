@@ -2,7 +2,7 @@
 
 <img src="img/menu.jpg" float="right" align="right">
 
-> **A small World of Warcraft (1.12.1) AddOn for those, who don't want to use any AddOns at all.**
+> **A small World of Warcraft (1.12.1 / 2.4.3) AddOn for those, who don't want to use any AddOns at all.**
 
 The goal of ShaguTweaks is to be non-intrusive to the default appearance, but also giving the user the choice to change additional settings if desired. The pre-selected defaults of ShaguTweaks only add those quality of life changes to the game, that are preserving the look and feel of the original interface. It's up to everyones own preferences to enable more or even disable some more.
 
@@ -16,6 +16,13 @@ Every of the listed features below, can be completely disabled in that menu in c
 2. Unpack the Zip file
 3. Rename the folder "ShaguTweaks-master" to "ShaguTweaks"
 4. Copy "ShaguTweaks" into Wow-Directory\Interface\AddOns
+5. Restart Wow
+
+## Installation (The Burning Crusade, 2.4.3)
+1. Download **[Latest Version](https://github.com/shagu/ShaguTweaks/archive/master.zip)**
+2. Unpack the Zip file
+3. Rename the folder "ShaguTweaks-master" to "ShaguTweaks-tbc"
+4. Copy "ShaguTweaks-tbc" into Wow-Directory\Interface\AddOns
 5. Restart Wow
 
 ![preview](img/dark.jpg)  
