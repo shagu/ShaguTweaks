@@ -65,8 +65,10 @@ module.enable = function(self)
           if class then
             local color = RAID_CLASS_COLORS[class]
             if online then
+              _G["GuildFrameButton"..i.."Name"]:SetTextColor(color.r,color.g,color.b,1)
               _G["GuildFrameButton"..i.."Class"]:SetTextColor(color.r,color.g,color.b,1)
             else
+              _G["GuildFrameButton"..i.."Name"]:SetTextColor(color.r,color.g,color.b,.5)
               _G["GuildFrameButton"..i.."Class"]:SetTextColor(color.r,color.g,color.b,.5)
             end
           end
