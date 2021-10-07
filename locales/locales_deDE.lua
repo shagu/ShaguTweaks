@@ -2383,6 +2383,9 @@ ShaguTweaks_locale["deDE"]["debuffs"] = {
   ['Überraschungs-Angriff']={[0]=2.5,},
 }
 
+-- custom entries not detected by DBC extractor
+ShaguTweaks_locale["deDE"]["debuffs"]['Kältekegel']={[0]=8.0,} -- Cone of Cold
+
 ShaguTweaks_locale["deDE"]["totems"] = {
   ["Totem der Krankheitsreinigung"] = "spell_nature_diseasecleansingtotem",
   ["Totem des Erdelementars"] = "spell_nature_earthelemental_totem",

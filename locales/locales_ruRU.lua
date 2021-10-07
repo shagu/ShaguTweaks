@@ -2388,6 +2388,9 @@ ShaguTweaks_locale["ruRU"]["debuffs"] = {
   ['Ярость Тула']={[0]=120.0,},
 }
 
+-- custom entries not detected by DBC extractor
+ShaguTweaks_locale["ruRU"]["debuffs"]['Конус холода']={[0]=8.0,} -- Cone of Cold
+
 ShaguTweaks_locale["ruRU"]["totems"] = {
   ["Тотем очищения от болезней"] = "spell_nature_diseasecleansingtotem",
   ["Тотем элементаля земли"] = "spell_nature_earthelemental_totem",

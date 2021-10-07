@@ -2387,6 +2387,9 @@ ShaguTweaks_locale["esES"]["debuffs"] = {
   ['Ánimo']={[0]=1800.0,},
 }
 
+-- custom entries not detected by DBC extractor
+ShaguTweaks_locale["esES"]["debuffs"]['Cono de frío']={[0]=8.0,} -- Cone of Cold
+
 ShaguTweaks_locale["esES"]["totems"] = {
   ["Tótem de limpieza de enfermedades"] = "spell_nature_diseasecleansingtotem",
   ["Tótem Elemental de Tierra"] = "spell_nature_earthelemental_totem",

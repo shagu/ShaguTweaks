@@ -2390,6 +2390,9 @@ ShaguTweaks_locale["zhCN"]["debuffs"] = {
   ['龙血之痛：黑']={[0]=600.0,},
 }
 
+-- custom entries not detected by DBC extractor
+ShaguTweaks_locale["zhCN"]["debuffs"]['冰锥']={[0]=8.0,} -- Cone of Cold
+
 ShaguTweaks_locale["zhCN"]["totems"] = {
   ["祛病图腾"] = "spell_nature_diseasecleansingtotem",
   ["土元素图腾"] = "spell_nature_earthelemental_totem",

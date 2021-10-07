@@ -2399,6 +2399,9 @@ ShaguTweaks_locale["enUS"]["debuffs"] = {
   ['scaler test']={[0]=10.0,},
 }
 
+-- custom entries not detected by DBC extractor
+ShaguTweaks_locale["enUS"]["debuffs"]['Cone of Cold']={[0]=8.0,} -- Cone of Cold
+
 ShaguTweaks_locale["enUS"]["totems"] = {
   ["Disease Cleansing Totem"] = "spell_nature_diseasecleansingtotem",
   ["Earth Elemental Totem"] = "spell_nature_earthelemental_totem",
