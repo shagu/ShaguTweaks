@@ -20,6 +20,12 @@ module.enable = function(self)
       WorldMapButton.coords = CreateFrame("Frame", "pfWorldMapButtonCoords", WorldMapButton)
       WorldMapButton.coords.text = WorldMapButton.coords:CreateFontString(nil, "OVERLAY")
       WorldMapButton.coords.text:SetPoint("BOTTOMLEFT", WorldMapButton, "BOTTOMLEFT", 3, -21)
+
+      -- move coordinates in case of other addons already taking the space
+      if Gatherer_WorldMapDisplay then
+        WorldMapButton.coords.text:SetPoint("LEFT", Gatherer_WorldMapDisplay, "RIGHT", 3, -21)
+      end
+
       WorldMapButton.coords.text:SetFontObject(GameFontWhite)
       WorldMapButton.coords.text:SetTextColor(1, 1, 1)
       WorldMapButton.coords.text:SetJustifyH("RIGHT")
