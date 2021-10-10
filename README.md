@@ -25,10 +25,10 @@ Every of the listed features below, can be completely disabled in that menu in c
 4. Copy "ShaguTweaks-tbc" into Wow-Directory\Interface\AddOns
 5. Restart Wow
 
-![preview](img/dark.jpg)  
-*All options enabled, except for squared minimap.*
-
 ## Features
+
+![preview](img/settings.jpg)  
+
 - **Auto Dismount**  
   *Automatically dismounts whenever a spell is casted.*
 
@@ -50,14 +50,20 @@ Every of the listed features below, can be completely disabled in that menu in c
 - **Equip Compare**  
   *Shows currently equipped items on tooltips while the shift key is pressed.*
 
+- **Unit Frame Health Colors**  
+  *Change health text color based on its value.*
+
 - **Real Health Numbers**  
   *Estimates health numbers, and shows numbers on player, pet and target unit frames.*
 
+- **Hide Errors**  
+  *Hides and ignores all Lua errors produced by broken addons.*
+
+- **Hide Gryphons**  
+  *Hides the gryphons left and right of the action bar.*
+
 - **Item Rarity Borders**  
   *Show item rarity as the border color on bags, bank, character and inspect frames.*
-
-- **Tooltip Details**  
-  *Display health, class color, guild name, guild rank and current target on unit tooltips.*
 
 - **MiniMap Clock**  
   *Adds a small 24h clock to the mini map.*
@@ -69,7 +75,7 @@ Every of the listed features below, can be completely disabled in that menu in c
   *Hides unnecessary mini map buttons and allows to zoom using the mouse wheel.*
 
 - **Movable Unit Frames**  
-  *Player and Target unit frames can be moved while \<Shift> and \<Ctrl> are pressed together.*
+  *Player and Target unit frames can be moved while <Shift> and <Ctrl> are pressed together.*
 
 - **Nameplate Class Colors**  
   *Changes the nameplate health bar color to the class color.*
@@ -78,7 +84,7 @@ Every of the listed features below, can be completely disabled in that menu in c
   *Makes all nameplates honor the UI-Scale setting.*
 
 - **Sell Junk**  
-  *Adds a "Sell Junk" button to every merchant window, that sells all grey items.*
+  *Adds a “Sell Junk” button to every merchant window, that sells all grey items.*
 
 - **Social Colors**  
   *Show class colors in Who, Guild, Friends and Chat.*
@@ -89,26 +95,30 @@ Every of the listed features below, can be completely disabled in that menu in c
 - **Debuff Timer**  
   *Show debuff durations on the target unit frame.*
 
+- **Tooltip Details**  
+  *Display health, class color, guild name, guild rank and current target on unit tooltips.*
+
 - **Unit Frame Class Colors**  
   *Adds class colors to the player, target and party unit frames.*
 
 - **Vendor Values**  
   *Shows the vendor sell values on all item tooltips.*
 
+- **WorldMap Class Colors**  
+  *Show class colored circles on world and battlefield map.*
+
 - **WorldMap Coordinates**  
   *Adds coordinates to the bottom of the World Map.*
 
 - **WorldMap Window**  
-  *Turns the world map into a movable window. The map can be scaled with \<Ctrl> + Mousewheel.*
+  *Turns the world map into a movable window. The map can be scaled with <Ctrl> + Mousewheel.*
 
-- **Hide Errors**  
-  *Hides and ignores all Lua errors produced by broken addons.*
+## Screenshots
+![preview](img/dark.jpg)  
+*All options enabled, except for squared minimap.*
 
 ![preview](img/castbars.jpg)  
 *Target Frame Castbars*
-
-![preview](img/settings.jpg)  
-*Settings Window*
 
 ![preview](img/debufftimers.jpg)  
 *Debuff Timers & Mob Health*
