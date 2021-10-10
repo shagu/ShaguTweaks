@@ -21,15 +21,21 @@ module.enable = function(self)
       WorldMapButton.coords = CreateFrame("Frame", "pfWorldMapButtonCoords", WorldMapButton)
       WorldMapButton.coords.text = WorldMapButton.coords:CreateFontString(nil, "OVERLAY")
       WorldMapButton.coords.text:SetPoint("BOTTOMLEFT", WorldMapButton, "BOTTOMLEFT", 3, -21)
+      WorldMapButton.coords.text:SetFontObject(GameFontWhite)
+      WorldMapButton.coords.text:SetTextColor(1, 1, 1)
+      WorldMapButton.coords.text:SetJustifyH("RIGHT")
 
       -- move coordinates in case of other addons already taking the space
       if Gatherer_WorldMapDisplay then
         WorldMapButton.coords.text:SetPoint("LEFT", Gatherer_WorldMapDisplay, "RIGHT", 3, -21)
       end
 
-      WorldMapButton.coords.text:SetFontObject(GameFontWhite)
-      WorldMapButton.coords.text:SetTextColor(1, 1, 1)
-      WorldMapButton.coords.text:SetJustifyH("RIGHT")
+      WorldMapButton.player = CreateFrame("Frame", "pfWorldMapButtonCoords", WorldMapButton)
+      WorldMapButton.player.text = WorldMapButton.player:CreateFontString(nil, "OVERLAY")
+      WorldMapButton.player.text:SetPoint("BOTTOMRIGHT", WorldMapButton, "BOTTOMRIGHT", -3, -21)
+      WorldMapButton.player.text:SetFontObject(GameFontWhite)
+      WorldMapButton.player.text:SetTextColor(1, 1, 1)
+      WorldMapButton.player.text:SetJustifyH("RIGHT")
 
       WorldMapButton.coords:SetScript("OnUpdate", function()
         local width  = WorldMapButton:GetWidth()
@@ -41,10 +47,17 @@ module.enable = function(self)
         mx = (( x / scale ) - ( mx - width / 2)) / width * 100
         my = (( my + height / 2 ) - ( y / scale )) / height * 100
 
-        if MouseIsOver(WorldMapButton) then
-          WorldMapButton.coords.text:SetText(string.format('|cffffcc00Coordinates: |r%.1f / %.1f', mx, my))
+        local px, py = GetPlayerMapPosition("player")
+        if px > 0 and py > 0 then
+          WorldMapButton.player.text:SetText(string.format('|cffffcc00Player: |r%.1f / %.1f', px*100, py*100))
         else
-          WorldMapButton.coords.text:SetText("")
+          WorldMapButton.player.text:SetText(string.format('|cffffcc00Player: |rN/A'))
+        end
+
+        if MouseIsOver(WorldMapButton) then
+          WorldMapButton.coords.text:SetText(string.format('|cffffcc00Cursor: |r%.1f / %.1f', mx, my))
+        else
+          WorldMapButton.coords.text:SetText(string.format('|cffffcc00Cursor: |rN/A'))
         end
       end)
     end
