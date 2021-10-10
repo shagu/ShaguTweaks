@@ -58,3 +58,4 @@ mods\auto-stance.lua
 mods\tooltip-details.lua
 mods\hide-errors.lua
 mods\chat-tweaks.lua
+mods\hide-gryphons.lua
