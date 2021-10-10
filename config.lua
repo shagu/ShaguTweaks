@@ -82,47 +82,50 @@ settings.load = function(self)
   local entry = 1
 
   for title, module in pairs(ShaguTweaks.mods) do
-    if not settings.entries[entry] then
-      settings.entries[entry] = CreateFrame("CheckButton", "AdvancedSettingsGUI" .. entry, settings, "OptionsCheckButtonTemplate")
-    end
-
-    local button = _G["AdvancedSettingsGUI" .. entry]
-    local text = _G["AdvancedSettingsGUI" .. entry .. "Text"]
-
-    button.title = title
-    button:SetChecked(current_config[title] == 1 and true or nil)
-
-    button:SetPoint("TOPLEFT", settings, "TOPLEFT", mod(entry, 2) == 1 and 17 or 17+200, math.ceil(entry/2)*-30)
-
-    local description = module.description
-    button:SetScript("OnEnter", function()
-      GameTooltip:SetOwner(this, "ANCHOR_TOPLEFT");
-      GameTooltip:SetText(description, nil, nil, nil, nil, 1)
-      GameTooltip:Show()
-    end)
-
-    button:SetScript("OnHide", function()
-      GameTooltip:Hide()
-    end)
-
-    button:SetScript("OnClick", function()
-      if this:GetChecked() then
-        current_config[this.title] = 1
-      else
-        current_config[this.title] = 0
+    if module.expansions[expansion] or ShaguTweaks.debug then
+      if not settings.entries[entry] then
+        settings.entries[entry] = CreateFrame("CheckButton", "AdvancedSettingsGUI" .. entry, settings, "OptionsCheckButtonTemplate")
       end
-    end)
-    text:SetText(title)
 
-    if module.expansions[expansion] then
+      local button = _G["AdvancedSettingsGUI" .. entry]
+      local text = _G["AdvancedSettingsGUI" .. entry .. "Text"]
+
+      button.title = title
+      button:SetChecked(current_config[title] == 1 and true or nil)
+
+      button:SetPoint("TOPLEFT", settings, "TOPLEFT", mod(entry, 2) == 1 and 17 or 17+200, math.ceil(entry/2)*-30)
+
+      local description = module.description
+      button:SetScript("OnEnter", function()
+        GameTooltip:SetOwner(this, "ANCHOR_TOPLEFT");
+        GameTooltip:SetText(description, nil, nil, nil, nil, 1)
+        GameTooltip:Show()
+      end)
+
+      button:SetScript("OnHide", function()
+        GameTooltip:Hide()
+      end)
+
+      button:SetScript("OnClick", function()
+        if this:GetChecked() then
+          current_config[this.title] = 1
+        else
+          current_config[this.title] = 0
+        end
+      end)
+      text:SetText(title)
       entry = entry + 1
-      button:Enable()
-      text:SetTextColor(1,.8,0,1)
-    elseif ShaguTweaks.debug then
-      entry = entry + 1
-      button:SetChecked(nil)
-      button:Disable()
-      text:SetTextColor(.5,.5,.5,.5)
+
+      -- show unavailable modules in debug mode
+      if ShaguTweaks.debug then
+        if module.expansions[expansion] then
+          button:Enable()
+          text:SetTextColor(1,.8,0,1)
+        elseif not module.expansions[expansion] then
+          button:Disable()
+          text:SetTextColor(.5,.5,.5,.5)
+        end
+      end
     end
   end
 
