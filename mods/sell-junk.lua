@@ -1,9 +1,9 @@
 local _G = _G or getfenv(0)
-local GetExpansion = ShaguTweaks.GetExpansion
 
 local module = ShaguTweaks:register({
   title = "Sell Junk",
   description = "Adds a “Sell Junk” button to every merchant window, that sells all grey items.",
+  expansions = { ["vanilla"] = true, ["tbc"] = true },
   enabled = true,
 })
 

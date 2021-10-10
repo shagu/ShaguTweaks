@@ -18,9 +18,11 @@ ShaguTweaks.mods = {}
 
 -- load translation tables
 ShaguTweaks.L = (ShaguTweaks_locale[GetLocale()] or ShaguTweaks_locale["enUS"])
-
 ShaguTweaks:RegisterEvent("VARIABLES_LOADED")
 ShaguTweaks:SetScript("OnEvent", function()
+  -- load current expansion
+  local expansion = ShaguTweaks:GetExpansion()
+
   -- initialize empty config
   if not ShaguTweaks_config then ShaguTweaks_config = {} end
 
@@ -32,7 +34,7 @@ ShaguTweaks:SetScript("OnEvent", function()
     end
 
     -- load enabled mods
-    if ShaguTweaks_config[title] == 1 then
+    if mod.expansions[expansion] and ShaguTweaks_config[title] == 1 then
       mod:enable()
     end
   end

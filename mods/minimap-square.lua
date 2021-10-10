@@ -1,9 +1,9 @@
 local _G = _G or getfenv(0)
-local GetExpansion = ShaguTweaks.GetExpansion
 
 local module = ShaguTweaks:register({
   title = "MiniMap Square",
   description = "Draw the mini map in a squared shape instead of a round one.",
+  expansions = { ["vanilla"] = true, ["tbc"] = true },
   enabled = nil,
 })
 

@@ -1,12 +1,9 @@
 local _G = _G or getfenv(0)
-local GetExpansion = ShaguTweaks.GetExpansion
-
--- tbc already has a clock
-if GetExpansion() ~= "vanilla" then return end
 
 local module = ShaguTweaks:register({
   title = "MiniMap Clock",
   description = "Adds a small 24h clock to the mini map.",
+  expansions = { ["vanilla"] = true, ["tbc"] = nil },
   enabled = nil,
 })
 

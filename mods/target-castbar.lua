@@ -3,14 +3,10 @@ local GetExpansion = ShaguTweaks.GetExpansion
 local UnitCastingInfo = ShaguTweaks.UnitCastingInfo
 local UnitChannelInfo = ShaguTweaks.UnitChannelInfo
 
-local GetExpansion = ShaguTweaks.GetExpansion
-
--- TBC already has casting bars
-if GetExpansion() ~= "vanilla" then return end
-
 local module = ShaguTweaks:register({
   title = "Enemy Castbars",
   description = "Shows an enemy castbar on target unit frame.",
+  expansions = { ["vanilla"] = true, ["tbc"] = nil },
   enabled = true,
 })
 

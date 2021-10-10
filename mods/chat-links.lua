@@ -10,6 +10,7 @@ local strsplit = ShaguTweaks.strsplit
 local module = ShaguTweaks:register({
   title = "Chat Hyperlinks",
   description = "Copy website URLs from the chat, transforms CLINKs into real items and handles quest links.",
+  expansions = { ["vanilla"] = true, ["tbc"] = true },
   enabled = true,
 })
 

@@ -1,12 +1,9 @@
 local _G = _G or getfenv(0)
-local GetExpansion = ShaguTweaks.GetExpansion
-
--- This is already part of the default options in TBC
-if GetExpansion() == "tbc" then return end
 
 local module = ShaguTweaks:register({
   title = "Auto Dismount",
   description = "Automatically dismounts whenever a spell is casted.",
+  expansions = { ["vanilla"] = true, ["tbc"] = nil },
   enabled = nil,
 })
 

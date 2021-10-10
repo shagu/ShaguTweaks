@@ -1,12 +1,9 @@
 local _G = _G or getfenv(0)
-local GetExpansion = ShaguTweaks.GetExpansion
-
--- tbc does not allow to rescale nameplates (secure_frames)
-if GetExpansion() == "tbc" then return end
 
 local module = ShaguTweaks:register({
   title = "Nameplate Scale",
   description = "Makes all nameplates honor the UI-Scale setting.",
+  expansions = { ["vanilla"] = true, ["tbc"] = nil },
   enabled = true,
 })
 

@@ -1,12 +1,10 @@
 local _G = _G or getfenv(0)
 local GetExpansion = ShaguTweaks.GetExpansion
 
--- shaman class color is already blue in TBC
-if GetExpansion() == "tbc" then return end
-
 local module = ShaguTweaks:register({
   title = "Blue Shaman Class Colors",
   description = "Changes the class color code of shamans to blue, as known from TBC+.",
+  expansions = { ["vanilla"] = true, ["tbc"] = nil },
   enabled = true,
 })
 

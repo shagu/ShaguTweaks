@@ -6,6 +6,7 @@ local Abbreviate = ShaguTweaks.Abbreviate
 local module = ShaguTweaks:register({
   title = "Tooltip Details",
   description = "Display health, class color, guild name, guild rank and current target on unit tooltips.",
+  expansions = { ["vanilla"] = true, ["tbc"] = true },
   enabled = nil,
 })
 

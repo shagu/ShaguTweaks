@@ -3,6 +3,7 @@ local _G = _G or getfenv(0)
 local module = ShaguTweaks:register({
   title = "Movable Unit Frames",
   description = "Player and Target unit frames can be moved while <Shift> and <Ctrl> are pressed together.",
+  expansions = { ["vanilla"] = true, ["tbc"] = true },
   enabled = nil,
 })
 

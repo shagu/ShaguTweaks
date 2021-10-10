@@ -1,9 +1,9 @@
 local _G = _G or getfenv(0)
-local GetExpansion = ShaguTweaks.GetExpansion
 
 local module = ShaguTweaks:register({
   title = "WorldMap Coordinates",
   description = "Adds coordinates to the bottom of the World Map.",
+  expansions = { ["vanilla"] = true, ["tbc"] = true },
   enabled = nil,
 })
 

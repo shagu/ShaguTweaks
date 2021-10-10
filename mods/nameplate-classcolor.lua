@@ -4,6 +4,7 @@ local GetUnitData = ShaguTweaks.GetUnitData
 local module = ShaguTweaks:register({
   title = "Nameplate Class Colors",
   description = "Changes the nameplate health bar color to the class color.",
+  expansions = { ["vanilla"] = true, ["tbc"] = true },
   enabled = nil,
 })
 

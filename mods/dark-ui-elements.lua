@@ -6,6 +6,7 @@ local AddBorder = ShaguTweaks.AddBorder
 local module = ShaguTweaks:register({
   title = "Darkened UI",
   description = "Turns the entire interface into darker colors.",
+  expansions = { ["vanilla"] = true, ["tbc"] = true },
   enabled = nil,
   color = { r = .3, g = .3, b = .3, a = .9}
 })

@@ -1,13 +1,10 @@
 local _G = _G or getfenv(0)
 local strsplit = ShaguTweaks.strsplit
-local GetExpansion = ShaguTweaks.GetExpansion
-
--- It's not possible to achieve it like that in TBC
-if GetExpansion() == "tbc" then return end
 
 local module = ShaguTweaks:register({
   title = "Auto Stance",
   description = "Automatically switch to the required warrior or druid stance on spell cast.",
+  expansions = { ["vanilla"] = true, ["tbc"] = nil },
   enabled = nil,
 })
 

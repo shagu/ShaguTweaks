@@ -78,6 +78,7 @@ end)
 
 settings.load = function(self)
   settings.entries = settings.entries or {}
+  local expansion = ShaguTweaks:GetExpansion()
   local entry = 1
 
   for title, module in pairs(ShaguTweaks.mods) do
@@ -113,7 +114,16 @@ settings.load = function(self)
     end)
     text:SetText(title)
 
-    entry = entry + 1
+    if module.expansions[expansion] then
+      entry = entry + 1
+      button:Enable()
+      text:SetTextColor(1,.8,0,1)
+    elseif ShaguTweaks.debug then
+      entry = entry + 1
+      button:SetChecked(nil)
+      button:Disable()
+      text:SetTextColor(.5,.5,.5,.5)
+    end
   end
 
   settings:SetHeight(80 + math.floor(entry/2)*30)
@@ -124,6 +134,7 @@ settings.defaults = function()
   for title, mod in pairs(ShaguTweaks.mods) do
     current_config[title] = mod.enabled and 1 or 0
   end
+
   settings:load()
 end
 

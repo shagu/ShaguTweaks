@@ -1,3 +1,13 @@
+local _G = _G or getfenv(0)
+local GetExpansion = ShaguTweaks.GetExpansion
+
+local module = ShaguTweaks:register({
+  title = "Vendor Values",
+  description = "Shows the vendor sell values on all item tooltips.",
+  expansions = { ["vanilla"] = true, ["tbc"] = true },
+  enabled = true,
+})
+
 local data = {
   [25]=7, [35]=9, [36]=7, [37]=7, [38]=1, [39]=1,
   [40]=1, [43]=1, [44]=1, [45]=1, [47]=1, [48]=1,
@@ -3734,15 +3744,6 @@ local data_tbc = {
   [38428]=400, [38429]=200, [38430]=280, [38431]=320, [38432]=375, [38466]=500,
   [38506]=25500, [38518]=37, [38576]=0, [38626]=2, [38628]=100000
 }
-
-local module = ShaguTweaks:register({
-  title = "Vendor Values",
-  description = "Shows the vendor sell values on all item tooltips.",
-  enabled = true,
-})
-
-local _G = _G or getfenv(0)
-local GetExpansion = ShaguTweaks.GetExpansion
 
 if GetExpansion() == "tbc" then
   for k,v in pairs(data_tbc) do data[k] = v end
