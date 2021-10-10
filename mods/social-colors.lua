@@ -13,6 +13,7 @@ local module = ShaguTweaks:register({
   title = "Social Colors",
   description = "Show class colors in Who, Guild, Friends and Chat.",
   expansions = { ["vanilla"] = true, ["tbc"] = true },
+  category = "Social & Chat",
   enabled = nil,
 })
 

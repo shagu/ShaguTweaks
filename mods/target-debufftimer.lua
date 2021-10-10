@@ -4,6 +4,7 @@ local module = ShaguTweaks:register({
   title = "Debuff Timer",
   description = "Show debuff durations on the target unit frame.",
   expansions = { ["vanilla"] = true, ["tbc"] = nil },
+  category = "Unit Frames",
   enabled = true,
 })
 

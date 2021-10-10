@@ -4,6 +4,7 @@ local module = ShaguTweaks:register({
   title = "MiniMap Clock",
   description = "Adds a small 24h clock to the mini map.",
   expansions = { ["vanilla"] = true, ["tbc"] = nil },
+  category = "World & MiniMap",
   enabled = nil,
 })
 

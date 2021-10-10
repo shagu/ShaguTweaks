@@ -7,6 +7,7 @@ local module = ShaguTweaks:register({
   title = "Real Health Numbers",
   description = "Estimates health numbers, and shows numbers on player, pet and target unit frames.",
   expansions = { ["vanilla"] = true, ["tbc"] = true },
+  category = "Unit Frames",
   enabled = true,
 })
 

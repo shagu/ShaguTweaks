@@ -4,6 +4,7 @@ local module = ShaguTweaks:register({
   title = "MiniMap Square",
   description = "Draw the mini map in a squared shape instead of a round one.",
   expansions = { ["vanilla"] = true, ["tbc"] = true },
+  category = "World & MiniMap",
   enabled = nil,
 })
 

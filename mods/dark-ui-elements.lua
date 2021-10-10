@@ -192,6 +192,8 @@ module.enable = function(self)
   DarkenFrame(DropDownList2)
   DarkenFrame(DropDownList3)
 
+  ShaguTweaks.DarkMode = true
+
   for _, button in pairs({ MinimapZoomOut, MinimapZoomIn }) do
     for _, func in pairs({ "GetNormalTexture", "GetDisabledTexture", "GetPushedTexture" }) do
       if button[func] then

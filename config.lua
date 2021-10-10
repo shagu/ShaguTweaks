@@ -79,21 +79,65 @@ end)
 settings.load = function(self)
   settings.entries = settings.entries or {}
   local expansion = ShaguTweaks:GetExpansion()
-  local entry = 1
 
+  -- sort all configs into categories
+  local gui = {}
   for title, module in pairs(ShaguTweaks.mods) do
-    if module.expansions[expansion] or ShaguTweaks.debug then
-      if not settings.entries[entry] then
-        settings.entries[entry] = CreateFrame("CheckButton", "AdvancedSettingsGUI" .. entry, settings, "OptionsCheckButtonTemplate")
+    if module.expansions[expansion] then
+      local category = module.category or "General"
+      gui[category] = gui[category] or {}
+      gui[category][title] = module
+    end
+  end
+
+  local yoff = 25
+  local entrysize = 25
+  for category, entries in ShaguTweaks.spairs(gui) do
+    local entry, spacing = 1, 20
+    yoff = yoff + 12
+
+    -- add category background
+    settings.category = settings.category or {}
+    settings.category[category] = settings.category[category] or CreateFrame("Frame", nil, settings)
+    settings.category[category]:SetPoint("TOPLEFT", settings, "TOPLEFT", spacing, -yoff)
+    settings.category[category]:SetBackdrop({
+      bgFile = "Interface\\Tooltips\\UI-Tooltip-Background",
+      edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+      tile = true, tileSize = 8, edgeSize = 16,
+      insets = { left = 3, right = 3, top = 3, bottom = 3 }
+    })
+
+    if ShaguTweaks.DarkMode then
+      settings.category[category]:SetBackdropColor(.1,.1,.1,1)
+      settings.category[category]:SetBackdropBorderColor(.2,.2,.2,1)
+    else
+      settings.category[category]:SetBackdropColor(.2,.2,.2,1)
+      settings.category[category]:SetBackdropBorderColor(.5,.5,.5,1)
+    end
+
+    -- add category title
+    settings.category[category].text = settings.category[category].text or settings.category[category]:CreateFontString(nil, "HIGH", "GameFontHighlightSmall")
+    settings.category[category].text:SetText(category)
+    settings.category[category].text:SetPoint("TOPLEFT", 5, 10)
+    yoff = yoff + spacing/2
+
+    for title, module in ShaguTweaks.spairs(entries) do
+      if not settings.entries[title] then
+        settings.entries[title] = CreateFrame("CheckButton", "AdvancedSettingsGUI" .. title, settings.category[category], "OptionsCheckButtonTemplate")
+        settings.entries[title]:SetHeight(24)
+        settings.entries[title]:SetWidth(24)
       end
 
-      local button = _G["AdvancedSettingsGUI" .. entry]
-      local text = _G["AdvancedSettingsGUI" .. entry .. "Text"]
+      local button = _G["AdvancedSettingsGUI" .. title]
+      local text = _G["AdvancedSettingsGUI" .. title .. "Text"]
 
       button.title = title
       button:SetChecked(current_config[title] == 1 and true or nil)
 
-      button:SetPoint("TOPLEFT", settings, "TOPLEFT", mod(entry, 2) == 1 and 17 or 17+200, math.ceil(entry/2)*-30)
+      button:SetPoint("TOPLEFT", settings.category[category], "TOPLEFT", mod(entry, 2) == 1 and 17 or 17+200, math.ceil(entry/2-1)*-entrysize-spacing/2)
+
+      -- add another yoff row
+      if mod(entry, 2) == 1 then yoff = yoff + entrysize end
 
       local description = module.description
       button:SetScript("OnEnter", function()
@@ -115,21 +159,13 @@ settings.load = function(self)
       end)
       text:SetText(title)
       entry = entry + 1
-
-      -- show unavailable modules in debug mode
-      if ShaguTweaks.debug then
-        if module.expansions[expansion] then
-          button:Enable()
-          text:SetTextColor(1,.8,0,1)
-        elseif not module.expansions[expansion] then
-          button:Disable()
-          text:SetTextColor(.5,.5,.5,.5)
-        end
-      end
     end
+
+    yoff = yoff + spacing/2
+    settings.category[category]:SetPoint("BOTTOMRIGHT", settings, "TOPRIGHT", -spacing, -yoff)
   end
 
-  settings:SetHeight(80 + math.floor(entry/2)*30)
+  settings:SetHeight(yoff + 40)
 end
 
 settings.defaults = function()

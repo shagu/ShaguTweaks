@@ -4,6 +4,7 @@ local module = ShaguTweaks:register({
   title = "Sell Junk",
   description = "Adds a “Sell Junk” button to every merchant window, that sells all grey items.",
   expansions = { ["vanilla"] = true, ["tbc"] = true },
+  category = "Tooltip & Items",
   enabled = true,
 })
 

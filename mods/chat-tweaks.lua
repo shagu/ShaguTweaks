@@ -5,6 +5,7 @@ local module = ShaguTweaks:register({
   title = "Chat Tweaks",
   description = "Allows to scroll using the mouse wheel, enables sticky chat channels and repeats message on arrow up.",
   expansions = { ["vanilla"] = true, ["tbc"] = true },
+  category = "Social & Chat",
   enabled = true,
 })
 

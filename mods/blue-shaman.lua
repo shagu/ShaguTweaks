@@ -5,6 +5,7 @@ local module = ShaguTweaks:register({
   title = "Blue Shaman Class Colors",
   description = "Changes the class color code of shamans to blue, as known from TBC+.",
   expansions = { ["vanilla"] = true, ["tbc"] = nil },
+  category = "Social & Chat",
   enabled = true,
 })
 

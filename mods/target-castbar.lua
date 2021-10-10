@@ -7,6 +7,7 @@ local module = ShaguTweaks:register({
   title = "Enemy Castbars",
   description = "Shows an enemy castbar on target unit frame.",
   expansions = { ["vanilla"] = true, ["tbc"] = nil },
+  category = "Unit Frames",
   enabled = true,
 })
 
