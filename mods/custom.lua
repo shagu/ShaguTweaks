@@ -1,20 +1,24 @@
--- This is a sample module skeleton.
--- It does not serve any purpose, other than showing how to write a module.
--- Don't forget to add your module to the *.toc file once you're done.
+-- This module can be used to add your own custom code.
+-- Make sure to read the comments carefully.
 
-local _G = _G or getfenv(0)
-local GetExpansion = ShaguTweaks.GetExpansion
-
--- Remove this line, if you want the code for both expansions
-if GetExpansion() == "tbc" then return end
+-- Remove the following line to activate the module:
+if true then return end
 
 -- This table holds the meta-data of the module:
 local module = ShaguTweaks:register({
-  title = "Custom Options",
-  description = "A template module, showcasing custom changes",
-  enabled = nil, 
+  title = "Custom Settings",
+  description = "Custom code: Have a look at mods/custom.lua",
+  expansions = { ["vanilla"] = true, ["tbc"] = true },
+  enabled = nil,
 })
 
+-- Global code:
+--   This is where you can put your most basic variable assignments.
+--   Code in this scope will *always* run, no matter if the module is enabled or not.
+local _G = _G or getfenv(0)
+
 module.enable = function(self)
-  -- this code is running, if the mod gets enabled in the settings
+  -- Module code:
+  --   This is where you should put your changes.
+  --   Code in this scope will *only* if the module is enabled.
 end

@@ -28,6 +28,9 @@ libs\libunitscan.lua
 libs\libhealth.lua
 libs\libnameplate.lua
 
+# custom
+mods\custom.lua
+
 # modules
 mods\dark-ui-elements.lua
 mods\equip-compare.lua
