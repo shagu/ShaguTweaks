@@ -130,7 +130,7 @@ module.enable = function(self)
 
           -- second tooltip
           if slots[slotType .. "_other"] then
-            local slotID_other = GetInventorySlotInfo(slotName)
+            local slotID_other = GetInventorySlotInfo(slots[slotType .. "_other"])
             ShoppingTooltip2:SetOwner(GameTooltip, "ANCHOR_NONE");
             ShoppingTooltip2:ClearAllPoints();
             ShoppingTooltip2:SetPoint(anchor, ShoppingTooltip1, relative, 0, 0);
