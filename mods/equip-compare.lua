@@ -101,9 +101,13 @@ local slots = {
 
 module.enable = function(self)
   local compare = CreateFrame( "Frame" , nil, GameTooltip )
-  compare:SetScript("OnShow", function()
+  compare:SetScript("OnUpdate", function()
     -- abort if shift is not pressed
-    if not IsShiftKeyDown() then return end
+    if not IsShiftKeyDown() then
+      ShoppingTooltip1:Hide()
+      ShoppingTooltip2:Hide()
+      return
+    end
 
     for i=1,GameTooltip:NumLines() do
       local tmpText = _G[GameTooltip:GetName() .. "TextLeft"..i]
