@@ -52,6 +52,7 @@ mods\social-colors.lua
 mods\item-colors.lua
 mods\chat-links.lua
 mods\health-numbers.lua
+mods\health-color.lua
 mods\auto-dismount.lua
 mods\auto-stance.lua
 mods\tooltip-details.lua

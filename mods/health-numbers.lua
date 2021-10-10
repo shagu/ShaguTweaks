@@ -25,29 +25,16 @@ module.enable = function(self)
   PetFrameManaBar.TextString:SetPoint("CENTER", PetFrameManaBar, "CENTER", -2, -2)
 
   for _, frame in pairs( { TargetFrameHealthBar, TargetFrameManaBar, PlayerFrameHealthBar, PlayerFrameManaBar }) do
-    frame.TextString:SetFontObject("GameFontNormal")
+    frame.TextString:SetFontObject("GameFontWhite")
     frame.TextString:SetFont(STANDARD_TEXT_FONT, 10, "OUTLINE")
     frame.TextString:SetHeight(32)
   end
 
   for _, frame in pairs( { PetFrameHealthBar, PetFrameManaBar }) do
-    frame.TextString:SetFontObject("GameFontNormal")
+    frame.TextString:SetFontObject("GameFontWhite")
     frame.TextString:SetFont(STANDARD_TEXT_FONT, 9, "OUTLINE")
     frame.TextString:SetHeight(32)
     frame.TextString:SetJustifyH("LEFT")
-  end
-
-  local HookUnitFrame_UpdateManaType = UnitFrame_UpdateManaType
-  function UnitFrame_UpdateManaType(uf)
-    HookUnitFrame_UpdateManaType(uf)
-    if not uf then uf = this end
-    local string = uf.manabar and uf.manabar.TextString
-    if not string then return end
-
-    if not strfind(uf.manabar:GetName(), "Health") then
-      local r, g, b = uf.manabar:GetStatusBarColor()
-      string:SetTextColor((r + 2) / 3, (g + 2) / 3, (b + 2) / 3, 1)
-    end
   end
 
   local HookTextStatusBar_UpdateTextString = TextStatusBar_UpdateTextString
@@ -80,11 +67,6 @@ module.enable = function(self)
         string:SetText(Abbreviate(cur) .. " - " .. percent .. "%")
       else
         string:SetText(Abbreviate(cur))
-      end
-
-      if strfind(sb:GetName(), "Health") then
-        local r, g, b = GetColorGradient(percent/100)
-        string:SetTextColor((r + 1) / 2, (g + 1) / 2, (b + 1) / 2, .75)
       end
 
       if max == 0 then
