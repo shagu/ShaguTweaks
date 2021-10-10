@@ -9,6 +9,7 @@ local module = ShaguTweaks:register({
   title = "Custom Settings",
   description = "Custom code: Have a look at mods/custom.lua",
   expansions = { ["vanilla"] = true, ["tbc"] = true },
+  categpry = nil,
   enabled = nil,
 })
 
