@@ -1,7 +1,7 @@
 local _G = _G or getfenv(0)
 
 local module = ShaguTweaks:register({
-  title = "World Map Class Colors",
+  title = "WorldMap Class Colors",
   description = "Show class colored circles on world and battlefield map.",
   expansions = { ["vanilla"] = true, ["tbc"] = true },
   category = "World & MiniMap",
