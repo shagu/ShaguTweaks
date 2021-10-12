@@ -99,46 +99,50 @@ local slots = {
   [INVTYPE_THROWN] = "RangedSlot",
 }
 
-module.enable = function(self)
-  local compare = CreateFrame( "Frame" , nil, GameTooltip )
-  compare:SetScript("OnUpdate", function()
-    -- abort if shift is not pressed
-    if not IsShiftKeyDown() then
-      ShoppingTooltip1:Hide()
-      ShoppingTooltip2:Hide()
-      return
-    end
+local function ShowCompare(tooltip)
+  -- abort if shift is not pressed
+  if not IsShiftKeyDown() then
+    ShoppingTooltip1:Hide()
+    ShoppingTooltip2:Hide()
+    return
+  end
 
-    for i=1,GameTooltip:NumLines() do
-      local tmpText = _G[GameTooltip:GetName() .. "TextLeft"..i]
+  for i=1,tooltip:NumLines() do
+    local tmpText = _G[tooltip:GetName() .. "TextLeft"..i]
 
-      for slotType, slotName in pairs(slots) do
-        if tmpText:GetText() == slotType then
-          local slotID = GetInventorySlotInfo(slotName)
+    for slotType, slotName in pairs(slots) do
+      if tmpText:GetText() == slotType then
+        local slotID = GetInventorySlotInfo(slotName)
 
-          -- determine screen part
-          local x = GetCursorPosition() / UIParent:GetEffectiveScale()
-          local anchor = x < GetScreenWidth() / 2 and "BOTTOMLEFT" or "BOTTOMRIGHT"
-          local relative = x < GetScreenWidth() / 2 and "BOTTOMRIGHT" or "BOTTOMLEFT"
+        -- determine screen part
+        local x = GetCursorPosition() / UIParent:GetEffectiveScale()
+        local anchor = x < GetScreenWidth() / 2 and "BOTTOMLEFT" or "BOTTOMRIGHT"
+        local relative = x < GetScreenWidth() / 2 and "BOTTOMRIGHT" or "BOTTOMLEFT"
 
-          -- first tooltip
-          ShoppingTooltip1:SetOwner(GameTooltip, "ANCHOR_NONE");
-          ShoppingTooltip1:ClearAllPoints();
-          ShoppingTooltip1:SetPoint(anchor, GameTooltip, relative, 0, 0);
-          ShoppingTooltip1:SetInventoryItem("player", slotID)
-          ShoppingTooltip1:Show()
+        -- first tooltip
+        ShoppingTooltip1:SetOwner(tooltip, "ANCHOR_NONE");
+        ShoppingTooltip1:ClearAllPoints();
+        ShoppingTooltip1:SetPoint(anchor, tooltip, relative, 0, 0);
+        ShoppingTooltip1:SetInventoryItem("player", slotID)
+        ShoppingTooltip1:Show()
 
-          -- second tooltip
-          if slots[slotType .. "_other"] then
-            local slotID_other = GetInventorySlotInfo(slots[slotType .. "_other"])
-            ShoppingTooltip2:SetOwner(GameTooltip, "ANCHOR_NONE");
-            ShoppingTooltip2:ClearAllPoints();
-            ShoppingTooltip2:SetPoint(anchor, ShoppingTooltip1, relative, 0, 0);
-            ShoppingTooltip2:SetInventoryItem("player", slotID_other)
-            ShoppingTooltip2:Show();
-          end
+        -- second tooltip
+        if slots[slotType .. "_other"] then
+          local slotID_other = GetInventorySlotInfo(slots[slotType .. "_other"])
+          ShoppingTooltip2:SetOwner(tooltip, "ANCHOR_NONE");
+          ShoppingTooltip2:ClearAllPoints();
+          ShoppingTooltip2:SetPoint(anchor, ShoppingTooltip1, relative, 0, 0);
+          ShoppingTooltip2:SetInventoryItem("player", slotID_other)
+          ShoppingTooltip2:Show();
         end
       end
     end
+  end
+end
+
+module.enable = function(self)
+  local compare = CreateFrame("Frame" , nil, GameTooltip)
+  compare:SetScript("OnUpdate", function()
+    ShowCompare(GameTooltip)
   end)
 end
