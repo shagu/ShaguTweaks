@@ -119,6 +119,13 @@ local function ShowCompare(tooltip)
         local anchor = x < GetScreenWidth() / 2 and "BOTTOMLEFT" or "BOTTOMRIGHT"
         local relative = x < GetScreenWidth() / 2 and "BOTTOMRIGHT" or "BOTTOMLEFT"
 
+        -- overwrite position for tooltips without owner
+        local pos, parent = tooltip:GetPoint()
+        if parent and parent == UIParent and pos == "BOTTOMRIGHT" then
+          anchor = "BOTTOMRIGHT"
+          relative = "BOTTOMLEFT"
+        end
+
         -- first tooltip
         ShoppingTooltip1:SetOwner(tooltip, "ANCHOR_NONE");
         ShoppingTooltip1:ClearAllPoints();
