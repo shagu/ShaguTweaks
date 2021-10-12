@@ -141,8 +141,17 @@ local function ShowCompare(tooltip)
 end
 
 module.enable = function(self)
-  local compare = CreateFrame("Frame" , nil, GameTooltip)
-  compare:SetScript("OnUpdate", function()
+  -- show item compare on default tooltips
+  local default = CreateFrame("Frame", nil, GameTooltip)
+  default:SetScript("OnUpdate", function()
     ShowCompare(GameTooltip)
+  end)
+
+  -- show compare on atlas tooltips
+  ShaguTweaks.HookAddonOrVariable("AtlasLoot", function()
+    local atlas = CreateFrame("Frame", nil, AtlasLootTooltip)
+    atlas:SetScript("OnUpdate", function()
+      ShowCompare(AtlasLootTooltip)
+    end)
   end)
 end
