@@ -29,6 +29,7 @@ local blacklist = {
   ["Elite"] = true,
   ["Rare"] = true,
   ["ColorPickerWheel"] = true,
+  ["ComboPoint"] = true,
 }
 
 local regionskips = {
