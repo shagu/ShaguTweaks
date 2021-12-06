@@ -55,6 +55,10 @@ module.enable = function(self)
     local class = RAID_CLASS_COLORS[class] or { r = .5, g = .5, b = .5, a = 1 }
     PlayerFrameNameBackground:SetVertexColor(class.r, class.g, class.b, 1)
     this:UnregisterAllEvents()
+
+    -- make sure to keep name background above frame shadow
+    PlayerFrameNameBackground:SetDrawLayer("BORDER")
+    TargetFrameNameBackground:SetDrawLayer("BORDER")
   end)
 
   -- add font outline
