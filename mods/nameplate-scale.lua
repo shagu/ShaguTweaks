@@ -30,6 +30,11 @@ module.enable = function(self)
 
     for i, object in pairs({plate:GetRegions()}) do
       object:SetParent(new)
+
+      -- adjust level icon position
+      if ShaguTweaks:GetExpansion() == "vanilla" and i == 5 or i == 7 then
+        object:SetPoint("BOTTOMRIGHT", -6, 3)
+      end
     end
 
     new:SetScript("OnShow", function()
