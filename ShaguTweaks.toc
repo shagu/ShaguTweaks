@@ -60,3 +60,4 @@ mods\hide-errors.lua
 mods\chat-tweaks.lua
 mods\hide-gryphons.lua
 mods\worldmap-colors.lua
+mods\unitframes-bighealth.lua
