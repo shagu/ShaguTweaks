@@ -123,11 +123,14 @@ Every of the listed features below, can be completely disabled in that menu in c
   *Turns the world map into a movable window. The map can be scaled with <Ctrl> + Mousewheel.*
 
 ## Screenshots
-![preview](screenshots/dark.jpg)
+![preview](screenshots/dark.jpg)  
 *All options enabled, except for squared minimap.*
 
-![preview](screenshots/castbars.jpg)
+![preview](screenshots/castbars.jpg)  
 *Target Frame Castbars*
 
-![preview](screenshots/debufftimers.jpg)
+![preview](screenshots/bighealthclass.jpg)  
+*Big Healthbar, Class Portraits, Darkened UI*
+
+![preview](screenshots/debufftimers.jpg)  
 *Debuff Timers & Mob Health*
