@@ -53,6 +53,7 @@ module.enable = function(self)
 
       if not button.cd then
         button.cd = CreateFrame("Model", "TargetFrameDebuff"..i.."Cooldown", button, "CooldownFrameTemplate")
+        button.cd.noCooldownCount = true
         button.cd:SetAllPoints()
         button.cd:SetScale(.6)
         button.cd:SetAlpha(.8)
