@@ -34,6 +34,7 @@ module.enable = function(self)
       for _, frame in pairs(movables) do
        _G[frame]:SetScript("OnDragStart", function() end)
        _G[frame]:SetScript("OnDragStop", function() end)
+       _G[frame]:StopMovingOrSizing()
       end
 
       unlocker.movable = nil
