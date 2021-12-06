@@ -1,5 +1,5 @@
 local _G = _G or getfenv(0)
-local hooksecurefunc = ShaguTweaks.hooksecurefunc
+local hooksecurefunc = hooksecurefunc or ShaguTweaks.hooksecurefunc
 local GetExpansion = ShaguTweaks.GetExpansion
 local AddBorder = ShaguTweaks.AddBorder
 local TimeConvert = ShaguTweaks.TimeConvert
