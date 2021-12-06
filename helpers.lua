@@ -253,6 +253,26 @@ ShaguTweaks.Abbreviate = function(number, eachk)
   return number
 end
 
+ShaguTweaks.TimeConvert = function(remaining)
+  local color = "|cffffffff"
+
+  if remaining < 5 then
+    color = "|cffff5555"
+  elseif remaining < 10 then
+    color = "|cffffff55"
+  end
+
+  if remaining < 60 then
+    return color..ceil(remaining)
+  elseif remaining < 3600 then
+    return color..ceil(remaining/60).."m"
+  elseif remaining < 43200 then
+    return color..ceil(remaining/3600).."h"
+  else
+    return color..ceil(remaining/43200).."d"
+  end
+end
+
 -- http://lua-users.org/wiki/SortedIteration
 local function __genOrderedIndex( t )
   local orderedIndex = {}

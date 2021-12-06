@@ -10,25 +10,7 @@ local module = ShaguTweaks:register({
 
 local libdebuff = ShaguTweaks.libdebuff
 local UnitDebuff = libdebuff and libdebuff.UnitDebuff
-
-local function TimeConvert(remaining)
-  local color = "|cffffffff"
-  if remaining < 5 then
-    color = "|cffff5555"
-  elseif remaining < 10 then
-    color = "|cffffff55"
-  end
-
-  if remaining < 60 then
-    return color..ceil(remaining)
-  elseif remaining < 3600 then
-    return color..ceil(remaining/60).."M"
-  elseif remaining < 43200 then
-    return color..ceil(remaining/3600).."H"
-  else
-    return color..ceil(remaining/43200).."D"
-  end
-end
+local TimeConvert = ShaguTweaks.TimeConvert
 
 local function CreateTextCooldown(cooldown)
   if cooldown.readable then return end
