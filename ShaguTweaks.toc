@@ -62,3 +62,4 @@ mods\hide-gryphons.lua
 mods\worldmap-colors.lua
 mods\unitframes-bighealth.lua
 mods\unitframes-classportrait.lua
+mods\cooldown-numbers.lua
