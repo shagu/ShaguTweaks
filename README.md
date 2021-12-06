@@ -1,6 +1,6 @@
 # ShaguTweaks
 
-<img src="img/menu.jpg" float="right" align="right">
+<img src="screenshots/menu.jpg" float="right" align="right">
 
 > **A small World of Warcraft (1.12.1 / 2.4.3) AddOn for those, who don't want to use any AddOns at all.**
 
@@ -27,7 +27,7 @@ Every of the listed features below, can be completely disabled in that menu in c
 
 ## Features
 
-![preview](img/settings.jpg)  
+![preview](screenshots/settings.jpg)
 
 - **Auto Dismount**  
   *Automatically dismounts whenever a spell is casted.*
@@ -43,6 +43,9 @@ Every of the listed features below, can be completely disabled in that menu in c
 
 - **Chat Tweaks**  
   *Allows to scroll using the mouse wheel, enables sticky chat channels and repeats message on arrow up.*
+
+- **Cooldown Numbers**  
+  *Display the remaining duration as text on every cooldown.*
 
 - **Darkened UI**  
   *Turns the entire interface into darker colors.*
@@ -98,8 +101,14 @@ Every of the listed features below, can be completely disabled in that menu in c
 - **Tooltip Details**  
   *Display health, class color, guild name, guild rank and current target on unit tooltips.*
 
+- **Unit Frame Big Health**  
+  *Increases the healthbar of the player and target unitframe.*
+
 - **Unit Frame Class Colors**  
   *Adds class colors to the player, target and party unit frames.*
+
+- **Unit Frame Class Portraits**  
+  *Replace unitframe portraits with class icons.*
 
 - **Vendor Values**  
   *Shows the vendor sell values on all item tooltips.*
@@ -114,11 +123,11 @@ Every of the listed features below, can be completely disabled in that menu in c
   *Turns the world map into a movable window. The map can be scaled with <Ctrl> + Mousewheel.*
 
 ## Screenshots
-![preview](img/dark.jpg)  
+![preview](screenshots/dark.jpg)
 *All options enabled, except for squared minimap.*
 
-![preview](img/castbars.jpg)  
+![preview](screenshots/castbars.jpg)
 *Target Frame Castbars*
 
-![preview](img/debufftimers.jpg)  
+![preview](screenshots/debufftimers.jpg)
 *Debuff Timers & Mob Health*
