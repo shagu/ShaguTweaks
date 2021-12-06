@@ -30,13 +30,10 @@ module.enable = function(self)
 	    local class = RAID_CLASS_COLORS[class] or { r = .5, g = .5, b = .5, a = 1 }
 	    TargetFrameNameBackground:SetVertexColor(class.r, class.g, class.b, 1)
 	    TargetFrameNameBackground:Show()
- 	    TargetFrameBackground:Hide()
 	  elseif reaction and reaction > 4 then
 	    TargetFrameNameBackground:Hide()
-	    TargetFrameBackground:Show()
     else
 	    TargetFrameNameBackground:Show()
-	    TargetFrameBackground:Hide()
     end
   end
 
@@ -50,7 +47,6 @@ module.enable = function(self)
   PlayerFrameNameBackground:SetHeight(19)
   PlayerFrameNameBackground:SetPoint("TOPLEFT", 106, -22)
   PlayerFrameNameBackground:SetVertexColor(class.r, class.g, class.b, 1)
-  PlayerFrameBackground:Hide()
 
   local wait = CreateFrame("Frame")
   wait:RegisterEvent("PLAYER_ENTERING_WORLD")
