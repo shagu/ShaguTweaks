@@ -59,10 +59,11 @@ module.enable = function(self)
   local events = CreateFrame("Frame")
   events:RegisterEvent("PLAYER_ENTERING_WORLD")
   events:RegisterEvent("UNIT_PORTRAIT_UPDATE")
-  events:SetScript("OnEvent", function(a1, a2)
+  events:SetScript("OnEvent", function()
     -- reload player portrait
     UpdatePortraits(PlayerFrame)
-    
+    UpdatePortraits(TargetFrame)
+
     -- reload party portraits
     UpdatePortraits(PartyMemberFrame1)
     UpdatePortraits(PartyMemberFrame2)
