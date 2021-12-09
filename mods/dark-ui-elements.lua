@@ -232,6 +232,10 @@ module.enable = function(self)
     DarkenFrame(TimeManagerClockButton)
   end)
 
+  HookAddonOrVariable("GameTooltipStatusBarBackdrop", function()
+    DarkenFrame(_G["GameTooltipStatusBarBackdrop"])
+  end)
+
   table.insert(ShaguTweaks.libnameplate.OnUpdate, function()
     if not this.darkened then
       this.darkened = true

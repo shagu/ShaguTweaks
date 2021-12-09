@@ -115,7 +115,7 @@ module.enable = function(self)
   GameTooltipStatusBar.bg:SetVertexColor(.1, .1, 0, .8)
   GameTooltipStatusBar.bg:SetAllPoints(true)
 
-  GameTooltipStatusBar.backdrop = CreateFrame("Frame", nil, GameTooltipStatusBar)
+  GameTooltipStatusBar.backdrop = CreateFrame("Frame", "GameTooltipStatusBarBackdrop", GameTooltipStatusBar)
   GameTooltipStatusBar.backdrop:SetPoint("TOPLEFT", GameTooltipStatusBar, "TOPLEFT", -3, 3)
   GameTooltipStatusBar.backdrop:SetPoint("BOTTOMRIGHT", GameTooltipStatusBar, "BOTTOMRIGHT", 3, -3)
   GameTooltipStatusBar.backdrop:SetBackdrop(backdrop)
