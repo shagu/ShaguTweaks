@@ -31,6 +31,12 @@ local blacklist = {
   ["ColorPickerWheel"] = true,
   ["ComboPoint"] = true,
   ["Skull"] = true,
+
+  -- LFT:
+  ["battlenetworking0"] = true,
+  ["damage"] = true,
+  ["tank"] = true,
+  ["healer"] = true,
 }
 
 local regionskips = {
