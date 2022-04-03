@@ -35,13 +35,13 @@ end
 local function CreateCoolDown(cooldown, start, duration)
   local parent = cooldown:GetParent()
   if not parent then return end
-    
+
   -- skip already set debuff timers
   if cooldown.readable then return end
-    
+
   local parentname = parent and parent.GetName and parent:GetName()
   parentname = parentname or "UnknownCooldownFrame"
-        
+
   cooldown.cooldowntext = CreateFrame("Frame", parentname .. "CooldownText", cooldown)
   cooldown.cooldowntext:SetAllPoints(cooldown)
   cooldown.cooldowntext:SetFrameLevel(parent:GetFrameLevel() + 1)
@@ -63,16 +63,20 @@ local function SetCooldown(this, start, duration, enable)
   if this.noCooldownCount then return end
 
   -- don't draw global cooldowns
-  if duration < 2 then return end
+  -- and hide if already existing
+  if duration < 2 and this.cooldowntext then
+    this.cooldowntext:Hide()
+    return
+  end
 
   if not this.cooldowntext then
     CreateCoolDown(this, start, duration)
   end
-  
+
   if start > 0 and duration > 0 and (not enable or enable > 0) then
     this.cooldowntext:Show()
   else
-    this.cooldowntext:Hide()  
+    this.cooldowntext:Hide()
   end
 
   this.cooldowntext.start = start
