@@ -47,7 +47,7 @@ local regionskips = {
 local backgrounds = {
   ["^SpellBookFrame$"] = { 325, 355, 17, -74 },
   ["^ItemTextFrame$"] = { 300, 355, 24, -74 },
-  ["^QuestLogDetailScrollFrame$"] = {300, 261, 0, 0 },
+  ["^QuestLogDetailScrollFrame$"] = { QuestLogDetailScrollChildFrame:GetWidth(), QuestLogDetailScrollChildFrame:GetHeight(), 0, 0 },
   ["^QuestFrame(.+)Panel$"] = { 300, 330, 24, -82 },
   ["^GossipFrameGreetingPanel$"] = { 300, 330, 24, -82 },
 }
