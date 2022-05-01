@@ -11,6 +11,9 @@ All tweaks are made to the default interface and might not take effect if you al
 All addon settings can be controlled in game via the "Advanced Options" button on the Main Menu (*Esc*).
 Every of the listed features below, can be completely disabled in that menu in case you don't like it.
 
+**Notice:**
+*This Addon or a superior and maintained version of it, is already included in [pfUI](https://github.com/shagu.pfUI). If using this in combination with pfUI you might get bad results or up to performance regressions.*
+
 ## Installation (Vanilla, 1.12)
 1. Download **[Latest Version](https://github.com/shagu/ShaguTweaks/archive/master.zip)**
 2. Unpack the Zip file
