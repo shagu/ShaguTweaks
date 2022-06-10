@@ -81,7 +81,7 @@ Every of the listed features below, can be completely disabled in that menu in c
   *Hides unnecessary mini map buttons and allows to zoom using the mouse wheel.*
 
 - **Movable Unit Frames**  
-  *Player and Target unit frames can be moved while <Shift> and <Ctrl> are pressed together.*
+  *Player and Target unit frames can be moved while "Shift" and "Ctrl" are pressed together.*
 
 - **Nameplate Class Colors**  
   *Changes the nameplate health bar color to the class color.*
@@ -123,7 +123,7 @@ Every of the listed features below, can be completely disabled in that menu in c
   *Adds coordinates to the bottom of the World Map.*
 
 - **WorldMap Window**  
-  *Turns the world map into a movable window. The map can be scaled with <Ctrl> + Mousewheel.*
+  *Turns the world map into a movable window. The map can be scaled with "Ctrl" + Mousewheel.*
 
 ## Screenshots
 ![preview](screenshots/dark.jpg)  
