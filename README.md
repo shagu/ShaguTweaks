@@ -89,6 +89,9 @@ Every of the listed features below, can be completely disabled in that menu in c
 - **Nameplate Scale**  
   *Makes all nameplates honor the UI-Scale setting.*
 
+- **Reduced Actionbar Size**  
+  *Reduces the actionbar size by removing several items such as the bag panel and microbar*
+
 - **Sell Junk**  
   *Adds a “Sell Junk” button to every merchant window, that sells all grey items.*
 
