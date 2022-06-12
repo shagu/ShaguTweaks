@@ -64,3 +64,4 @@ mods\unitframes-bighealth.lua
 mods\unitframes-classportrait.lua
 mods\cooldown-numbers.lua
 mods\turtle-health.lua
+mods\reduced-actionbar.lua
