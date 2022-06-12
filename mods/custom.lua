@@ -22,4 +22,11 @@ module.enable = function(self)
   -- Module code:
   --   This is where you should put your changes.
   --   Code in this scope will *only* if the module is enabled.
+
+  -- Example:
+  -- Hide actionbar textures:
+  -- for i = 0, 4 do
+  --   _G["MainMenuMaxLevelBar"..i]:Hide()
+  --   _G["MainMenuBarTexture"..i]:Hide()
+  -- end
 end
