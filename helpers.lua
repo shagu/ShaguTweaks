@@ -266,10 +266,10 @@ ShaguTweaks.TimeConvert = function(remaining)
     return color..ceil(remaining)
   elseif remaining < 3600 then
     return color..ceil(remaining/60).."m"
-  elseif remaining < 43200 then
+  elseif remaining < 86400 then
     return color..ceil(remaining/3600).."h"
   else
-    return color..ceil(remaining/43200).."d"
+    return color..ceil(remaining/86400).."d"
   end
 end
 
