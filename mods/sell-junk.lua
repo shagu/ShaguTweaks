@@ -86,6 +86,8 @@ module.enable = function(self)
     local _, icount = GetContainerItemInfo(bag, slot)
     local _, _, id = string.find(GetContainerItemLink(bag, slot), "item:(%d+):%d+:%d+:%d+")
     local price = ShaguTweaks.SellValueDB[tonumber(id)]
+    -- skip if item is missing from SellValueDB
+    if not price then return end
     if this.price then
       this.price = this.price + ( price * ( icount or 1 ) )
       this.count = this.count + 1
