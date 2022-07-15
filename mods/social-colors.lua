@@ -23,17 +23,19 @@ module.enable = function(self)
       if not _G["ChatFrame"..i].HookAddMessageColor and not Prat then
         _G["ChatFrame"..i].HookAddMessageColor = _G["ChatFrame"..i].AddMessage
         _G["ChatFrame"..i].AddMessage = function(frame, text, a1, a2, a3, a4, a5)
-          for name in gfind(text, "|Hplayer:(.-)|h") do
-            local real, _ = strsplit(":", name)
-            local color = "|cffaaaaaa"
-            local class = GetUnitData(real)
+          if text then
+            for name in gfind(text, "|Hplayer:(.-)|h") do
+              local real, _ = strsplit(":", name)
+              local color = "|cffaaaaaa"
+              local class = GetUnitData(real)
 
-            if class and class ~= UNKNOWN then
-              color = rgbhex(RAID_CLASS_COLORS[class])
+              if class and class ~= UNKNOWN then
+                color = rgbhex(RAID_CLASS_COLORS[class])
+              end
+
+              text = string.gsub(text, "|Hplayer:"..name.."|h%["..real.."%]|h(.-:-)",
+                "|r["..color.."|Hplayer:"..name.."|h" .. color .. real .. "|h|r".."]|r".."%1")
             end
-
-            text = string.gsub(text, "|Hplayer:"..name.."|h%["..real.."%]|h(.-:-)",
-            "|r["..color.."|Hplayer:"..name.."|h" .. color .. real .. "|h|r".."]|r".."%1")
           end
 
           _G["ChatFrame"..i].HookAddMessageColor(frame, text, a1, a2, a3, a4, a5)
