@@ -76,14 +76,16 @@ local function SetCooldown(this, start, duration, enable)
     CreateCoolDown(this, start, duration)
   end
 
-  if start > 0 and duration > 0 and (not enable or enable > 0) then
-    this.cooldowntext:Show()
-  else
-    this.cooldowntext:Hide()
-  end
+  if this.cooldowntext then
+    if start > 0 and duration > 0 and (not enable or enable > 0) then
+      this.cooldowntext:Show()
+    else
+      this.cooldowntext:Hide()
+    end
 
-  this.cooldowntext.start = start
-  this.cooldowntext.duration = duration
+    this.cooldowntext.start = start
+    this.cooldowntext.duration = duration
+  end
 end
 
 module.enable = function(self)
