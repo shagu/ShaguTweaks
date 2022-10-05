@@ -29,34 +29,39 @@ module.enable = function(self)
 
     UIPanelWindows["WorldMapFrame"] = { area = "center" }
 
-    HookScript(WorldMapFrame, "OnShow", function()
-      -- default events
-      UpdateMicroButtons()
-      PlaySound("igQuestLogOpen")
-      CloseDropDownMenus()
-      SetMapToCurrentZone()
-      WorldMapFrame_PingPlayerPosition()
+    -- make sure the hooks get only applied once
+    if not this.hooked then
+      this.hooked = true
 
-      -- customize
-      this:EnableKeyboard(false)
-      this:EnableMouseWheel(1)
-    end)
+      HookScript(WorldMapFrame, "OnShow", function()
+        -- default events
+        UpdateMicroButtons()
+        PlaySound("igQuestLogOpen")
+        CloseDropDownMenus()
+        SetMapToCurrentZone()
+        WorldMapFrame_PingPlayerPosition()
 
-    HookScript(WorldMapFrame, "OnMouseWheel", function()
-      if IsShiftKeyDown() then
-        WorldMapFrame:SetAlpha(WorldMapFrame:GetAlpha() + arg1/10)
-      elseif IsControlKeyDown() then
-        WorldMapFrame:SetScale(WorldMapFrame:GetScale() + arg1/10)
-      end
-    end)
+        -- customize
+        this:EnableKeyboard(false)
+        this:EnableMouseWheel(1)
+      end)
 
-    HookScript(WorldMapFrame, "OnMouseDown",function()
-      WorldMapFrame:StartMoving()
-    end)
+      HookScript(WorldMapFrame, "OnMouseWheel", function()
+        if IsShiftKeyDown() then
+          WorldMapFrame:SetAlpha(WorldMapFrame:GetAlpha() + arg1/10)
+        elseif IsControlKeyDown() then
+          WorldMapFrame:SetScale(WorldMapFrame:GetScale() + arg1/10)
+        end
+      end)
 
-    HookScript(WorldMapFrame, "OnMouseUp",function()
-      WorldMapFrame:StopMovingOrSizing()
-    end)
+      HookScript(WorldMapFrame, "OnMouseDown",function()
+        WorldMapFrame:StartMoving()
+      end)
+
+      HookScript(WorldMapFrame, "OnMouseUp",function()
+        WorldMapFrame:StopMovingOrSizing()
+      end)
+    end
 
     WorldMapFrame:SetMovable(true)
     WorldMapFrame:EnableMouse(true)
