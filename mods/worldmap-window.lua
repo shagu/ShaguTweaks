@@ -1,4 +1,5 @@
 local _G = _G or getfenv(0)
+local HookScript = ShaguTweaks.HookScript
 
 local module = ShaguTweaks:register({
   title = "WorldMap Window",
@@ -28,7 +29,7 @@ module.enable = function(self)
 
     UIPanelWindows["WorldMapFrame"] = { area = "center" }
 
-    WorldMapFrame:SetScript("OnShow", function()
+    HookScript(WorldMapFrame, "OnShow", function()
       -- default events
       UpdateMicroButtons()
       PlaySound("igQuestLogOpen")
@@ -41,7 +42,7 @@ module.enable = function(self)
       this:EnableMouseWheel(1)
     end)
 
-    WorldMapFrame:SetScript("OnMouseWheel", function()
+    HookScript(WorldMapFrame, "OnMouseWheel", function()
       if IsShiftKeyDown() then
         WorldMapFrame:SetAlpha(WorldMapFrame:GetAlpha() + arg1/10)
       elseif IsControlKeyDown() then
@@ -49,11 +50,11 @@ module.enable = function(self)
       end
     end)
 
-    WorldMapFrame:SetScript("OnMouseDown",function()
+    HookScript(WorldMapFrame, "OnMouseDown",function()
       WorldMapFrame:StartMoving()
     end)
 
-    WorldMapFrame:SetScript("OnMouseUp",function()
+    HookScript(WorldMapFrame, "OnMouseUp",function()
       WorldMapFrame:StopMovingOrSizing()
     end)
 
