@@ -53,6 +53,14 @@ ShaguTweaks.GetExpansion = function()
   end
 end
 
+ShaguTweaks.HookScript = function(f, script, func)
+  local prev = f:GetScript(script)
+  f:SetScript(script, function(a1,a2,a3,a4,a5,a6,a7,a8,a9)
+    if prev then prev(a1,a2,a3,a4,a5,a6,a7,a8,a9) end
+    func(a1,a2,a3,a4,a5,a6,a7,a8,a9)
+  end)
+end
+
 ShaguTweaks.HookAddonOrVariable = function(addon, func)
   local lurker = CreateFrame("Frame", nil)
   lurker.func = func
