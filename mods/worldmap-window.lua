@@ -34,16 +34,12 @@ module.enable = function(self)
       this.hooked = true
 
       HookScript(WorldMapFrame, "OnShow", function()
-        -- default events
-        UpdateMicroButtons()
-        PlaySound("igQuestLogOpen")
-        CloseDropDownMenus()
-        SetMapToCurrentZone()
-        WorldMapFrame_PingPlayerPosition()
-
         -- customize
         this:EnableKeyboard(false)
         this:EnableMouseWheel(1)
+
+        -- set back to default scale
+        WorldMapFrame:SetScale(.85)
       end)
 
       HookScript(WorldMapFrame, "OnMouseWheel", function()
