@@ -3984,6 +3984,14 @@ module.enable = function(self)
     return HookSetTradeSkillItem(self, skillIndex, reagentIndex)
   end
 
+  local HookSetAuctionItem = GameTooltip.SetAuctionItem
+  function GameTooltip.SetAuctionItem(self, atype, index)
+    local itemName, _, itemCount = GetAuctionItemInfo(atype, index)
+    GameTooltip.itemCount = itemCount
+    GameTooltip.itemLink = GetItemLinkByName(itemName)
+    return HookSetAuctionItem(self, atype, index)
+  end
+
   local HookSetAuctionSellItem = GameTooltip.SetAuctionSellItem
   function GameTooltip.SetAuctionSellItem(self)
     local itemName, _, itemCount = GetAuctionSellItemInfo()
