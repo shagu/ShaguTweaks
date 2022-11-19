@@ -1,4 +1,4 @@
-local _G = _G or getfenv(0)
+local _G = ShaguTweaks.GetGlobalEnv()
 local Abbreviate = ShaguTweaks.Abbreviate
 local GetColorGradient = ShaguTweaks.GetColorGradient
 local vanilla = ShaguTweaks.GetExpansion() == "vanilla" or nil

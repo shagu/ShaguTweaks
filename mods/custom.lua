@@ -16,7 +16,7 @@ local module = ShaguTweaks:register({
 -- Global code:
 --   This is where you can put your most basic variable assignments.
 --   Code in this scope will *always* run, no matter if the module is enabled or not.
-local _G = _G or getfenv(0)
+local _G = ShaguTweaks.GetGlobalEnv()
 
 module.enable = function(self)
   -- Module code:

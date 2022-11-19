@@ -1,4 +1,4 @@
-local _G = _G or getfenv(0)
+local _G = ShaguTweaks.GetGlobalEnv()
 local round = ShaguTweaks.round
 local rgbhex = ShaguTweaks.rgbhex
 local Abbreviate = ShaguTweaks.Abbreviate

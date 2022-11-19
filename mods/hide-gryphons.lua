@@ -1,4 +1,4 @@
-local _G = _G or getfenv(0)
+local _G = ShaguTweaks.GetGlobalEnv()
 
 local module = ShaguTweaks:register({
   title = "Hide Gryphons",
