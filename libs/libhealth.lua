@@ -1,5 +1,4 @@
-local _G = _G or getfenv(0)
-
+local _G = ShaguTweaks.GetGlobalEnv()
 local L = ShaguTweaks.L
 local GetExpansion = ShaguTweaks.GetExpansion
 
