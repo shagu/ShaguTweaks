@@ -13,7 +13,7 @@ local partycolors = function()
     local name = _G['PartyMemberFrame'..id..'Name']
     local _, class = UnitClass("party" .. id)
     local class = RAID_CLASS_COLORS[class] or { r = .5, g = .5, b = .5, a = 1 }
-    name:SetTextColor(class.r, class.g, class.b, 1)
+    if name then name:SetTextColor(class.r, class.g, class.b, 1) end
   end
 end
 
