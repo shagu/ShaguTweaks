@@ -182,7 +182,7 @@ module.enable = function(self)
 
   do -- add class colors to chat
     for i=1,NUM_CHAT_WINDOWS do
-      if not _G["ChatFrame"..i].HookAddMessage then
+      if _G["ChatFrame"..i] and not _G["ChatFrame"..i].HookAddMessage then
         _G["ChatFrame"..i].HookAddMessage = _G["ChatFrame"..i].AddMessage
         _G["ChatFrame"..i].AddMessage = function(frame, text, a1, a2, a3, a4, a5)
           if text then
