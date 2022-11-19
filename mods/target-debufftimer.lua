@@ -49,9 +49,9 @@ module.enable = function(self)
 
     for i=1, MAX_TARGET_DEBUFFS do
       local effect, rank, texture, stacks, dtype, duration, timeleft = libdebuff:UnitDebuff("target", i)
-  		local button = _G["TargetFrameDebuff"..i]
+      local button = _G["TargetFrameDebuff"..i]
 
-      if not button.cd then
+      if button and not button.cd then
         button.cd = CreateFrame("Model", "TargetFrameDebuff"..i.."Cooldown", button, "CooldownFrameTemplate")
         button.cd.noCooldownCount = true
         button.cd:SetAllPoints()
@@ -59,7 +59,7 @@ module.enable = function(self)
         button.cd:SetAlpha(.8)
       end
 
-  		if effect and duration and timeleft then
+      if button and effect and duration and timeleft then
         local start = GetTime() + timeleft - duration
         CooldownFrame_SetTimer(button.cd, start, duration, 1)
         CreateTextCooldown(button.cd)
@@ -67,9 +67,9 @@ module.enable = function(self)
         button.cd.readable.duration = duration
         button.cd.readable:Show()
         button.cd:Show()
-      else
+      elseif button then
         CooldownFrame_SetTimer(button.cd,0,0,0)
       end
-  	end
+    end
   end
 end
