@@ -70,4 +70,10 @@ module.enable = function(self)
     UpdatePortraits(PartyMemberFrame3)
     UpdatePortraits(PartyMemberFrame4)
   end)
+
+  -- update target of target
+  local tot = CreateFrame("Frame", nil, TargetFrame)
+  tot:SetScript("OnUpdate", function()
+    UpdatePortraits(TargetofTargetFrame)
+  end)
 end
