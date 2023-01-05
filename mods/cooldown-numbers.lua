@@ -63,7 +63,7 @@ local function SetCooldown(this, start, duration, enable)
   if this.noCooldownCount then return end
 
   -- don't draw global cooldowns
-  if duration < 2 then
+  if not duration or duration < 2 then
     -- hide if already existing
     if this.cooldowntext then
       this.cooldowntext:Hide()
