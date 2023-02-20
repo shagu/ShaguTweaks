@@ -13,14 +13,25 @@ settings:SetScript("OnHide", function()
 end)
 
 settings:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
-settings:SetWidth(434)
-settings:SetHeight(400)
+settings:SetWidth(500)
+settings:SetHeight(680)
 settings:SetBackdrop({
   bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
   edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
   tile = true, tileSize = 32, edgeSize = 32,
   insets = { left = 11, right = 12, top = 12, bottom = 11 }
 })
+
+settings.scrollframe = CreateFrame('ScrollFrame', 'AdvancedSettingsGUIScrollframe', settings, 'UIPanelScrollFrameTemplate')
+settings.scrollframe:SetHeight(600)
+settings.scrollframe:SetWidth(450)
+settings.scrollframe:SetPoint('CENTER', settings, -16, 15)
+settings.scrollframe:Hide()
+
+settings.container = CreateFrame("Frame", "AdvancedSettingsGUIContainer", settings)
+settings.container:SetPoint("CENTER", settings, 0, 20)
+settings.container:SetHeight(650)
+settings.container:SetWidth(480)
 
 settings.title = CreateFrame("Frame", "AdvancedSettingsGUITtitle", settings)
 settings.title:SetPoint("TOP", settings, "TOP", 0, 12)
@@ -98,8 +109,8 @@ settings.load = function(self)
 
     -- add category background
     settings.category = settings.category or {}
-    settings.category[category] = settings.category[category] or CreateFrame("Frame", nil, settings)
-    settings.category[category]:SetPoint("TOPLEFT", settings, "TOPLEFT", spacing, -yoff)
+    settings.category[category] = settings.category[category] or CreateFrame("Frame", nil, settings.container)
+    settings.category[category]:SetPoint("TOPLEFT", settings.container, "TOPLEFT", spacing, -yoff)
     settings.category[category]:SetBackdrop({
       bgFile = "Interface\\Tooltips\\UI-Tooltip-Background",
       edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
@@ -162,10 +173,20 @@ settings.load = function(self)
     end
 
     yoff = yoff + spacing/2
-    settings.category[category]:SetPoint("BOTTOMRIGHT", settings, "TOPRIGHT", -spacing, -yoff)
+    settings.category[category]:SetPoint("BOTTOMRIGHT", settings.container, "TOPRIGHT", -spacing, -yoff)
   end
 
-  settings:SetHeight(yoff + 40)
+  settings.container:SetHeight(yoff)
+
+  -- set up scrollframe when needed
+  if (settings.container:GetHeight() + 30) > settings:GetHeight() then
+    settings.container:SetParent(settings.scrollframe)
+    settings.container:SetHeight(settings.scrollframe:GetHeight())
+    settings.container:SetWidth(settings.scrollframe:GetWidth() + 20)
+  
+    settings.scrollframe:SetScrollChild(settings.container)
+    settings.scrollframe:Show()
+  end
 end
 
 settings.defaults = function()
