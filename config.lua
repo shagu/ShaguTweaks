@@ -3,6 +3,9 @@ local GetExpansion = ShaguTweaks.GetExpansion
 local mod = math.mod or mod
 
 local current_config = {}
+local max_width = 500
+local max_height = 680
+
 local settings = CreateFrame("Frame", "AdvancedSettingsGUI", UIParent)
 settings:Hide()
 
@@ -13,8 +16,9 @@ settings:SetScript("OnHide", function()
 end)
 
 settings:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
-settings:SetWidth(500)
-settings:SetHeight(680)
+settings:SetWidth(max_width)
+settings:SetHeight(max_height)
+
 settings:SetBackdrop({
   bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
   edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
@@ -23,15 +27,15 @@ settings:SetBackdrop({
 })
 
 settings.scrollframe = CreateFrame('ScrollFrame', 'AdvancedSettingsGUIScrollframe', settings, 'UIPanelScrollFrameTemplate')
-settings.scrollframe:SetHeight(600)
-settings.scrollframe:SetWidth(450)
+settings.scrollframe:SetHeight(max_height - 80)
+settings.scrollframe:SetWidth(max_width - 50)
 settings.scrollframe:SetPoint('CENTER', settings, -16, 15)
 settings.scrollframe:Hide()
 
 settings.container = CreateFrame("Frame", "AdvancedSettingsGUIContainer", settings)
 settings.container:SetPoint("CENTER", settings, 0, 20)
-settings.container:SetHeight(650)
-settings.container:SetWidth(480)
+settings.container:SetHeight(max_height - 30)
+settings.container:SetWidth(max_width - 20)
 
 settings.title = CreateFrame("Frame", "AdvancedSettingsGUITtitle", settings)
 settings.title:SetPoint("TOP", settings, "TOP", 0, 12)
@@ -176,14 +180,18 @@ settings.load = function(self)
     settings.category[category]:SetPoint("BOTTOMRIGHT", settings.container, "TOPRIGHT", -spacing, -yoff)
   end
 
+  -- set container size to required height
   settings.container:SetHeight(yoff)
 
-  -- set up scrollframe when needed
-  if (settings.container:GetHeight() + 30) > settings:GetHeight() then
+  if yoff < max_height then
+    -- reduce base frame if possible
+    settings:SetHeight(yoff + 60)
+  elseif yoff > max_height then
+    -- set up scrollframe when needed
     settings.container:SetParent(settings.scrollframe)
     settings.container:SetHeight(settings.scrollframe:GetHeight())
     settings.container:SetWidth(settings.scrollframe:GetWidth() + 20)
-  
+
     settings.scrollframe:SetScrollChild(settings.container)
     settings.scrollframe:Show()
   end
