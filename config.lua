@@ -78,7 +78,10 @@ settings.okay:SetScript("OnClick", function()
   end
 
   -- reload the UI if required
-  if reload then ReloadUI() end
+  if reload then
+    Minimap:SetMaskTexture("Textures\\MinimapMask")
+    ReloadUI()
+  end
 
   settings:Hide()
 end)
