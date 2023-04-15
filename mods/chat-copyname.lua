@@ -1,5 +1,4 @@
 local _G = ShaguTweaks.GetGlobalEnv()
-local hooksecurefunc = ShaguTweaks.hooksecurefunc
 local strsplit = ShaguTweaks.strsplit
 
 local module = ShaguTweaks:register({
@@ -12,28 +11,25 @@ local module = ShaguTweaks:register({
 
 module.enable = function(self)
 
-  hooksecurefunc("UnitPopup_OnClick", function(self)
-    DEFAULT_CHAT_FRAME:AddMessage("You have clicked on!")
-
-  end)
-
   local tempSetItemRef = SetItemRef
   _G.SetItemRef = function (link,text,button)
-    if(button == "LeftButton") then
+    DEFAULT_CHAT_FRAME:AddMessage("You have clicked on!" .. button)
+
+    if(button == "LeftButton") and IsShiftKeyDown() then
+    DEFAULT_CHAT_FRAME:AddMessage("You have clicked on!" .. button)
+
       if ( strsub(link, 1, 6) == "player" ) then
         local name = strsub(link, 8)
         if ( name and (strlen(name) > 0) ) then
           local name, _ = strsplit(":", name)
           name = gsub(name, "([^%s]*)%s+([^%s]*)%s+([^%s]*)", "%3")
           name = gsub(name, "([^%s]*)%s+([^%s]*)", "%2")
-          if IsShiftKeyDown() then
             if not ChatFrameEditBox:IsVisible() then 
-              ChatFrame_OpenChat("|cffffffff|Hplayer:"..name.."|h"..name.."|h|r")
+              ChatFrame_OpenChat(name)
             else
-              ChatFrameEditBox:Insert("|cffffffff|Hplayer:"..name.."|h"..name.."|h|r")
+              ChatFrameEditBox:Insert(name)
             end
             return
-          end
         end
 
       end
