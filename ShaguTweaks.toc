@@ -58,6 +58,7 @@ mods\auto-stance.lua
 mods\tooltip-details.lua
 mods\hide-errors.lua
 mods\chat-tweaks.lua
+mods\chat-copyname.lua
 mods\hide-gryphons.lua
 mods\worldmap-colors.lua
 mods\unitframes-bighealth.lua
