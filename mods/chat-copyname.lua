@@ -13,10 +13,8 @@ module.enable = function(self)
 
   local tempSetItemRef = SetItemRef
   _G.SetItemRef = function (link,text,button)
-    DEFAULT_CHAT_FRAME:AddMessage("You have clicked on!" .. button)
 
     if(button == "LeftButton") and IsShiftKeyDown() then
-    DEFAULT_CHAT_FRAME:AddMessage("You have clicked on!" .. button)
 
       if ( strsub(link, 1, 6) == "player" ) then
         local name = strsub(link, 8)
