@@ -9,7 +9,7 @@ local strsplit = ShaguTweaks.strsplit
 
 local module = ShaguTweaks:register({
   title = "Chat Hyperlinks",
-  description = "Copy website URLs from the chat, transforms CLINKs into real items and handles quest links.",
+  description = "Copy website URLs from the chat, transforms CLINKs into real items and handles quest and player links.",
   expansions = { ["vanilla"] = true, ["tbc"] = true },
   category = "Social & Chat",
   enabled = true,
@@ -156,6 +156,7 @@ module.enable = function(self)
   local HookSetItemRef = SetItemRef
   function _G.SetItemRef(link, text, button)
     local questlink, _, quest_id = string.find(link, "quest:(%d+):.*")
+    local playerlink = strsub(link, 1, 6) == "player"
 
     -- don't overwrite other addons questlink hook
     if ShaguQuest or pfQuest or Questie then questlink = nil end
@@ -176,6 +177,17 @@ module.enable = function(self)
         ItemRefTooltip:Show()
       end
       return
+    elseif playerlink then
+      local name = strsub(link, 8)
+      if ( name and (strlen(name) > 0) ) then
+        local name, _ = strsplit(":", name)
+        name = gsub(name, "([^%s]*)%s+([^%s]*)%s+([^%s]*)", "%3")
+        name = gsub(name, "([^%s]*)%s+([^%s]*)", "%2")
+        if IsShiftKeyDown() and ChatFrameEditBox:IsVisible() then
+          ChatFrameEditBox:Insert("|cffffffff|Hplayer:"..name.."|h["..name.."]|h|r")
+          return
+        end
+      end
     end
     HookSetItemRef(link, text, button)
   end

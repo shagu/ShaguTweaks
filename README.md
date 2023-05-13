@@ -42,7 +42,7 @@ Every of the listed features below, can be completely disabled in that menu in c
   *Changes the class color code of shamans to blue, as known from TBC+.*
 
 - **Chat Hyperlinks**  
-  *Copy website URLs from the chat, transforms CLINKs into real items and handles quest links.*
+  *Copy website URLs from the chat, transforms CLINKs into real items and handles quest and player links.*
 
 - **Chat Tweaks**  
   *Allows to scroll using the mouse wheel, enables sticky chat channels and repeats message on arrow up.*
