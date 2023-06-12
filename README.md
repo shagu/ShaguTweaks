@@ -83,6 +83,9 @@ Every of the listed features below, can be completely disabled in that menu in c
 - **Movable Unit Frames**  
   *Player and Target unit frames can be moved while "Shift" and "Ctrl" are pressed together.*
 
+- **Nameplate Castbar**  
+  *Adds a castbar to the nameplate based on combat log estimations.*
+
 - **Nameplate Class Colors**  
   *Changes the nameplate health bar color to the class color.*
 
