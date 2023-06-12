@@ -45,6 +45,7 @@ mods\worldmap-coordinates.lua
 mods\worldmap-window.lua
 mods\blue-shaman.lua
 mods\nameplate-classcolor.lua
+mods\nameplate-castbar.lua
 mods\move-unitframes.lua
 mods\target-castbar.lua
 mods\target-debufftimer.lua
