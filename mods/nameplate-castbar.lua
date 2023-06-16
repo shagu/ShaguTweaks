@@ -12,15 +12,19 @@ local module = ShaguTweaks:register({
 module.enable = function(self)
   if ShaguPlates then return end
 
-  -- create the castbar
-  table.insert(ShaguTweaks.libnameplate.OnInit, function(plate)
-    if plate.castbar then return end
+  local backdrop = {
+    edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+    tile = true, tileSize = 8, edgeSize = 12,
+    insets = { left = 3, right = 3, top = 3, bottom = 3 }
+  }
 
+  local function create_castbar(plate)
+    -- create the castbar
     plate.castbar = CreateFrame("StatusBar", nil, plate)
     plate.castbar:SetPoint("BOTTOM", plate, "BOTTOM", 8, -11)
     plate.castbar:SetStatusBarTexture("Interface\\TargetingFrame\\UI-StatusBar")
     plate.castbar:SetStatusBarColor(1, .8, 0, 1)
-    plate.castbar:SetWidth(104)
+    plate.castbar:SetWidth(plate:GetWidth() - 22)
     plate.castbar:SetHeight(10)
 
     -- create the spell icon
@@ -32,11 +36,8 @@ module.enable = function(self)
     plate.castbar.texture.icon:SetPoint("CENTER", 0, 0)
     plate.castbar.texture.icon:SetWidth(12)
     plate.castbar.texture.icon:SetHeight(12)
-    plate.castbar.texture:SetBackdrop({
-      edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
-      tile = true, tileSize = 8, edgeSize = 12,
-      insets = { left = 3, right = 3, top = 3, bottom = 3 }
-    })
+    plate.castbar.texture:SetBackdrop(backdrop)
+    plate.castbar.texture:SetBackdropBorderColor(1,.8,0)
 
     -- castbar background
     plate.castbar.bg = plate.castbar:CreateTexture(nil, "BACKGROUND")
@@ -55,11 +56,8 @@ module.enable = function(self)
     plate.castbar.backdrop = CreateFrame("Frame", nil, plate.castbar)
     plate.castbar.backdrop:SetPoint("TOPLEFT", plate.castbar, "TOPLEFT", -3, 3)
     plate.castbar.backdrop:SetPoint("BOTTOMRIGHT", plate.castbar, "BOTTOMRIGHT", 3, -3)
-    plate.castbar.backdrop:SetBackdrop({
-      edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
-      tile = true, tileSize = 8, edgeSize = 12,
-      insets = { left = 3, right = 3, top = 3, bottom = 3 }
-    })
+    plate.castbar.backdrop:SetBackdrop(backdrop)
+    plate.castbar.backdrop:SetBackdropBorderColor(1,.8,0)
 
     -- castbar spellname
     plate.castbar.text = plate.castbar:CreateFontString(nil, "HIGH", "GameFontWhite")
@@ -69,24 +67,20 @@ module.enable = function(self)
 
     -- hide castbar by default
     plate.castbar:Hide()
-  end)
+  end
 
   -- scan for casts and show castbar
   table.insert(ShaguTweaks.libnameplate.OnUpdate, function()
-    local name = this.name:GetText()
+    -- create castbar if not existing
+    if not this.castbar then create_castbar(this) end
 
+    local name = this.name:GetText()
     local cast, nameSubtext, text, texture, startTime, endTime, isTradeSkill = UnitCastingInfo(name)
-    if not cast then
-      cast, nameSubtext, text, texture, startTime, endTime, isTradeSkill = UnitChannelInfo(name)
-    end
 
     if cast then
-      local channel = UnitChannelInfo(this.unit)
       local duration = endTime - startTime
       local max = duration / 1000
       local cur = GetTime() - startTime / 1000
-
-      if channel then cur = max + startTime/1000 - GetTime() end
 
       cur = cur > max and max or cur
       cur = cur < 0 and 0 or cur
@@ -107,6 +101,8 @@ module.enable = function(self)
       else
         this.castbar.texture.icon:Hide()
       end
+
+      this.castbar:SetAlpha(this:GetAlpha())
     else
       this.castbar:Hide()
     end
