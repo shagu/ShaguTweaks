@@ -6,7 +6,7 @@ local module = ShaguTweaks:register({
   title = "Nameplate Castbar",
   description = "Adds a castbar to the nameplate based on combat log estimations.",
   expansions = { ["vanilla"] = true, ["tbc"] = false },
-  enabled = true,
+  enabled = nil,
 })
 
 module.enable = function(self)
