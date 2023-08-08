@@ -30,7 +30,9 @@ module.enable = function(self)
     -- turtle-wow
     "speed based on",
     "Slow and steady...",
-    "Riding"
+    "Riding",
+    "根据骑术技能提高速度。",
+    "又慢又稳......",
   }
 
   -- shapeshift buff icons
