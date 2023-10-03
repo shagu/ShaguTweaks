@@ -10,19 +10,44 @@ if not TargetHPText or not TargetHPPercText then return end
 
 -- This table holds the meta-data of the module:
 local module = ShaguTweaks:register({
-  title = "Hide TWoW Target Health",
-  description = "Hide Turtle-WoW Custom Health Points From Target Frame",
+  title = "Turtle WoW Compatibility",
+  description = "Adds compatibility to Turtle WoW's custom changes",
   expansions = { ["vanilla"] = true, ["tbc"] = false },
-  category = "Unit Frames",
+  category = "General",
   enabled = true,
 })
 
+
 module.enable = function(self)
+  -- hide turtle-wow's target status texts
   TargetHPText:Hide()
   TargetHPText.Show = function() return end
 
   TargetHPPercText:Hide()
   TargetHPPercText.Show  = function() return end
+
+  -- compatibility for turtle-wow's worldmap window
+  local HookWorldMapFrame_Maximize = WorldMapFrame_Maximize
+  WorldMapFrame_Maximize = function()
+    -- run original function
+    HookWorldMapFrame_Maximize()
+
+    -- re-apply worldmap window
+    if ShaguTweaks_config["WorldMap Window"] == 1 then
+      WorldMapFrame:SetMovable(true)
+      WorldMapFrame:EnableMouse(true)
+
+      WorldMapFrame:SetScale(.85)
+      WorldMapFrame:ClearAllPoints()
+      WorldMapFrame:SetPoint("CENTER", UIParent, "CENTER", 0, 30)
+      WorldMapFrame:SetWidth(WorldMapButton:GetWidth() + 15)
+      WorldMapFrame:SetHeight(WorldMapButton:GetHeight() + 55)
+      BlackoutWorld:Hide()
+    end
+  end
+
+  -- trigger once to avoid graphical glitches
+  WorldMapFrame_Maximize()
 end
 
 -- Turtle WoW specific libdebuff patches
