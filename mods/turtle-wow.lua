@@ -20,11 +20,13 @@ local module = ShaguTweaks:register({
 
 module.enable = function(self)
   -- hide turtle-wow's target status texts
-  TargetHPText:Hide()
-  TargetHPText.Show = function() return end
+  if ShaguTweaks_config["Real Health Numbers"] == 1 then
+    TargetHPText:Hide()
+    TargetHPText.Show = function() return end
 
-  TargetHPPercText:Hide()
-  TargetHPPercText.Show  = function() return end
+    TargetHPPercText:Hide()
+    TargetHPPercText.Show  = function() return end
+  end
 
   -- compatibility for turtle-wow's worldmap window
   local HookWorldMapFrame_Maximize = WorldMapFrame_Maximize
