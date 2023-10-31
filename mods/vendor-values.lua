@@ -3861,7 +3861,7 @@ local data_tbc = {
   [38576]=0, [38626]=2, [38628]=100000 }
 
 
-  if GetExpansion() == "tbc" then
+if GetExpansion() == "tbc" then
   for k,v in pairs(data_tbc) do data[k] = v end
 end
 
@@ -3878,8 +3878,8 @@ local function GetItemLinkByName(name)
 end
 
 local function AddVendorPrices(frame, id, count)
-  if data[id] and data[id] > 0 then
-    SetTooltipMoney(frame, data[id] * count)
+  if ShaguTweaks.SellValueDB[id] and ShaguTweaks.SellValueDB[id] > 0 then
+    SetTooltipMoney(frame, ShaguTweaks.SellValueDB[id] * count)
     frame:Show()
   end
 end
