@@ -1,8 +1,8 @@
 local _G = ShaguTweaks.GetGlobalEnv()
 
 local module = ShaguTweaks:register({
-  title = "MiniMap Clock",
-  description = "Adds a small 24h clock to the mini map.",
+  title = "MiniMap Clock - 24h Local Time",
+  description = "Adds a small 24h clock to the MiniMap showing Local Time.",
   expansions = { ["vanilla"] = true, ["tbc"] = nil },
   category = "World & MiniMap",
   enabled = nil,
@@ -32,6 +32,7 @@ module.enable = function(self)
   MinimapClock.text:SetAllPoints(MinimapClock)
   MinimapClock.text:SetFontObject(GameFontWhite)
   MinimapClock:SetScript("OnUpdate", function()
+    -- Show Local Time in Clock Display
     this.text:SetText(date("%H:%M"))
   end)
 

@@ -15,7 +15,8 @@ settings:SetScript("OnHide", function()
   UpdateMicroButtons()
 end)
 
-settings:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
+-- moved gui up by 35 to account for additional mods
+settings:SetPoint("CENTER", UIParent, "CENTER", 0, 35)
 settings:SetWidth(max_width)
 settings:SetHeight(max_height)
 

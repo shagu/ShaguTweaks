@@ -34,7 +34,10 @@ mods\custom.lua
 # modules
 mods\dark-ui-elements.lua
 mods\equip-compare.lua
-mods\minimap-clock.lua
+mods\minimap-clock-LT.lua
+mods\minimap-clock-ST.lua
+mods\minimap-clock-12h-LT.lua
+mods\minimap-clock-12h-ST.lua
 mods\minimap-square.lua
 mods\minimap-tweaks.lua
 mods\nameplate-scale.lua
@@ -64,5 +67,5 @@ mods\worldmap-colors.lua
 mods\unitframes-bighealth.lua
 mods\unitframes-classportrait.lua
 mods\cooldown-numbers.lua
-mods\turtle-wow.lua
+mods\turtle-health.lua
 mods\reduced-actionbar.lua
