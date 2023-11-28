@@ -59,6 +59,27 @@ module.enable = function(self)
         button.cd:SetAlpha(.8)
       end
 
+      local dCount = getglobal("TargetFrameDebuff" .. i .. "Count")
+      if button and dCount then
+        if not dCount.fixup then
+          dCount.fixup = true
+          dCount:SetFont(STANDARD_TEXT_FONT, 12, "OUTLINE")
+          dCount:SetPoint("BOTTOMRIGHT", "TargetFrameDebuff" .. i, "BOTTOMRIGHT", 3, -3)
+        end
+        if stacks and stacks > 1 then
+          dCount:SetText("|c0000ff3b" .. stacks);
+          dCount:Show();
+        else
+          dCount:Hide();
+        end
+      end
+
+      local dBorder = getglobal("TargetFrameDebuff" .. i .. "Border");
+      if button and dBorder then
+        local color = dtype and DebuffTypeColor[dtype] or DebuffTypeColor["none"]
+        dBorder:SetVertexColor(color.r, color.g, color.b);
+      end
+
       if button and effect and duration and timeleft then
         local start = GetTime() + timeleft - duration
         CooldownFrame_SetTimer(button.cd, start, duration, 1)
