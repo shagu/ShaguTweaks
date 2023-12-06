@@ -63,7 +63,7 @@ module.enable = function(self)
       if button and dCount then
         if not dCount.fixup then
           dCount.fixup = true
-          dCount:SetPoint("BOTTOMRIGHT", "TargetFrameDebuff" .. i, "BOTTOMRIGHT", 4, -3)
+          dCount:SetPoint("BOTTOMRIGHT", "TargetFrameDebuff" .. i, "BOTTOMRIGHT", 6, -3)
         end
         if stacks and stacks > 1 then
           dCount:SetText("|c0000ff3b" .. stacks)
