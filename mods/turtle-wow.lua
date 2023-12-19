@@ -43,6 +43,10 @@ module.enable = function(self)
       WorldMapFrame:SetPoint("CENTER", UIParent, "CENTER", 0, 30)
       WorldMapFrame:SetWidth(WorldMapButton:GetWidth() + 15)
       WorldMapFrame:SetHeight(WorldMapButton:GetHeight() + 55)
+
+      -- overwrite wrong title position set by turtlewow
+      WorldMapFrameTitle:SetPoint("TOP", WorldMapFrame, 0, 17)
+
       BlackoutWorld:Hide()
     end
   end
