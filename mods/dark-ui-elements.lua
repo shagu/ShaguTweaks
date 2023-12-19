@@ -53,21 +53,22 @@ local backgrounds = {
 }
 
 local borders = {
-  ["ShapeshiftButton"] = 3,
-  ["BuffButton"] = 3,
-  ["TempEnchant"] = 3,
-  ["SpellButton"] = 3,
-  ["SpellBookSkillLineTab"] = 3,
-  ["ActionButton%d+$"] = 3,
-  ["MultiBar(.+)Button%d+$"] = 3,
-  ["Character(.+)Slot$"] = 3,
-  ["Inspect(.+)Slot$"] = 3,
-  ["ContainerFrame(.+)Item"] = 3,
-  ["MainMenuBarBackpackButton$"] = 3,
-  ["CharacterBag(.+)Slot$"] = 3,
-  ["ChatFrame(.+)Button"] = -2,
+  ["ShapeshiftButton"] = 2,
+  ["BuffButton"] = 2,
+  ["TargetFrameBuff"] = 2,
+  ["TempEnchant"] = 2,
+  ["SpellButton"] = 2,
+  ["SpellBookSkillLineTab"] = 2,
+  ["ActionButton%d+$"] = 2,
+  ["MultiBar(.+)Button%d+$"] = 2,
+  ["Character(.+)Slot$"] = 2,
+  ["Inspect(.+)Slot$"] = 2,
+  ["ContainerFrame(.+)Item"] = 2,
+  ["MainMenuBarBackpackButton$"] = 2,
+  ["CharacterBag(.+)Slot$"] = 2,
+  ["ChatFrame(.+)Button"] = -3,
   ["PetFrameHappiness"] = 1,
-  ["MicroButton"] = { -20, 1, 1, 1 },
+  ["MicroButton"] = { -21, 0, 0, 0 },
 }
 
 local addonframes = {
