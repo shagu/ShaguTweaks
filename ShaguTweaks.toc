@@ -66,3 +66,5 @@ mods\unitframes-classportrait.lua
 mods\cooldown-numbers.lua
 mods\turtle-wow.lua
 mods\reduced-actionbar.lua
+mods\stickymarkers.lua
+mods\shiftclick-action.lua
