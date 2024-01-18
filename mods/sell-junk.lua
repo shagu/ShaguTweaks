@@ -1,10 +1,19 @@
 local _G = ShaguTweaks.GetGlobalEnv()
+local L = ShaguTweaks.L
+
+ShaguTweaks_locale["ruRU"]["SellJunk"] = {
+  ["Sell Junk"] = "Продать серые предметы",
+  ["Adds a “Sell Junk” button to every merchant window, that sells all grey items."] = "Добавляет кнопку «Продать серые предметы» в каждое окно торговца, в котором продаются все серые предметы.",
+  ["Tooltip & Items"] = "Подсказки и предметы",
+  ["Your vendor trash has been sold and you earned "] = "Ваш хлам продан, и вы заработали ",
+  ["Sell Grey Items"] = "Продать серые предметы",
+}
 
 local module = ShaguTweaks:register({
-  title = "Sell Junk",
-  description = "Adds a “Sell Junk” button to every merchant window, that sells all grey items.",
+  title = L["SellJunk"]["Sell Junk"],
+  description = L["SellJunk"]["Adds a “Sell Junk” button to every merchant window, that sells all grey items."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
-  category = "Tooltip & Items",
+  category = L["SellJunk"]["Tooltip & Items"],
   enabled = true,
 })
 
@@ -61,7 +70,7 @@ module.enable = function(self)
 
   autovendor:SetScript("OnHide", function()
     if this.count > 0 then
-      DEFAULT_CHAT_FRAME:AddMessage("Your vendor trash has been sold and you earned " .. CreateGoldString(this.price))
+      DEFAULT_CHAT_FRAME:AddMessage(L["SellJunk"]["Your vendor trash has been sold and you earned "] .. CreateGoldString(this.price))
     end
   end)
 
@@ -131,7 +140,7 @@ module.enable = function(self)
   autovendor.button:SetNormalTexture("Interface\\Icons\\Spell_Shadow_SacrificialShield")
   autovendor.button:SetScript("OnEnter", function()
     GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
-    GameTooltip:SetText("Sell Grey Items")
+    GameTooltip:SetText(L["SellJunk"]["Sell Grey Items"])
     GameTooltip:Show()
   end)
 

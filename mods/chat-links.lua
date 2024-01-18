@@ -1,4 +1,5 @@
 local _G = ShaguTweaks.GetGlobalEnv()
+local L = ShaguTweaks.L
 local gfind = string.gmatch or string.gfind
 local GetUnitData = ShaguTweaks.GetUnitData
 local hooksecurefunc = ShaguTweaks.hooksecurefunc
@@ -7,11 +8,17 @@ local cmatch = ShaguTweaks.cmatch
 local rgbhex = ShaguTweaks.rgbhex
 local strsplit = ShaguTweaks.strsplit
 
+ShaguTweaks_locale["ruRU"]["ChatHyperlinks"] = {
+  ["Chat Hyperlinks"] = "Гиперссылки чата",
+  ["Copy website URLs from the chat, transforms CLINKs into real items and handles quest and player links."] = "Копирование URL-адреса веб-сайтов из чата, преобразование CLINKов в реальные предметы и обрабатывание ссылок на квесты и игроков.",
+  ["Social & Chat"] = "Общение и чат",
+}
+
 local module = ShaguTweaks:register({
-  title = "Chat Hyperlinks",
-  description = "Copy website URLs from the chat, transforms CLINKs into real items and handles quest and player links.",
+  title = L["ChatHyperlinks"]["Chat Hyperlinks"],
+  description = L["ChatHyperlinks"]["Copy website URLs from the chat, transforms CLINKs into real items and handles quest and player links."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
-  category = "Social & Chat",
+  category = L["ChatHyperlinks"]["Social & Chat"],
   enabled = true,
 })
 

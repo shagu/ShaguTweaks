@@ -1,12 +1,18 @@
 local _G = ShaguTweaks.GetGlobalEnv()
+local L = ShaguTweaks.L
 local hooksecurefunc = hooksecurefunc or ShaguTweaks.hooksecurefunc
 local GetExpansion = ShaguTweaks.GetExpansion
 local AddBorder = ShaguTweaks.AddBorder
 local TimeConvert = ShaguTweaks.TimeConvert
 
+ShaguTweaks_locale["ruRU"]["CooldownNumbers"] = {
+  ["Cooldown Numbers"] = "Продолжительность перезарядки",
+  ["Display  the remaining duration as text on every cooldown."] = "Отображать оставшуюся продолжительность в виде текста при перезарядке.",
+}
+
 local module = ShaguTweaks:register({
-  title = "Cooldown Numbers",
-  description = "Display  the remaining duration as text on every cooldown.",
+  title = L["CooldownNumbers"]["Cooldown Numbers"],
+  description = L["CooldownNumbers"]["Display  the remaining duration as text on every cooldown."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
   enabled = nil,
   color = { r = .3, g = .3, b = .3, a = .9}

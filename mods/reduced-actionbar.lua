@@ -1,6 +1,13 @@
+local L = ShaguTweaks.L
+
+ShaguTweaks_locale["ruRU"]["ReducedActionbarSize"] = {
+  ["Reduced Actionbar Size"] = "Уменьшенный размер панели действий",
+  ["Reduces the actionbar size by removing several items such as the bag panel and microbar"] = "Уменьшает размер панели действий за счет удаления нескольких элементов, таких как панель сумки и микропанель.",
+}
+
 local module = ShaguTweaks:register({
-  title = "Reduced Actionbar Size",
-  description = "Reduces the actionbar size by removing several items such as the bag panel and microbar",
+  title = L["ReducedActionbarSize"]["Reduced Actionbar Size"],
+  description = L["ReducedActionbarSize"]["Reduces the actionbar size by removing several items such as the bag panel and microbar"],
   expansions = { ["vanilla"] = true, ["tbc"] = nil },
   categpry = nil,
   enabled = nil,

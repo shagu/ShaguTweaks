@@ -1,9 +1,15 @@
 local _G = ShaguTweaks.GetGlobalEnv()
+local L = ShaguTweaks.L
 local GetUnitData = ShaguTweaks.GetUnitData
 
+ShaguTweaks_locale["ruRU"]["NameplateClassColors"] = {
+  ["Nameplate Class Colors"] = "Цветные классы индикатора здоровья",
+  ["Changes the nameplate health bar color to the class color."] = "Изменяет цвет индикатора здоровья на цвет класса.",
+}
+
 local module = ShaguTweaks:register({
-  title = "Nameplate Class Colors",
-  description = "Changes the nameplate health bar color to the class color.",
+  title = L["NameplateClassColors"]["Nameplate Class Colors"],
+  description = L["NameplateClassColors"]["Changes the nameplate health bar color to the class color."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
   enabled = nil,
 })

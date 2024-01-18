@@ -1,10 +1,17 @@
 local _G = ShaguTweaks.GetGlobalEnv()
+local L = ShaguTweaks.L
+
+ShaguTweaks_locale["ruRU"]["DebuffTimer"] = {
+  ["Debuff Timer"] = "Таймер дебаффов",
+  ["Show debuff durations on the target unit frame."] = "Показать продолжительность дебаффов в окне цели.",
+  ["Unit Frames"] = "Окна юнита",
+}
 
 local module = ShaguTweaks:register({
-  title = "Debuff Timer",
-  description = "Show debuff durations on the target unit frame.",
+  title = L["DebuffTimer"]["Debuff Timer"],
+  description = L["DebuffTimer"]["Show debuff durations on the target unit frame."],
   expansions = { ["vanilla"] = true, ["tbc"] = nil },
-  category = "Unit Frames",
+  category = L["DebuffTimer"]["Unit Frames"],
   enabled = true,
 })
 

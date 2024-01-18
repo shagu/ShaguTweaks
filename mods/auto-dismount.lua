@@ -1,8 +1,14 @@
 local _G = ShaguTweaks.GetGlobalEnv()
+local L = ShaguTweaks.L
+
+ShaguTweaks_locale["ruRU"]["AutoDismount"] = {
+  ["Auto Dismount"] = "Авто-спешивание",
+  ["Automatically dismounts whenever a spell is casted."] = "Автоматическое спешивание при каждом произнесении заклинания.",
+}
 
 local module = ShaguTweaks:register({
-  title = "Auto Dismount",
-  description = "Automatically dismounts whenever a spell is casted.",
+  title = L["AutoDismount"]["Auto Dismount"],
+  description = L["AutoDismount"]["Automatically dismounts whenever a spell is casted."],
   expansions = { ["vanilla"] = true, ["tbc"] = nil },
   enabled = nil,
 })

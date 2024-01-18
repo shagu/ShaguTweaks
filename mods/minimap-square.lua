@@ -1,10 +1,17 @@
 local _G = ShaguTweaks.GetGlobalEnv()
+local L = ShaguTweaks.L
+
+ShaguTweaks_locale["ruRU"]["MiniMapSquare"] = {
+  ["MiniMap Square"] = "Квадратная мини-карта",
+  ["Draw the mini map in a squared shape instead of a round one."] = "Мини-карта квадратной формы вместо круглой.",
+  ["World & MiniMap"] = "Карта мира и мини-карта",
+}
 
 local module = ShaguTweaks:register({
-  title = "MiniMap Square",
-  description = "Draw the mini map in a squared shape instead of a round one.",
+  title = L["MiniMapSquare"]["MiniMap Square"],
+  description = L["MiniMapSquare"]["Draw the mini map in a squared shape instead of a round one."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
-  category = "World & MiniMap",
+  category = L["MiniMapSquare"]["World & MiniMap"],
   enabled = nil,
 })
 

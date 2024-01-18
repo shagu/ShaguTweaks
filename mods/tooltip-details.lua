@@ -1,13 +1,20 @@
 local _G = ShaguTweaks.GetGlobalEnv()
+local L = ShaguTweaks.L
 local round = ShaguTweaks.round
 local rgbhex = ShaguTweaks.rgbhex
 local Abbreviate = ShaguTweaks.Abbreviate
 
+ShaguTweaks_locale["ruRU"]["TooltipDetails"] = {
+  ["Tooltip Details"] = "Подробные подсказки",
+  ["Display health, class color, guild name, guild rank and current target on unit tooltips."] = "Отображение здоровья, цвета класса, названия гильдии, ранга гильдии и текущей цели во всплывающих подсказках юнитов.",
+  ["Tooltip & Items"] = "Подсказки и предметы",
+}
+
 local module = ShaguTweaks:register({
-  title = "Tooltip Details",
-  description = "Display health, class color, guild name, guild rank and current target on unit tooltips.",
+  title = L["TooltipDetails"]["Tooltip Details"],
+  description = L["TooltipDetails"]["Display health, class color, guild name, guild rank and current target on unit tooltips."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
-  category = "Tooltip & Items",
+  category = L["TooltipDetails"]["Tooltip & Items"],
   enabled = nil,
 })
 

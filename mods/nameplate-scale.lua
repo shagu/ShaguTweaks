@@ -1,8 +1,14 @@
 local _G = ShaguTweaks.GetGlobalEnv()
+local L = ShaguTweaks.L
+
+ShaguTweaks_locale["ruRU"]["NameplateScale"] = {
+  ["Nameplate Scale"] = "Масштаб индикаторов здоровья",
+  ["Makes all nameplates honor the UI-Scale setting."] = "Все индикаторы здоровья будут соответствовать настройке UI-Scale.",
+}
 
 local module = ShaguTweaks:register({
-  title = "Nameplate Scale",
-  description = "Makes all nameplates honor the UI-Scale setting.",
+  title = L["NameplateScale"]["Nameplate Scale"],
+  description = L["NameplateScale"]["Makes all nameplates honor the UI-Scale setting."],
   expansions = { ["vanilla"] = true, ["tbc"] = nil },
   enabled = true,
 })

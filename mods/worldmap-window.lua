@@ -1,11 +1,19 @@
 local _G = ShaguTweaks.GetGlobalEnv()
+local L = ShaguTweaks.L
 local HookScript = ShaguTweaks.HookScript
 
+ShaguTweaks_locale["ruRU"]["WorldMapWindow"] = {
+  ["WorldMap Window"] = "Окно карты мира",
+  ["Turns the world map into a movable window. The map can be scaled with <Ctrl> + Mousewheel."] = "Превращает карту мира в подвижное окно. Карту можно масштабировать с помощью <Ctrl> + Колесо мыши.",
+  ["World & MiniMap"] = "Карта мира и мини-карта",
+}
+
+
 local module = ShaguTweaks:register({
-  title = "WorldMap Window",
-  description = "Turns the world map into a movable window. The map can be scaled with <Ctrl> + Mousewheel.",
+  title = L["WorldMapWindow"]["WorldMap Window"],
+  description = L["WorldMapWindow"]["Turns the world map into a movable window. The map can be scaled with <Ctrl> + Mousewheel."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
-  category = "World & MiniMap",
+  category = L["WorldMapWindow"]["World & MiniMap"],
   enabled = true,
 })
 

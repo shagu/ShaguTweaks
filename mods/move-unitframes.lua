@@ -1,10 +1,17 @@
 local _G = ShaguTweaks.GetGlobalEnv()
+local L = ShaguTweaks.L
+
+ShaguTweaks_locale["ruRU"]["MovableUnitFrames"] = {
+  ["Movable Unit Frames"] = "Передвижные окна юнита",
+  ["Player and Target unit frames can be moved while <Shift> and <Ctrl> are pressed together."] = "Окна игрока и цели можно перемещать, удерживая клавиши <Shift> и <Ctrl> вместе.",
+  ["Unit Frames"] = "Окна юнита",
+}
 
 local module = ShaguTweaks:register({
-  title = "Movable Unit Frames",
-  description = "Player and Target unit frames can be moved while <Shift> and <Ctrl> are pressed together.",
+  title = L["MovableUnitFrames"]["Movable Unit Frames"],
+  description = L["MovableUnitFrames"]["Player and Target unit frames can be moved while <Shift> and <Ctrl> are pressed together."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
-  category = "Unit Frames",
+  category = L["MovableUnitFrames"]["Unit Frames"],
   enabled = nil,
 })
 

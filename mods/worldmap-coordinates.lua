@@ -1,10 +1,21 @@
 local _G = ShaguTweaks.GetGlobalEnv()
+local L = ShaguTweaks.L
+
+ShaguTweaks_locale["ruRU"]["WorldMapCoordinates"] = {
+  ["WorldMap Coordinates"] = "Координаты на карте мира",
+  ["Adds coordinates to the bottom of the World Map."] = "Добавляет координаты внизу карты мира.",
+  ["World & MiniMap"] = "Карта мира и мини-карта",
+  ['Player:'] = "Игрок:",
+  ['Cursor:'] = "Курсор:",
+  ['N/A'] = "Н/Д",
+}
+
 
 local module = ShaguTweaks:register({
-  title = "WorldMap Coordinates",
-  description = "Adds coordinates to the bottom of the World Map.",
+  title = L["WorldMapCoordinates"]["WorldMap Coordinates"],
+  description = L["WorldMapCoordinates"]["Adds coordinates to the bottom of the World Map."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
-  category = "World & MiniMap",
+  category = L["WorldMapCoordinates"]["World & MiniMap"],
   enabled = nil,
 })
 
@@ -49,15 +60,15 @@ module.enable = function(self)
 
         local px, py = GetPlayerMapPosition("player")
         if px > 0 and py > 0 then
-          WorldMapButton.player.text:SetText(string.format('|cffffcc00Player: |r%.1f / %.1f', px*100, py*100))
+          WorldMapButton.player.text:SetText(string.format('|cffffcc00' .. L["WorldMapCoordinates"]['Player:'] .. ' |r%.1f / %.1f', px*100, py*100))
         else
-          WorldMapButton.player.text:SetText(string.format('|cffffcc00Player: |rN/A'))
+          WorldMapButton.player.text:SetText(string.format('|cffffcc00' .. L["WorldMapCoordinates"]['Player:'] .. ' |r' .. L["WorldMapCoordinates"]['N/A']))
         end
 
         if MouseIsOver(WorldMapButton) then
-          WorldMapButton.coords.text:SetText(string.format('|cffffcc00Cursor: |r%.1f / %.1f', mx, my))
+          WorldMapButton.coords.text:SetText(string.format('|cffffcc00' .. L["WorldMapCoordinates"]['Cursor:'] .. ' |r%.1f / %.1f', mx, my))
         else
-          WorldMapButton.coords.text:SetText(string.format('|cffffcc00Cursor: |rN/A'))
+          WorldMapButton.coords.text:SetText(string.format('|cffffcc00' .. L["WorldMapCoordinates"]['Cursor:'] .. ' |r' .. L["WorldMapCoordinates"]['N/A']))
         end
       end)
     end

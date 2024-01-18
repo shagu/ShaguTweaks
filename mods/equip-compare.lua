@@ -1,10 +1,17 @@
 local _G = ShaguTweaks.GetGlobalEnv()
+local L = ShaguTweaks.L
+
+ShaguTweaks_locale["ruRU"]["EquipCompare"] = {
+  ["Equip Compare"] = "Сравнение экипировки",
+  ["Shows currently equipped items on tooltips while the shift key is pressed."] = "Показывает экипированные в данный момент предметы во всплывающих подсказках, пока нажата клавиша Shift.",
+  ["Tooltip & Items"] = "Подсказки и предметы",
+}
 
 local module = ShaguTweaks:register({
-  title = "Equip Compare",
-  description = "Shows currently equipped items on tooltips while the shift key is pressed.",
+  title = L["EquipCompare"]["Equip Compare"],
+  description = L["EquipCompare"]["Shows currently equipped items on tooltips while the shift key is pressed."],
   expansions = { ["vanilla"] = true, ["tbc"] = nil },
-  category = "Tooltip & Items",
+  category = L["EquipCompare"]["Tooltip & Items"],
   enabled = true,
 })
 

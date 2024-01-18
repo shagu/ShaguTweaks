@@ -1,9 +1,15 @@
 local _G = ShaguTweaks.GetGlobalEnv()
+local L = ShaguTweaks.L
 local strsplit = ShaguTweaks.strsplit
 
+ShaguTweaks_locale["ruRU"]["AutoStance"] = {
+  ["Auto Stance"] = "Авто-стойка",
+  ["Automatically switch to the required warrior or druid stance on spell cast."] = "Автоматически переключаться на нужную стойку воина или друида при произнесении заклинания.",
+}
+
 local module = ShaguTweaks:register({
-  title = "Auto Stance",
-  description = "Automatically switch to the required warrior or druid stance on spell cast.",
+  title = L["AutoStance"]["Auto Stance"],
+  description = L["AutoStance"]["Automatically switch to the required warrior or druid stance on spell cast."],
   expansions = { ["vanilla"] = true, ["tbc"] = nil },
   enabled = nil,
 })

@@ -1,10 +1,17 @@
 local _G = ShaguTweaks.GetGlobalEnv()
+local L = ShaguTweaks.L
 local GetExpansion = ShaguTweaks.GetExpansion
 local mod = math.mod or mod
 
 local current_config = {}
 local max_width = 500
 local max_height = 680
+
+ShaguTweaks_locale["ruRU"]["AdvancedOptions"] = {
+  ["Advanced Options"] = "Расширенные настройки",
+  ["General"] = "Основные",
+  ["Advanced Options|cffffff00*"] = "Расширенные настройки|cffffff00*",
+}
 
 local settings = CreateFrame("Frame", "AdvancedSettingsGUI", UIParent)
 settings:Hide()
@@ -47,7 +54,7 @@ settings.title.tex:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Header")
 settings.title.tex:SetAllPoints()
 
 settings.title.text = settings.title:CreateFontString(nil, "HIGH", "GameFontNormal")
-settings.title.text:SetText("Advanced Options")
+settings.title.text:SetText(L["AdvancedOptions"]["Advanced Options"])
 settings.title.text:SetPoint("TOP", 0, -14)
 
 settings.cancel = CreateFrame("Button", "AdvancedSettingsGUICancel", settings, "GameMenuButtonTemplate")
@@ -102,7 +109,7 @@ settings.load = function(self)
   local gui = {}
   for title, module in pairs(ShaguTweaks.mods) do
     if module.expansions[expansion] then
-      local category = module.category or "General"
+      local category = module.category or L["AdvancedOptions"]["General"]
       gui[category] = gui[category] or {}
       gui[category][title] = module
     end
@@ -228,7 +235,7 @@ end
 
 local advanced = CreateFrame("Button", "GameMenuButtonAdvancedOptions", GameMenuFrame, "GameMenuButtonTemplate")
 advanced:SetPoint("TOP", GameMenuButtonUIOptions, "BOTTOM", 0, -1)
-advanced:SetText("Advanced Options|cffffff00*")
+advanced:SetText(L["AdvancedOptions"]["Advanced Options|cffffff00*"])
 advanced:SetScript("OnClick", function()
   HideUIPanel(GameMenuFrame)
   settings:Show()
