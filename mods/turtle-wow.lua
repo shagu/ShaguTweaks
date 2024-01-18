@@ -29,7 +29,7 @@ local module = ShaguTweaks:register({
 
 module.enable = function(self)
   -- hide turtle-wow's target status texts
-  if ShaguTweaks_config(L["Real Health Numbers"]["Real Health Numbers"]) == 1 then
+  if ShaguTweaks_config(L["HealthNumbers"]["Real Health Numbers"]) == 1 then
     TargetHPText:Hide()
     TargetHPText.Show = function() return end
 
