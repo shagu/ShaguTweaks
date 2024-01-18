@@ -8,6 +8,7 @@ ShaguTweaks_locale["ruRU"]["categories"] = {
   ["Social & Chat"] = "Общение и чат",
   ["Unit Frames"] = "Окна юнита",
   ["Graphics"] = "Графика", --mods
+  ["Action Bar"] = "Панель действий", --mods
 }
 
 ShaguTweaks_locale["ruRU"]["class"] = {

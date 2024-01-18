@@ -2,7 +2,7 @@ local _G = ShaguTweaks.GetGlobalEnv()
 local L = ShaguTweaks.L
 
 ShaguTweaks_locale["ruRU"]["UnitFrameBigHealth"] = {
-  ["Unit Frame Big Health"] = "Большое здоровье окна юнита",
+  ["Unit Frame Big Health"] = "Большое здоровье",
   ["Increases the healthbar of the player and target unitframe."] = "Увеличивает полосу здоровья игрока и цели.",
 }
 

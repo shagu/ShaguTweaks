@@ -8,6 +8,7 @@ ShaguTweaks_locale["enUS"]["categories"] = {
   ["Social & Chat"] = true,
   ["Unit Frames"] = true,
   ["Graphics"] = true, --mods
+  ["Action Bar"] = true, --mods
 }
 
 ShaguTweaks_locale["enUS"]["class"] = {
