@@ -54,6 +54,7 @@ module.enable = function(self)
 
     -- castbar border
     plate.castbar.backdrop = CreateFrame("Frame", nil, plate.castbar)
+    plate.castbar.backdrop:SetFrameLevel(plate.castbar:GetFrameLevel())
     plate.castbar.backdrop:SetPoint("TOPLEFT", plate.castbar, "TOPLEFT", -3, 3)
     plate.castbar.backdrop:SetPoint("BOTTOMRIGHT", plate.castbar, "BOTTOMRIGHT", 3, -3)
     plate.castbar.backdrop:SetBackdrop(backdrop)
