@@ -4,14 +4,13 @@ local L = ShaguTweaks.L
 ShaguTweaks_locale["ruRU"]["MiniMapSquare"] = {
   ["MiniMap Square"] = "Квадратная мини-карта",
   ["Draw the mini map in a squared shape instead of a round one."] = "Мини-карта квадратной формы вместо круглой.",
-  ["World & MiniMap"] = "Карта мира и мини-карта",
 }
 
 local module = ShaguTweaks:register({
   title = L["MiniMapSquare"]["MiniMap Square"],
   description = L["MiniMapSquare"]["Draw the mini map in a squared shape instead of a round one."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
-  category = L["MiniMapSquare"]["World & MiniMap"],
+  category = L["categories"]["World & MiniMap"],
   enabled = nil,
 })
 

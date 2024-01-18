@@ -1,6 +1,14 @@
 ShaguTweaks_locale = ShaguTweaks_locale or {}
 ShaguTweaks_locale["enUS"] = {}
 
+ShaguTweaks_locale["enUS"]["categories"] = {
+  ["General"] = true,
+  ["Tooltip & Items"] = true,
+  ["World & MiniMap"] = true,
+  ["Social & Chat"] = true,
+  ["Unit Frames"] = true,
+}
+
 ShaguTweaks_locale["enUS"]["class"] = {
   ["Warlock"] = "WARLOCK",
   ["Warrior"] = "WARRIOR",

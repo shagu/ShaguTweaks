@@ -4,7 +4,6 @@ local L = ShaguTweaks.L
 ShaguTweaks_locale["ruRU"]["SellJunk"] = {
   ["Sell Junk"] = "Продать серые предметы",
   ["Adds a “Sell Junk” button to every merchant window, that sells all grey items."] = "Добавляет кнопку «Продать серые предметы» в каждое окно торговца, в котором продаются все серые предметы.",
-  ["Tooltip & Items"] = "Подсказки и предметы",
   ["Your vendor trash has been sold and you earned "] = "Ваш хлам продан, и вы заработали ",
   ["Sell Grey Items"] = "Продать серые предметы",
 }
@@ -13,7 +12,7 @@ local module = ShaguTweaks:register({
   title = L["SellJunk"]["Sell Junk"],
   description = L["SellJunk"]["Adds a “Sell Junk” button to every merchant window, that sells all grey items."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
-  category = L["SellJunk"]["Tooltip & Items"],
+  category = L["categories"]["Tooltip & Items"],
   enabled = true,
 })
 

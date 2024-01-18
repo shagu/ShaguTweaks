@@ -1,6 +1,14 @@
 ShaguTweaks_locale = ShaguTweaks_locale or {}
 ShaguTweaks_locale["ruRU"] = {}
 
+ShaguTweaks_locale["ruRU"]["categories"] = {
+  ["General"] = "Общие",
+  ["Tooltip & Items"] = "Подсказки и предметы",
+  ["World & MiniMap"] = "Карта мира и мини-карта",
+  ["Social & Chat"] = "Общение и чат",
+  ["Unit Frames"] = "Окна юнита",
+}
+
 ShaguTweaks_locale["ruRU"]["class"] = {
   ["Чернокнижник"] = "WARLOCK",
   ["Воин"] = "WARRIOR",

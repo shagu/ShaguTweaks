@@ -4,14 +4,13 @@ local L = ShaguTweaks.L
 ShaguTweaks_locale["ruRU"]["UnitFrameBigHealth"] = {
   ["Unit Frame Big Health"] = "Большое здоровье окна юнита",
   ["Increases the healthbar of the player and target unitframe."] = "Увеличивает полосу здоровья игрока и цели.",
-  ["Unit Frames"] = "Окна юнита",
 }
 
 local module = ShaguTweaks:register({
   title = L["UnitFrameBigHealth"]["Unit Frame Big Health"],
   description = L["UnitFrameBigHealth"]["Increases the healthbar of the player and target unitframe."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
-  category = L["UnitFrameBigHealth"]["Unit Frames"],
+  category = L["categories"]["Unit Frames"],
   enabled = nil,
 })
 

@@ -4,7 +4,6 @@ local L = ShaguTweaks.L
 ShaguTweaks_locale["ruRU"]["MiniMapClock"] = {
   ["MiniMap Clock"] = "Часы на мини-карте",
   ["Adds a small 24h clock to the mini map."] = "Добавляет небольшие 24-часовые часы на мини-карту.",
-  ["World & MiniMap"] = "Карта мира и мини-карта",
   ["Clock"] = "Часы",
   ["Localtime"] = "Местное время",
   ["Servertime"] = "Серверное время",
@@ -14,7 +13,7 @@ local module = ShaguTweaks:register({
   title = L["MiniMapClock"]["MiniMap Clock"],
   description = L["MiniMapClock"]["Adds a small 24h clock to the mini map."],
   expansions = { ["vanilla"] = true, ["tbc"] = nil },
-  category = L["MiniMapClock"]["World & MiniMap"],
+  category = L["categories"]["World & MiniMap"],
   enabled = nil,
 })
 

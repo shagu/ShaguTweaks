@@ -4,14 +4,13 @@ local L = ShaguTweaks.L
 ShaguTweaks_locale["ruRU"]["DebuffTimer"] = {
   ["Debuff Timer"] = "Таймер дебаффов",
   ["Show debuff durations on the target unit frame."] = "Показать продолжительность дебаффов в окне цели.",
-  ["Unit Frames"] = "Окна юнита",
 }
 
 local module = ShaguTweaks:register({
   title = L["DebuffTimer"]["Debuff Timer"],
   description = L["DebuffTimer"]["Show debuff durations on the target unit frame."],
   expansions = { ["vanilla"] = true, ["tbc"] = nil },
-  category = L["DebuffTimer"]["Unit Frames"],
+  category = L["categories"]["Unit Frames"],
   enabled = true,
 })
 

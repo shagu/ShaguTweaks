@@ -4,14 +4,13 @@ local L = ShaguTweaks.L
 ShaguTweaks_locale["ruRU"]["EquipCompare"] = {
   ["Equip Compare"] = "Сравнение экипировки",
   ["Shows currently equipped items on tooltips while the shift key is pressed."] = "Показывает экипированные в данный момент предметы во всплывающих подсказках, пока нажата клавиша Shift.",
-  ["Tooltip & Items"] = "Подсказки и предметы",
 }
 
 local module = ShaguTweaks:register({
   title = L["EquipCompare"]["Equip Compare"],
   description = L["EquipCompare"]["Shows currently equipped items on tooltips while the shift key is pressed."],
   expansions = { ["vanilla"] = true, ["tbc"] = nil },
-  category = L["EquipCompare"]["Tooltip & Items"],
+  category = L["categories"]["Tooltip & Items"],
   enabled = true,
 })
 

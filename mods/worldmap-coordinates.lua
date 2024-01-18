@@ -4,7 +4,6 @@ local L = ShaguTweaks.L
 ShaguTweaks_locale["ruRU"]["WorldMapCoordinates"] = {
   ["WorldMap Coordinates"] = "Координаты на карте мира",
   ["Adds coordinates to the bottom of the World Map."] = "Добавляет координаты внизу карты мира.",
-  ["World & MiniMap"] = "Карта мира и мини-карта",
   ['Player:'] = "Игрок:",
   ['Cursor:'] = "Курсор:",
   ['N/A'] = "Н/Д",
@@ -15,7 +14,7 @@ local module = ShaguTweaks:register({
   title = L["WorldMapCoordinates"]["WorldMap Coordinates"],
   description = L["WorldMapCoordinates"]["Adds coordinates to the bottom of the World Map."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
-  category = L["WorldMapCoordinates"]["World & MiniMap"],
+  category = L["categories"]["World & MiniMap"],
   enabled = nil,
 })
 

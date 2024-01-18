@@ -12,14 +12,13 @@ local friendinfo = gsub(gsub(FRIENDS_LEVEL_TEMPLATE,"%%s","%%s %%s"),"%%d","%%s"
 ShaguTweaks_locale["ruRU"]["SocialColors"] = {
   ["Social Colors"] = "Социальные цвета",
   ["Show class colors in Who, Guild, Friends and Chat."] = "Показать цвета классов в разделах «Кто», «Гильдия», «Друзья» и «Чат».",
-  ["Social & Chat"] = "Общение и чат",
 }
 
 local module = ShaguTweaks:register({
   title = L["SocialColors"]["Social Colors"],
   description = L["SocialColors"]["Show class colors in Who, Guild, Friends and Chat."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
-  category = L["SocialColors"]["Social & Chat"],
+  category = L["categories"]["Social & Chat"],
   enabled = nil,
 })
 

@@ -4,14 +4,13 @@ local L = ShaguTweaks.L
 ShaguTweaks_locale["ruRU"]["MiniMapTweaks"] = {
   ["MiniMap Tweaks"] = "Улучшения мини-карты",
   ["Hides unnecessary mini map buttons and allows to zoom using the mouse wheel."] = "Скрывает ненужные кнопки мини-карты и позволяет масштабировать ее с помощью колеса мыши.",
-  ["World & MiniMap"] = "Карта мира и мини-карта",
 }
 
 local module = ShaguTweaks:register({
   title = L["MiniMapTweaks"]["MiniMap Tweaks"],
   description = L["MiniMapTweaks"]["Hides unnecessary mini map buttons and allows to zoom using the mouse wheel."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
-  category = L["MiniMapTweaks"]["World & MiniMap"],
+  category = L["categories"]["World & MiniMap"],
   enabled = nil,
 })
 

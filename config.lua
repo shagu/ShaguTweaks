@@ -9,7 +9,6 @@ local max_height = 680
 
 ShaguTweaks_locale["ruRU"]["AdvancedOptions"] = {
   ["Advanced Options"] = "Расширенные настройки",
-  ["General"] = "Основные",
   ["Advanced Options|cffffff00*"] = "Расширенные настройки|cffffff00*",
 }
 
@@ -109,7 +108,7 @@ settings.load = function(self)
   local gui = {}
   for title, module in pairs(ShaguTweaks.mods) do
     if module.expansions[expansion] then
-      local category = module.category or L["AdvancedOptions"]["General"]
+      local category = module.category or L["categories"]["General"]
       gui[category] = gui[category] or {}
       gui[category][title] = module
     end

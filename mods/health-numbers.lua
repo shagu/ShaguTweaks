@@ -7,14 +7,13 @@ local vanilla = ShaguTweaks.GetExpansion() == "vanilla" or nil
 ShaguTweaks_locale["ruRU"]["HealthNumbers"] = {
   ["Real Health Numbers"] = "Реальные цифры здоровья",
   ["Estimates health numbers, and shows numbers on player, pet and target unit frames."] = "Оценивает количество здоровья и показывает цифры на окнах игрока, питомца и цели.",
-  ["Unit Frames"] = "Окна юнита",
 }
 
 local module = ShaguTweaks:register({
   title = L["HealthNumbers"]["Real Health Numbers"],
   description = L["HealthNumbers"]["Estimates health numbers, and shows numbers on player, pet and target unit frames."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
-  category = L["HealthNumbers"]["Unit Frames"],
+  category = L["categories"]["Unit Frames"],
   enabled = true,
 })
 

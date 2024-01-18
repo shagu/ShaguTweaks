@@ -7,14 +7,13 @@ local Abbreviate = ShaguTweaks.Abbreviate
 ShaguTweaks_locale["ruRU"]["TooltipDetails"] = {
   ["Tooltip Details"] = "Подробные подсказки",
   ["Display health, class color, guild name, guild rank and current target on unit tooltips."] = "Отображение здоровья, цвета класса, названия гильдии, ранга гильдии и текущей цели во всплывающих подсказках юнитов.",
-  ["Tooltip & Items"] = "Подсказки и предметы",
 }
 
 local module = ShaguTweaks:register({
   title = L["TooltipDetails"]["Tooltip Details"],
   description = L["TooltipDetails"]["Display health, class color, guild name, guild rank and current target on unit tooltips."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
-  category = L["TooltipDetails"]["Tooltip & Items"],
+  category = L["categories"]["Tooltip & Items"],
   enabled = nil,
 })
 

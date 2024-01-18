@@ -7,14 +7,13 @@ local UnitChannelInfo = ShaguTweaks.UnitChannelInfo
 ShaguTweaks_locale["ruRU"]["EnemyCastbars"] = {
   ["Enemy Castbars"] = "Панель применения противника",
   ["Shows an enemy castbar on target unit frame."] = "Показать панель применения противника в окне юнита цели.",
-  ["Unit Frames"] = "Окна юнита",
 }
 
 local module = ShaguTweaks:register({
   title = L["EnemyCastbars"]["Enemy Castbars"],
   description = L["EnemyCastbars"]["Shows an enemy castbar on target unit frame."],
   expansions = { ["vanilla"] = true, ["tbc"] = nil },
-  category = L["EnemyCastbars"]["Unit Frames"],
+  category = L["categories"]["Unit Frames"],
   enabled = true,
 })
 

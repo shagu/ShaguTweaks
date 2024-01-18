@@ -5,14 +5,13 @@ local GetExpansion = ShaguTweaks.GetExpansion
 ShaguTweaks_locale["ruRU"]["VendorValues"] = {
   ["Vendor Values"] = "Стоимость продажи",
   ["Shows the vendor sell values on all item tooltips."] = "Показывает стоимость продажи продавцу во всплывающих подсказках ко всем предметам.",
-  ["Tooltip & Items"] = "Подсказки и предметы",
 }
 
 local module = ShaguTweaks:register({
   title = L["VendorValues"]["Vendor Values"],
   description = L["VendorValues"]["Shows the vendor sell values on all item tooltips."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
-  category = L["VendorValues"]["Tooltip & Items"],
+  category = L["categories"]["Tooltip & Items"],
   enabled = true,
 })
 

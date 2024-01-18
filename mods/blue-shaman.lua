@@ -5,14 +5,13 @@ local GetExpansion = ShaguTweaks.GetExpansion
 ShaguTweaks_locale["ruRU"]["BlueShamanClassColors"] = {
   ["Blue Shaman Class Colors"] = "Синий цвет класса шаман",
   ["Changes the class color code of shamans to blue, as known from TBC+."] = "Изменяет цветовой код класса шаманов на синий, как известно из TBC+.",
-  ["Social & Chat"] = "Общение и чат",
 }
 
 local module = ShaguTweaks:register({
   title = L["BlueShamanClassColors"]["Blue Shaman Class Colors"],
   description = L["BlueShamanClassColors"]["Changes the class color code of shamans to blue, as known from TBC+."],
   expansions = { ["vanilla"] = true, ["tbc"] = nil },
-  category = L["BlueShamanClassColors"]["Social & Chat"],
+  category = L["categories"]["Social & Chat"],
   enabled = true,
 })
 
