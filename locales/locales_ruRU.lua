@@ -7,6 +7,7 @@ ShaguTweaks_locale["ruRU"]["categories"] = {
   ["World & MiniMap"] = "Карта мира и мини-карта",
   ["Social & Chat"] = "Общение и чат",
   ["Unit Frames"] = "Окна юнита",
+  ["Graphics"] = "Графика", --mods
 }
 
 ShaguTweaks_locale["ruRU"]["class"] = {

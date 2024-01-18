@@ -7,6 +7,7 @@ ShaguTweaks_locale["enUS"]["categories"] = {
   ["World & MiniMap"] = true,
   ["Social & Chat"] = true,
   ["Unit Frames"] = true,
+  ["Graphics"] = true, --mods
 }
 
 ShaguTweaks_locale["enUS"]["class"] = {
