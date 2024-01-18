@@ -9,7 +9,6 @@ local max_height = 680
 
 ShaguTweaks_locale["ruRU"]["AdvancedOptions"] = {
   ["Advanced Options"] = "Расширенные настройки",
-  ["Advanced Options|cffffff00*"] = "Расширенные настройки|cffffff00*",
 }
 
 local settings = CreateFrame("Frame", "AdvancedSettingsGUI", UIParent)
@@ -234,7 +233,7 @@ end
 
 local advanced = CreateFrame("Button", "GameMenuButtonAdvancedOptions", GameMenuFrame, "GameMenuButtonTemplate")
 advanced:SetPoint("TOP", GameMenuButtonUIOptions, "BOTTOM", 0, -1)
-advanced:SetText(L["AdvancedOptions"]["Advanced Options|cffffff00*"])
+advanced:SetText(L["AdvancedOptions"]["Advanced Options"] .. "|cffffff00*")
 advanced:SetScript("OnClick", function()
   HideUIPanel(GameMenuFrame)
   settings:Show()
