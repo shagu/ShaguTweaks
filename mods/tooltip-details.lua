@@ -1,13 +1,14 @@
 local _G = ShaguTweaks.GetGlobalEnv()
+local T = ShaguTweaks.T
 local round = ShaguTweaks.round
 local rgbhex = ShaguTweaks.rgbhex
 local Abbreviate = ShaguTweaks.Abbreviate
 
 local module = ShaguTweaks:register({
-  title = "Tooltip Details",
-  description = "Display health, class color, guild name, guild rank and current target on unit tooltips.",
+  title = T["Tooltip Details"],
+  description = T["Display health, class color, guild name, guild rank and current target on unit tooltips."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
-  category = "Tooltip & Items",
+  category = T["Tooltip & Items"],
   enabled = nil,
 })
 

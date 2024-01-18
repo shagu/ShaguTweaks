@@ -1,8 +1,9 @@
 local _G = ShaguTweaks.GetGlobalEnv()
+local T = ShaguTweaks.T
 
 local module = ShaguTweaks:register({
-  title = "Auto Dismount",
-  description = "Automatically dismounts whenever a spell is casted.",
+  title = T["Auto Dismount"],
+  description = T["Automatically dismounts whenever a spell is casted."],
   expansions = { ["vanilla"] = true, ["tbc"] = nil },
   enabled = nil,
 })

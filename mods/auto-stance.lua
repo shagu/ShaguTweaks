@@ -1,9 +1,10 @@
 local _G = ShaguTweaks.GetGlobalEnv()
+local T = ShaguTweaks.T
 local strsplit = ShaguTweaks.strsplit
 
 local module = ShaguTweaks:register({
-  title = "Auto Stance",
-  description = "Automatically switch to the required warrior or druid stance on spell cast.",
+  title = T["Auto Stance"],
+  description = T["Automatically switch to the required warrior or druid stance on spell cast."],
   expansions = { ["vanilla"] = true, ["tbc"] = nil },
   enabled = nil,
 })

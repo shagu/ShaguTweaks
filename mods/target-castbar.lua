@@ -1,13 +1,14 @@
 local _G = ShaguTweaks.GetGlobalEnv()
+local T = ShaguTweaks.T
 local GetExpansion = ShaguTweaks.GetExpansion
 local UnitCastingInfo = ShaguTweaks.UnitCastingInfo
 local UnitChannelInfo = ShaguTweaks.UnitChannelInfo
 
 local module = ShaguTweaks:register({
-  title = "Enemy Castbars",
-  description = "Shows an enemy castbar on target unit frame.",
+  title = T["Enemy Castbars"],
+  description = T["Shows an enemy castbar on target unit frame."],
   expansions = { ["vanilla"] = true, ["tbc"] = nil },
-  category = "Unit Frames",
+  category = T["Unit Frames"],
   enabled = true,
 })
 

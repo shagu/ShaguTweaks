@@ -1,4 +1,5 @@
 local _G = ShaguTweaks.GetGlobalEnv()
+local T = ShaguTweaks.T
 
 local addonpath
 local tocs = { "", "-master", "-tbc", "-wotlk" }
@@ -25,10 +26,10 @@ local CLASS_ICON_TCOORDS = {
 }
 
 local module = ShaguTweaks:register({
-  title = "Unit Frame Class Portraits",
-  description = "Replace unitframe portraits with class icons.",
+  title = T["Unit Frame Class Portraits"],
+  description = T["Replace unitframe portraits with class icons."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
-  category = "Unit Frames",
+  category = T["Unit Frames"],
   enabled = nil,
 })
 

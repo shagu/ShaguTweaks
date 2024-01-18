@@ -8,18 +8,20 @@
 -- Skip module initialization on every other client than TurtleWoW.
 if not TargetHPText or not TargetHPPercText then return end
 
+local T = ShaguTweaks.T
 local selldata
+
 local module = ShaguTweaks:register({
-  title = "Turtle WoW Compatibility",
-  description = "Adds compatibility to Turtle WoW's custom changes",
+  title = T["Turtle WoW Compatibility"],
+  description = T["Adds compatibility to Turtle WoW's custom changes."],
   expansions = { ["vanilla"] = true, ["tbc"] = false },
-  category = "General",
+  category = T["General"],
   enabled = true,
 })
 
 module.enable = function(self)
   -- hide turtle-wow's target status texts
-  if ShaguTweaks_config["Real Health Numbers"] == 1 then
+  if ShaguTweaks_config(T["Real Health Numbers"]) == 1 then
     TargetHPText:Hide()
     TargetHPText.Show = function() return end
 
@@ -34,7 +36,7 @@ module.enable = function(self)
     HookWorldMapFrame_Maximize()
 
     -- re-apply worldmap window
-    if ShaguTweaks_config["WorldMap Window"] == 1 then
+    if ShaguTweaks_config(T["WorldMap Window"]) == 1 then
       WorldMapFrame:SetMovable(true)
       WorldMapFrame:EnableMouse(true)
 

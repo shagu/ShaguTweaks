@@ -1,10 +1,11 @@
 local _G = ShaguTweaks.GetGlobalEnv()
+local T = ShaguTweaks.T
 local UnitCastingInfo = ShaguTweaks.UnitCastingInfo
 local UnitChannelInfo = ShaguTweaks.UnitChannelInfo
 
 local module = ShaguTweaks:register({
-  title = "Nameplate Castbar",
-  description = "Adds a castbar to the nameplate based on combat log estimations.",
+  title = T["Nameplate Castbar"],
+  description = T["Adds a castbar to the nameplate based on combat log estimations."],
   expansions = { ["vanilla"] = true, ["tbc"] = false },
   enabled = nil,
 })

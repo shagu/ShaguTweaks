@@ -1,8 +1,9 @@
 local _G = ShaguTweaks.GetGlobalEnv()
+local T = ShaguTweaks.T
 
 local module = ShaguTweaks:register({
-  title = "Reduced Actionbar Size",
-  description = "Reduces the actionbar size by removing several items such as the bag panel and microbar",
+  title = T["Reduced Actionbar Size"],
+  description = T["Reduces the actionbar size by removing several items such as the bag panel and microbar"],
   expansions = { ["vanilla"] = true, ["tbc"] = nil },
   categpry = nil,
   enabled = nil,
