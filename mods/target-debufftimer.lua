@@ -81,8 +81,8 @@ module.enable = function(self)
 
       if button and effect and duration and timeleft then
         local start = GetTime() + timeleft - duration
-        CooldownFrame_SetTimer(button.cd, start, duration, 1)
         CreateTextCooldown(button.cd)
+        CooldownFrame_SetTimer(button.cd, start, duration, 1)
         button.cd.readable.start = start
         button.cd.readable.duration = duration
         button.cd.readable:Show()
