@@ -17,7 +17,7 @@ ShaguTweaks = CreateFrame("Frame")
 ShaguTweaks.mods = {}
 
 -- load translation tables
-ShaguTweaks.L = (ShaguTweaks_locale[GetLocale()] or ShaguTweaks_locale["enUS"])
+--ShaguTweaks.L = (ShaguTweaks_locale[GetLocale()] or ShaguTweaks_locale["enUS"])
 ShaguTweaks:RegisterEvent("VARIABLES_LOADED")
 ShaguTweaks:SetScript("OnEvent", function()
   -- load current expansion

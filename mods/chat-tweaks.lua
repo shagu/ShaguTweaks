@@ -1,17 +1,12 @@
 local _G = ShaguTweaks.GetGlobalEnv()
-local L = ShaguTweaks.L
+local T = ShaguTweaks.T
 local scrollspeed = 1
 
-ShaguTweaks_locale["ruRU"]["ChatTweaks"] = {
-  ["Chat Tweaks"] = "Улучшения чата",
-  ["Allows to scroll using the mouse wheel, enables sticky chat channels and repeats message on arrow up."] = "Позволяет прокручивать колесо мыши, включает закрепленные каналы чата и повторяет сообщение при нажатии стрелки вверх.",
-}
-
 local module = ShaguTweaks:register({
-  title = L["ChatTweaks"]["Chat Tweaks"],
-  description = L["ChatTweaks"]["Allows to scroll using the mouse wheel, enables sticky chat channels and repeats message on arrow up."],
+  title = T["Chat Tweaks"],
+  description = T["Allows to scroll using the mouse wheel, enables sticky chat channels and repeats message on arrow up."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
-  category = L["categories"]["Social & Chat"],
+  category = T["Social & Chat"],
   enabled = true,
 })
 

@@ -1,16 +1,11 @@
 local _G = ShaguTweaks.GetGlobalEnv()
-local L = ShaguTweaks.L
-
-ShaguTweaks_locale["ruRU"]["WorldMapClassColors"] = {
-  ["WorldMap Class Colors"] = "Цветные классы на карте мира",
-  ["Show class colored circles on world and battlefield map."] = "Показать цветные круги классов на карте мира и поле боя.",
-}
+local T = ShaguTweaks.T
 
 local module = ShaguTweaks:register({
-  title = L["WorldMapClassColors"]["WorldMap Class Colors"],
-  description = L["WorldMapClassColors"]["Show class colored circles on world and battlefield map."],
+  title = T["WorldMap Class Colors"],
+  description = T["Show class colored circles on world and battlefield map."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
-  category = L["categories"]["World & MiniMap"],
+  category = T["World & MiniMap"],
   enabled = true,
 })
 

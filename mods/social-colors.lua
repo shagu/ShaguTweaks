@@ -1,5 +1,5 @@
 local _G = ShaguTweaks.GetGlobalEnv()
-local L = ShaguTweaks.L
+local T = ShaguTweaks.T
 local gfind = string.gmatch or string.gfind
 local GetUnitData = ShaguTweaks.GetUnitData
 local hooksecurefunc = ShaguTweaks.hooksecurefunc
@@ -9,16 +9,11 @@ local rgbhex = ShaguTweaks.rgbhex
 local strsplit = ShaguTweaks.strsplit
 local friendinfo = gsub(gsub(FRIENDS_LEVEL_TEMPLATE,"%%s","%%s %%s"),"%%d","%%s")
 
-ShaguTweaks_locale["ruRU"]["SocialColors"] = {
-  ["Social Colors"] = "Социальные цвета",
-  ["Show class colors in Who, Guild, Friends and Chat."] = "Показать цвета классов в разделах «Кто», «Гильдия», «Друзья» и «Чат».",
-}
-
 local module = ShaguTweaks:register({
-  title = L["SocialColors"]["Social Colors"],
-  description = L["SocialColors"]["Show class colors in Who, Guild, Friends and Chat."],
+  title = T["Social Colors"],
+  description = T["Show class colors in Who, Guild, Friends and Chat."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
-  category = L["categories"]["Social & Chat"],
+  category = T["Social & Chat"],
   enabled = nil,
 })
 

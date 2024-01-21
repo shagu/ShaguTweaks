@@ -1,17 +1,12 @@
 local _G = ShaguTweaks.GetGlobalEnv()
-local L = ShaguTweaks.L
+local T = ShaguTweaks.T
 local HookAddonOrVariable = ShaguTweaks.HookAddonOrVariable
 local GetExpansion = ShaguTweaks.GetExpansion
 local AddBorder = ShaguTweaks.AddBorder
 
-ShaguTweaks_locale["ruRU"]["DarkenedUI"] = {
-  ["Darkened UI"] = "Затемненный интерфейс",
-  ["Turns the entire interface into darker colors."] = "Меняет весь интерфейс в более темные цвета.",
-}
-
 local module = ShaguTweaks:register({
-  title = L["DarkenedUI"]["Darkened UI"],
-  description = L["DarkenedUI"]["Turns the entire interface into darker colors."],
+  title = T["Darkened UI"],
+  description = T["Turns the entire interface into darker colors."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
   enabled = nil,
   color = { r = .3, g = .3, b = .3, a = .9}

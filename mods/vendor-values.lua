@@ -1,17 +1,12 @@
 local _G = ShaguTweaks.GetGlobalEnv()
-local L = ShaguTweaks.L
+local T = ShaguTweaks.T
 local GetExpansion = ShaguTweaks.GetExpansion
 
-ShaguTweaks_locale["ruRU"]["VendorValues"] = {
-  ["Vendor Values"] = "Стоимость продажи",
-  ["Shows the vendor sell values on all item tooltips."] = "Показывает стоимость продажи продавцу во всплывающих подсказках ко всем предметам.",
-}
-
 local module = ShaguTweaks:register({
-  title = L["VendorValues"]["Vendor Values"],
-  description = L["VendorValues"]["Shows the vendor sell values on all item tooltips."],
+  title = T["Vendor Values"],
+  description = T["Shows the vendor sell values on all item tooltips."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
-  category = L["categories"]["Tooltip & Items"],
+  category = T["Tooltip & Items"],
   enabled = true,
 })
 

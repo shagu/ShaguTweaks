@@ -8,28 +8,20 @@
 -- Skip module initialization on every other client than TurtleWoW.
 if not TargetHPText or not TargetHPPercText then return end
 
-local L = ShaguTweaks.L
+local T = ShaguTweaks.T
 local selldata
 
-ShaguTweaks_locale["ruRU"]["TurtleWoWCompatibility"] = {
-  ["Turtle WoW Compatibility"] = "Совместимость с Turtle WoW",
-  ["Adds compatibility to Turtle WoW's custom changes."] = "Добавляет совместимость с пользовательскими изменениями Turtle WoW.",
-  --["General"] = "Основные", -- USED CORE ["AdvancedOptions"] @config.lua instead direct ["TurtleWoWCompatibility"]
-  --["Real Health Numbers"] = "Реальные цифры здоровья", -- MODULE DEPENDED used ["HealthNumbers"] @health-numbers.lua instead direct ["TurtleWoWCompatibility"]
-  --["WorldMap Window"] = "Окно карты мира", -- MODULE DEPENDED used ["WorldMapWindow"] @worldmap-window.lua instead direct ["TurtleWoWCompatibility"]
-}
-
 local module = ShaguTweaks:register({
-  title = L["TurtleWoWCompatibility"]["Turtle WoW Compatibility"],
-  description = L["TurtleWoWCompatibility"]["Adds compatibility to Turtle WoW's custom changes."],
+  title = T["Turtle WoW Compatibility"],
+  description = T["Adds compatibility to Turtle WoW's custom changes."],
   expansions = { ["vanilla"] = true, ["tbc"] = false },
-  category = L["categories"]["General"],
+  category = T["General"],
   enabled = true,
 })
 
 module.enable = function(self)
   -- hide turtle-wow's target status texts
-  if ShaguTweaks_config(L["HealthNumbers"]["Real Health Numbers"]) == 1 then
+  if ShaguTweaks_config(T["Real Health Numbers"]) == 1 then
     TargetHPText:Hide()
     TargetHPText.Show = function() return end
 
@@ -44,7 +36,7 @@ module.enable = function(self)
     HookWorldMapFrame_Maximize()
 
     -- re-apply worldmap window
-    if ShaguTweaks_config(L["WorldMapWindow"]["WorldMap Window"]) == 1 then
+    if ShaguTweaks_config(T["WorldMap Window"]) == 1 then
       WorldMapFrame:SetMovable(true)
       WorldMapFrame:EnableMouse(true)
 

@@ -1,19 +1,14 @@
 local _G = ShaguTweaks.GetGlobalEnv()
-local L = ShaguTweaks.L
+local T = ShaguTweaks.T
 local Abbreviate = ShaguTweaks.Abbreviate
 local GetColorGradient = ShaguTweaks.GetColorGradient
 local vanilla = ShaguTweaks.GetExpansion() == "vanilla" or nil
 
-ShaguTweaks_locale["ruRU"]["UnitFrameHealthColors"] = {
-  ["Unit Frame Health Colors"] = "Цветное здоровье окон юнитов",
-  ["Change health text color based on its value."] = "Изменить цвет текста о состоянии здоровья в зависимости от его значения.",
-}
-
 local module = ShaguTweaks:register({
-  title = L["UnitFrameHealthColors"]["Unit Frame Health Colors"],
-  description = L["UnitFrameHealthColors"]["Change health text color based on its value."],
+  title = T["Unit Frame Health Colors"],
+  description = T["Change health text color based on its value."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
-  category = L["categories"]["Unit Frames"],
+  category = T["Unit Frames"],
   enabled = nil,
 })
 

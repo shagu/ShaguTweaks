@@ -1,19 +1,14 @@
 local _G = ShaguTweaks.GetGlobalEnv()
-local L = ShaguTweaks.L
+local T = ShaguTweaks.T
 local GetExpansion = ShaguTweaks.GetExpansion
 local UnitCastingInfo = ShaguTweaks.UnitCastingInfo
 local UnitChannelInfo = ShaguTweaks.UnitChannelInfo
 
-ShaguTweaks_locale["ruRU"]["EnemyCastbars"] = {
-  ["Enemy Castbars"] = "Панель применения противника",
-  ["Shows an enemy castbar on target unit frame."] = "Показать панель применения противника в окне юнита цели.",
-}
-
 local module = ShaguTweaks:register({
-  title = L["EnemyCastbars"]["Enemy Castbars"],
-  description = L["EnemyCastbars"]["Shows an enemy castbar on target unit frame."],
+  title = T["Enemy Castbars"],
+  description = T["Shows an enemy castbar on target unit frame."],
   expansions = { ["vanilla"] = true, ["tbc"] = nil },
-  category = L["categories"]["Unit Frames"],
+  category = T["Unit Frames"],
   enabled = true,
 })
 
@@ -52,9 +47,9 @@ castbar.spark:SetHeight(20)
 castbar.spark:SetBlendMode("ADD")
 
 castbar.backdrop = CreateFrame("Frame", nil, castbar)
+castbar.backdrop:SetFrameStrata("BACKGROUND")
 castbar.backdrop:SetPoint("TOPLEFT", castbar, "TOPLEFT", -3, 3)
 castbar.backdrop:SetPoint("BOTTOMRIGHT", castbar, "BOTTOMRIGHT", 3, -3)
-castbar.backdrop:SetFrameStrata("BACKGROUND")
 castbar.backdrop:SetBackdrop({
   edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
   tile = true, tileSize = 8, edgeSize = 12,

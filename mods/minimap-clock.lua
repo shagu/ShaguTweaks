@@ -1,19 +1,11 @@
 local _G = ShaguTweaks.GetGlobalEnv()
-local L = ShaguTweaks.L
-
-ShaguTweaks_locale["ruRU"]["MiniMapClock"] = {
-  ["MiniMap Clock"] = "Часы на мини-карте",
-  ["Adds a small 24h clock to the mini map."] = "Добавляет небольшие 24-часовые часы на мини-карту.",
-  ["Clock"] = "Часы",
-  ["Localtime"] = "Местное время",
-  ["Servertime"] = "Серверное время",
-}
+local T = ShaguTweaks.T
 
 local module = ShaguTweaks:register({
-  title = L["MiniMapClock"]["MiniMap Clock"],
-  description = L["MiniMapClock"]["Adds a small 24h clock to the mini map."],
+  title = T["MiniMap Clock"],
+  description = T["Adds a small 24h clock to the mini map."],
   expansions = { ["vanilla"] = true, ["tbc"] = nil },
-  category = L["categories"]["World & MiniMap"],
+  category = T["World & MiniMap"],
   enabled = nil,
 })
 
@@ -52,9 +44,9 @@ module.enable = function(self)
     GameTooltip:ClearLines()
     GameTooltip:SetOwner(this, ANCHOR_BOTTOMLEFT)
 
-    GameTooltip:AddLine(L["MiniMapClock"]["Clock"])
-    GameTooltip:AddDoubleLine(L["MiniMapClock"]["Localtime"], time, 1,1,1,1,1,1)
-    GameTooltip:AddDoubleLine(L["MiniMapClock"]["Servertime"], servertime, 1,1,1,1,1,1)
+    GameTooltip:AddLine(T["Clock"])
+    GameTooltip:AddDoubleLine(T["Localtime"], time, 1,1,1,1,1,1)
+    GameTooltip:AddDoubleLine(T["Servertime"], servertime, 1,1,1,1,1,1)
     GameTooltip:Show()
   end)
 

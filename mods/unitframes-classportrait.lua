@@ -1,5 +1,5 @@
 local _G = ShaguTweaks.GetGlobalEnv()
-local L = ShaguTweaks.L
+local T = ShaguTweaks.T
 
 local addonpath
 local tocs = { "", "-master", "-tbc", "-wotlk" }
@@ -25,16 +25,11 @@ local CLASS_ICON_TCOORDS = {
   ["DEATHKNIGHT"] = { 0.25, .5, 0.5, .75 },
 }
 
-ShaguTweaks_locale["ruRU"]["UnitFrameClassPortraits"] = {
-  ["Unit Frame Class Portraits"] = "Классовые портреты окон юнитов",
-  ["Replace unitframe portraits with class icons."] = "Заменить портреты окон юнитов значками классов.",
-}
-
 local module = ShaguTweaks:register({
-  title = L["UnitFrameClassPortraits"]["Unit Frame Class Portraits"],
-  description = L["UnitFrameClassPortraits"]["Replace unitframe portraits with class icons."],
+  title = T["Unit Frame Class Portraits"],
+  description = T["Replace unitframe portraits with class icons."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
-  category = L["categories"]["Unit Frames"],
+  category = T["Unit Frames"],
   enabled = nil,
 })
 

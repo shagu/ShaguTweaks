@@ -14,6 +14,8 @@ locales\locales_frFR.lua
 locales\locales_koKR.lua
 locales\locales_ruRU.lua
 locales\locales_zhCN.lua
+locales\translations_enUS.lua
+locales\translations_ruRU.lua
 
 # basic
 main.lua

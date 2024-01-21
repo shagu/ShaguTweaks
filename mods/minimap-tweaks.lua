@@ -1,16 +1,11 @@
 local _G = ShaguTweaks.GetGlobalEnv()
-local L = ShaguTweaks.L
-
-ShaguTweaks_locale["ruRU"]["MiniMapTweaks"] = {
-  ["MiniMap Tweaks"] = "Улучшения мини-карты",
-  ["Hides unnecessary mini map buttons and allows to zoom using the mouse wheel."] = "Скрывает ненужные кнопки мини-карты и позволяет масштабировать ее с помощью колеса мыши.",
-}
+local T = ShaguTweaks.T
 
 local module = ShaguTweaks:register({
-  title = L["MiniMapTweaks"]["MiniMap Tweaks"],
-  description = L["MiniMapTweaks"]["Hides unnecessary mini map buttons and allows to zoom using the mouse wheel."],
+  title = T["MiniMap Tweaks"],
+  description = T["Hides unnecessary mini map buttons and allows to zoom using the mouse wheel."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
-  category = L["categories"]["World & MiniMap"],
+  category = T["World & MiniMap"],
   enabled = nil,
 })
 

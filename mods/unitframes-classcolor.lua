@@ -1,16 +1,11 @@
 local _G = ShaguTweaks.GetGlobalEnv()
-local L = ShaguTweaks.L
-
-ShaguTweaks_locale["ruRU"]["UnitFrameClassColors"] = {
-  ["Unit Frame Class Colors"] = "Цветные классы окон юнитов",
-  ["Adds class colors to the player, target and party unit frames."] = "Добавить цвета классов к окнам игрока, цели и отряда группы.",
-}
+local T = ShaguTweaks.T
 
 local module = ShaguTweaks:register({
-  title = L["UnitFrameClassColors"]["Unit Frame Class Colors"],
-  description = L["UnitFrameClassColors"]["Adds class colors to the player, target and party unit frames."],
+  title = T["Unit Frame Class Colors"],
+  description = T["Adds class colors to the player, target and party unit frames."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
-  category = L["categories"]["Unit Frames"],
+  category = T["Unit Frames"],
   enabled = nil,
 })
 

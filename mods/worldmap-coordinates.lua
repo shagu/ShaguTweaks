@@ -1,20 +1,11 @@
 local _G = ShaguTweaks.GetGlobalEnv()
-local L = ShaguTweaks.L
-
-ShaguTweaks_locale["ruRU"]["WorldMapCoordinates"] = {
-  ["WorldMap Coordinates"] = "Координаты на карте мира",
-  ["Adds coordinates to the bottom of the World Map."] = "Добавляет координаты внизу карты мира.",
-  ['Player:'] = "Игрок:",
-  ['Cursor:'] = "Курсор:",
-  ['N/A'] = "Н/Д",
-}
-
+local T = ShaguTweaks.T
 
 local module = ShaguTweaks:register({
-  title = L["WorldMapCoordinates"]["WorldMap Coordinates"],
-  description = L["WorldMapCoordinates"]["Adds coordinates to the bottom of the World Map."],
+  title = T["WorldMap Coordinates"],
+  description = T["Adds coordinates to the bottom of the World Map."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
-  category = L["categories"]["World & MiniMap"],
+  category = T["World & MiniMap"],
   enabled = nil,
 })
 
@@ -59,15 +50,15 @@ module.enable = function(self)
 
         local px, py = GetPlayerMapPosition("player")
         if px > 0 and py > 0 then
-          WorldMapButton.player.text:SetText(string.format('|cffffcc00' .. L["WorldMapCoordinates"]['Player:'] .. ' |r%.1f / %.1f', px*100, py*100))
+          WorldMapButton.player.text:SetText(string.format('|cffffcc00' .. T['Player:'] .. ' |r%.1f / %.1f', px*100, py*100))
         else
-          WorldMapButton.player.text:SetText(string.format('|cffffcc00' .. L["WorldMapCoordinates"]['Player:'] .. ' |r' .. L["WorldMapCoordinates"]['N/A']))
+          WorldMapButton.player.text:SetText(string.format('|cffffcc00' .. T['Player:'] .. ' |r' .. T['N/A']))
         end
 
         if MouseIsOver(WorldMapButton) then
-          WorldMapButton.coords.text:SetText(string.format('|cffffcc00' .. L["WorldMapCoordinates"]['Cursor:'] .. ' |r%.1f / %.1f', mx, my))
+          WorldMapButton.coords.text:SetText(string.format('|cffffcc00' .. T['Cursor:'] .. ' |r%.1f / %.1f', mx, my))
         else
-          WorldMapButton.coords.text:SetText(string.format('|cffffcc00' .. L["WorldMapCoordinates"]['Cursor:'] .. ' |r' .. L["WorldMapCoordinates"]['N/A']))
+          WorldMapButton.coords.text:SetText(string.format('|cffffcc00' .. T['Cursor:'] .. ' |r' .. T['N/A']))
         end
       end)
     end
