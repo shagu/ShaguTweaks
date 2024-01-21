@@ -24,26 +24,6 @@ end
 
 local _G = ShaguTweaks.GetGlobalEnv()
 
---[[
-    local lang = GetLocale()
-    ShaguTweaks.T = setmetatable(ShaguTweaks_translation[lang] or {}, { __index = function(tab,key)
-      local value = tostring(key)
-      rawset(tab,key,value)
-      return value
-    end})
---]]
-local lang = GetLocale()
-local locale = ShaguTweaks_locale[lang] or {}
-local translation = ShaguTweaks_translation[lang] or {}
-
-ShaguTweaks.L = setmetatable(locale, { __index = function(tab,key)
-  local value = tostring(key)
-  rawset(tab, key, value)
-  return value
-end})
-
-ShaguTweaks.T = setmetatable(translation, { __index = ShaguTweaks.L })
-
 local gradientcolors = {}
 ShaguTweaks.GetColorGradient = function(perc)
   perc = perc > 1 and 1 or perc

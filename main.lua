@@ -16,11 +16,21 @@ seterrorhandler(error)
 ShaguTweaks = CreateFrame("Frame")
 ShaguTweaks.mods = {}
 
--- load translation tables
---ShaguTweaks.L = (ShaguTweaks_locale[GetLocale()] or ShaguTweaks_locale["enUS"])
-ShaguTweaks:RegisterEvent("VARIABLES_LOADED")
-ShaguTweaks:SetScript("OnEvent", function()
-  -- load current expansion
+ -- load translation tables
+ ShaguTweaks.L = (ShaguTweaks_locale[GetLocale()] or ShaguTweaks_locale["enUS"])
+ ShaguTweaks.T = (ShaguTweaks_translation[GetLocale()] or ShaguTweaks_translation["enUS"])
+
+ -- use table index key as translation fallback
+ ShaguTweaks.T = setmetatable(ShaguTweaks.T, { __index = function(tab,key)
+   local value = tostring(key)
+   rawset(tab, key, value)
+   return value
+ end})
+
+ ShaguTweaks:RegisterEvent("VARIABLES_LOADED")
+ ShaguTweaks:SetScript("OnEvent", function()
+
+   -- load current expansion
   local expansion = ShaguTweaks:GetExpansion()
 
   -- initialize empty config
