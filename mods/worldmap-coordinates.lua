@@ -50,15 +50,15 @@ module.enable = function(self)
 
         local px, py = GetPlayerMapPosition("player")
         if px > 0 and py > 0 then
-          WorldMapButton.player.text:SetText(string.format('|cffffcc00' .. T['Player:'] .. ' |r%.1f / %.1f', px*100, py*100))
+          WorldMapButton.player.text:SetText(string.format("|cffffcc00" .. T["Player:"] .. " |r%.1f / %.1f", px*100, py*100))
         else
-          WorldMapButton.player.text:SetText(string.format('|cffffcc00' .. T['Player:'] .. ' |r' .. T['N/A']))
+          WorldMapButton.player.text:SetText(string.format("|cffffcc00" .. T["Player:"] .. " |r" .. T["N/A"]))
         end
 
         if MouseIsOver(WorldMapButton) then
-          WorldMapButton.coords.text:SetText(string.format('|cffffcc00' .. T['Cursor:'] .. ' |r%.1f / %.1f', mx, my))
+          WorldMapButton.coords.text:SetText(string.format("|cffffcc00" .. T["Cursor:"] .. " |r%.1f / %.1f", mx, my))
         else
-          WorldMapButton.coords.text:SetText(string.format('|cffffcc00' .. T['Cursor:'] .. ' |r' .. T['N/A']))
+          WorldMapButton.coords.text:SetText(string.format("|cffffcc00" .. T["Cursor:"] .. " |r" .. T["N/A"]))
         end
       end)
     end
