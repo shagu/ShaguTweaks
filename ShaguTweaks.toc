@@ -16,8 +16,14 @@ locales\locales_ruRU.lua
 locales\locales_zhCN.lua
 
 # translations
+locales\translations_deDE.lua
 locales\translations_enUS.lua
+locales\translations_esES.lua
+locales\translations_frFR.lua
+locales\translations_koKR.lua
 locales\translations_ruRU.lua
+locales\translations_zhCN.lua
+locales\translations_zhTW.lua
 
 # basic
 main.lua
