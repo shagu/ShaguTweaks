@@ -2,13 +2,13 @@ local _G = ShaguTweaks.GetGlobalEnv()
 
 local module = ShaguTweaks:register({
   title = "Movable Unit Frames",
-  description = "Player and Target unit frames can be moved while <Shift> and <Ctrl> are pressed together.",
+  description = "Player, Target and Party unit frames can be moved while <Shift> and <Ctrl> are pressed together.",
   expansions = { ["vanilla"] = true, ["tbc"] = true },
   category = "Unit Frames",
   enabled = nil,
 })
 
-local movables = { "PlayerFrame", "TargetFrame" }
+local movables = { "PlayerFrame", "TargetFrame", "PartyMemberFrame1" }
 
 module.enable = function(self)
   local unlocker = CreateFrame("Frame", nil, UIParent)
