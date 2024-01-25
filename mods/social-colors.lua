@@ -1,5 +1,6 @@
 local _G = ShaguTweaks.GetGlobalEnv()
 local T = ShaguTweaks.T
+local L = ShaguTweaks.L
 local gfind = string.gmatch or string.gfind
 local GetUnitData = ShaguTweaks.GetUnitData
 local hooksecurefunc = ShaguTweaks.hooksecurefunc
