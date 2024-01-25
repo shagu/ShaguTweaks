@@ -1,3 +1,5 @@
+local _G = ShaguTweaks.GetGlobalEnv()
+
 local module = ShaguTweaks:register({
   title = "Reduced Actionbar Size",
   description = "Reduces the actionbar size by removing several items such as the bag panel and microbar",
@@ -5,6 +7,18 @@ local module = ShaguTweaks:register({
   categpry = nil,
   enabled = nil,
 })
+
+local function ReplaceBag()
+  local id = this:GetID()
+  if id ~= 0 then
+    id = ContainerIDToInventoryID(id)
+    if CursorHasItem() then
+      PutItemInBag(id)
+    else
+      PickupBagFromSlot(id)
+    end
+  end
+end
 
 module.enable = function(self)
   -- general function to hide textures and frames
@@ -134,5 +148,10 @@ module.enable = function(self)
     anchor = MultiBarBottomRight:IsVisible() and MultiBarBottomRight or anchor
     local pet_offset = PetActionBarFrame:IsVisible() and 40 or 0
     CastingBarFrame:SetPoint("BOTTOM", anchor, "TOP", 0, 10 + pet_offset)
+  end
+
+  -- enable picking up/replacing bags by clicking on the container frame portrait
+  for i = 1, 5 do
+    _G["ContainerFrame" .. i .. "PortraitButton"]:SetScript("OnClick", ReplaceBag)
   end
 end
