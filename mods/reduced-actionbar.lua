@@ -1,3 +1,5 @@
+local _G = ShaguTweaks.GetGlobalEnv()
+
 local module = ShaguTweaks:register({
   title = "Reduced Actionbar Size",
   description = "Reduces the actionbar size by removing several items such as the bag panel and microbar",
@@ -7,11 +9,14 @@ local module = ShaguTweaks:register({
 })
 
 local function ReplaceBag()
-  local id = 19 + this:GetID()
-  if CursorHasItem() then
-    PutItemInBag(id)
-  else
-    PickupBagFromSlot(id)
+  local id = this:GetID()
+  if id ~= 0 then
+    id = 19 + id
+    if CursorHasItem() then
+      PutItemInBag(id)
+    else
+      PickupBagFromSlot(id)
+    end
   end
 end
 
@@ -146,7 +151,7 @@ module.enable = function(self)
   end
 
   -- enable picking up/replacing bags by clicking on the container frame portrait
-  for i = 2, 5 do
-    getglobal('ContainerFrame' .. i .. 'PortraitButton'):SetScript('OnClick', ReplaceBag)
+  for i = 1, 5 do
+    _G["ContainerFrame" .. i .. "PortraitButton"]:SetScript("OnClick", ReplaceBag)
   end
 end
