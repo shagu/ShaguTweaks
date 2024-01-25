@@ -6,6 +6,15 @@ local module = ShaguTweaks:register({
   enabled = nil,
 })
 
+local function ReplaceBag()
+  local id = 19 + this:GetID()
+  if CursorHasItem() then
+    PutItemInBag(id)
+  else
+    PickupBagFromSlot(id)
+  end
+end
+
 module.enable = function(self)
   -- general function to hide textures and frames
   local function hide(frame, texture)
@@ -134,5 +143,10 @@ module.enable = function(self)
     anchor = MultiBarBottomRight:IsVisible() and MultiBarBottomRight or anchor
     local pet_offset = PetActionBarFrame:IsVisible() and 40 or 0
     CastingBarFrame:SetPoint("BOTTOM", anchor, "TOP", 0, 10 + pet_offset)
+  end
+
+  -- enable picking up/replacing bags by clicking on the container frame portrait
+  for i = 2, 5 do
+    getglobal('ContainerFrame' .. i .. 'PortraitButton'):SetScript('OnClick', ReplaceBag)
   end
 end
