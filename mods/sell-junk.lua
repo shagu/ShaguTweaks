@@ -62,7 +62,7 @@ module.enable = function(self)
 
   autovendor:SetScript("OnHide", function()
     if this.count > 0 then
-      DEFAULT_CHAT_FRAME:AddMessage(T["Your vendor trash has been sold and you earned "] .. CreateGoldString(this.price))
+      DEFAULT_CHAT_FRAME:AddMessage(T["Your vendor trash has been sold and you earned"] .. " " .. CreateGoldString(this.price))
     end
   end)
 
