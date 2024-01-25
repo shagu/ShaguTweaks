@@ -11,7 +11,7 @@ local module = ShaguTweaks:register({
 local function ReplaceBag()
   local id = this:GetID()
   if id ~= 0 then
-    id = 19 + id
+    id = ContainerIDToInventoryID(id)
     if CursorHasItem() then
       PutItemInBag(id)
     else
