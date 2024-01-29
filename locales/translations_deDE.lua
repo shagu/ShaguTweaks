@@ -6,6 +6,7 @@ ShaguTweaks_translation["deDE"] = {
   ["Adds class colors to the player, target and party unit frames."] = nil,
   ["Adds compatibility to Turtle WoW's custom changes."] = nil,
   ["Adds coordinates to the bottom of the World Map."] = nil,
+  ["Advanced Options"] = nil,
   ["Allows to scroll using the mouse wheel, enables sticky chat channels and repeats message on arrow up."] = nil,
   ["Auto Dismount"] = nil,
   ["Automatically dismounts whenever a spell is casted."] = nil,
