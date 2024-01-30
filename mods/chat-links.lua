@@ -1,4 +1,5 @@
 local _G = ShaguTweaks.GetGlobalEnv()
+local T = ShaguTweaks.T
 local gfind = string.gmatch or string.gfind
 local GetUnitData = ShaguTweaks.GetUnitData
 local hooksecurefunc = ShaguTweaks.hooksecurefunc
@@ -8,10 +9,10 @@ local rgbhex = ShaguTweaks.rgbhex
 local strsplit = ShaguTweaks.strsplit
 
 local module = ShaguTweaks:register({
-  title = "Chat Hyperlinks",
-  description = "Copy website URLs from the chat, transforms CLINKs into real items and handles quest and player links.",
+  title = T["Chat Hyperlinks"],
+  description = T["Copy website URLs from the chat, transforms CLINKs into real items and handles quest and player links."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
-  category = "Social & Chat",
+  category = T["Social & Chat"],
   enabled = true,
 })
 

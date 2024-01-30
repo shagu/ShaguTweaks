@@ -1,13 +1,14 @@
 local _G = ShaguTweaks.GetGlobalEnv()
+local T = ShaguTweaks.T
 local GetExpansion = ShaguTweaks.GetExpansion
 local UnitCastingInfo = ShaguTweaks.UnitCastingInfo
 local UnitChannelInfo = ShaguTweaks.UnitChannelInfo
 
 local module = ShaguTweaks:register({
-  title = "Enemy Castbars",
-  description = "Shows an enemy castbar on target unit frame.",
+  title = T["Enemy Castbars"],
+  description = T["Shows an enemy castbar on target unit frame."],
   expansions = { ["vanilla"] = true, ["tbc"] = nil },
-  category = "Unit Frames",
+  category = T["Unit Frames"],
   enabled = true,
 })
 
@@ -46,6 +47,7 @@ castbar.spark:SetHeight(20)
 castbar.spark:SetBlendMode("ADD")
 
 castbar.backdrop = CreateFrame("Frame", nil, castbar)
+castbar.backdrop:SetFrameStrata("BACKGROUND")
 castbar.backdrop:SetPoint("TOPLEFT", castbar, "TOPLEFT", -3, 3)
 castbar.backdrop:SetPoint("BOTTOMRIGHT", castbar, "BOTTOMRIGHT", 3, -3)
 castbar.backdrop:SetBackdrop({

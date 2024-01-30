@@ -1,10 +1,11 @@
 local _G = ShaguTweaks.GetGlobalEnv()
+local T = ShaguTweaks.T
 
 local module = ShaguTweaks:register({
-  title = "Unit Frame Big Health",
-  description = "Increases the healthbar of the player and target unitframe.",
+  title = T["Unit Frame Big Health"],
+  description = T["Increases the healthbar of the player and target unitframe."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
-  category = "Unit Frames",
+  category = T["Unit Frames"],
   enabled = nil,
 })
 

@@ -1,10 +1,11 @@
 local _G = ShaguTweaks.GetGlobalEnv()
+local T = ShaguTweaks.T
 
 local module = ShaguTweaks:register({
-  title = "Debuff Timer",
-  description = "Show debuff durations on the target unit frame.",
+  title = T["Debuff Timer"],
+  description = T["Show debuff durations on the target unit frame."],
   expansions = { ["vanilla"] = true, ["tbc"] = nil },
-  category = "Unit Frames",
+  category = T["Unit Frames"],
   enabled = true,
 })
 
@@ -81,8 +82,8 @@ module.enable = function(self)
 
       if button and effect and duration and timeleft then
         local start = GetTime() + timeleft - duration
-        CooldownFrame_SetTimer(button.cd, start, duration, 1)
         CreateTextCooldown(button.cd)
+        CooldownFrame_SetTimer(button.cd, start, duration, 1)
         button.cd.readable.start = start
         button.cd.readable.duration = duration
         button.cd.readable:Show()

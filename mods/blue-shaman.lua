@@ -1,11 +1,12 @@
 local _G = ShaguTweaks.GetGlobalEnv()
+local T = ShaguTweaks.T
 local GetExpansion = ShaguTweaks.GetExpansion
 
 local module = ShaguTweaks:register({
-  title = "Blue Shaman Class Colors",
-  description = "Changes the class color code of shamans to blue, as known from TBC+.",
+  title = T["Blue Shaman Class Colors"],
+  description = T["Changes the class color code of shamans to blue, as known from TBC+."],
   expansions = { ["vanilla"] = true, ["tbc"] = nil },
-  category = "Social & Chat",
+  category = T["Social & Chat"],
   enabled = true,
 })
 

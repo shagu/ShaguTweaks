@@ -1,13 +1,14 @@
 local _G = ShaguTweaks.GetGlobalEnv()
+local T = ShaguTweaks.T
 local GetExpansion = ShaguTweaks.GetExpansion
 local AddBorder = ShaguTweaks.AddBorder
 local HookAddonOrVariable = ShaguTweaks.HookAddonOrVariable
 
 local module = ShaguTweaks:register({
-  title = "Item Rarity Borders",
-  description = "Show item rarity as the border color on bags, bank, character and inspect frames.",
+  title = T["Item Rarity Borders"],
+  description = T["Show item rarity as the border color on bags, bank, character and inspect frames."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
-  category = "Tooltip & Items",
+  category = T["Tooltip & Items"],
   enabled = true,
 })
 

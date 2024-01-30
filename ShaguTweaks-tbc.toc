@@ -2,6 +2,7 @@
 ## Title: |cffffcc00Shagu|cffffffffTweaks |cffff5555[BETA]
 ## Author: Shagu
 ## Notes: A collection of tweaks and enhancements to the Default UI
+## Notes-ruRU: Коллекция настроек и улучшений для стандартного пользовательского интерфейса.
 ## Version: GIT
 ## SavedVariablesPerCharacter: ShaguTweaks_config, ShaguTweaks_cache
 
@@ -13,6 +14,16 @@ locales\locales_frFR.lua
 locales\locales_koKR.lua
 locales\locales_ruRU.lua
 locales\locales_zhCN.lua
+
+# translations
+locales\translations_deDE.lua
+locales\translations_enUS.lua
+locales\translations_esES.lua
+locales\translations_frFR.lua
+locales\translations_koKR.lua
+locales\translations_ruRU.lua
+locales\translations_zhCN.lua
+locales\translations_zhTW.lua
 
 # basic
 main.lua

@@ -1,10 +1,11 @@
 local _G = ShaguTweaks.GetGlobalEnv()
+local T = ShaguTweaks.T
 local UnitCastingInfo = ShaguTweaks.UnitCastingInfo
 local UnitChannelInfo = ShaguTweaks.UnitChannelInfo
 
 local module = ShaguTweaks:register({
-  title = "Nameplate Castbar",
-  description = "Adds a castbar to the nameplate based on combat log estimations.",
+  title = T["Nameplate Castbar"],
+  description = T["Adds a castbar to the nameplate based on combat log estimations."],
   expansions = { ["vanilla"] = true, ["tbc"] = false },
   enabled = nil,
 })
@@ -54,6 +55,7 @@ module.enable = function(self)
 
     -- castbar border
     plate.castbar.backdrop = CreateFrame("Frame", nil, plate.castbar)
+    plate.castbar.backdrop:SetFrameLevel(plate.castbar:GetFrameLevel())
     plate.castbar.backdrop:SetPoint("TOPLEFT", plate.castbar, "TOPLEFT", -3, 3)
     plate.castbar.backdrop:SetPoint("BOTTOMRIGHT", plate.castbar, "BOTTOMRIGHT", 3, -3)
     plate.castbar.backdrop:SetBackdrop(backdrop)

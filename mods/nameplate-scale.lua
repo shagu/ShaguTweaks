@@ -1,8 +1,9 @@
 local _G = ShaguTweaks.GetGlobalEnv()
+local T = ShaguTweaks.T
 
 local module = ShaguTweaks:register({
-  title = "Nameplate Scale",
-  description = "Makes all nameplates honor the UI-Scale setting.",
+  title = T["Nameplate Scale"],
+  description = T["Makes all nameplates honor the UI-Scale setting."],
   expansions = { ["vanilla"] = true, ["tbc"] = nil },
   enabled = true,
 })
