@@ -140,10 +140,14 @@ module.enable = function(self)
             local link = GetContainerItemLink(id, button:GetID())
             if button and button:IsShown() and link then
               local _, _, istring  = string.find(link, "|H(.+)|h")
-              local _, _, quality = GetItemInfo(istring)
+              local _, _, quality, _, type = GetItemInfo(istring)
               if quality then
-                local r, g, b = GetItemQualityColor(quality)
-                button.ShaguTweaks_border:SetBackdropBorderColor(r,g,b)
+                if type == "Quest" then
+                  button.ShaguTweaks_border:SetBackdropBorderColor(1,0,0)
+                else
+                  local r, g, b = GetItemQualityColor(quality)
+                  button.ShaguTweaks_border:SetBackdropBorderColor(r,g,b)
+                end
               end
             end
           end
