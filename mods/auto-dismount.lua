@@ -10,6 +10,7 @@ local module = ShaguTweaks:register({
 
 module.enable = function(self)
   local dismount = CreateFrame("Frame")
+  ShaguTweaks.dismount = dismount
 
   -- mount tooltip texts
   dismount.strings = {
