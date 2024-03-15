@@ -58,6 +58,11 @@ module.enable = function(self)
 
   -- replace sell values with turtle-wow's item data
   ShaguTweaks.SellValueDB = selldata
+
+  -- add tree of life druid form to autoshift
+  if ShaguTweaks.dismount then
+    table.insert(ShaguTweaks.dismount.shapeshifts, "ability_druid_treeoflife")
+  end
 end
 
 -- Turtle WoW specific libdebuff patches
