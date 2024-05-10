@@ -66,10 +66,20 @@ module.enable = function(self)
   TargetFrame:SetScript("OnUpdate", function(arg)
     if oldUpdate then oldUpdate(arg) end
 
-    local cast, nameSubtext, text, texture, startTime, endTime, isTradeSkill = UnitCastingInfo(this.unit)
+    local query = this.unit
+    local channel = false
+
+    -- try to read cast and guid from SuperWoW (except for self casts)
+    if ShaguTweaks.superwow_active and this.unit and not UnitIsUnit(this.unit, 'player') then
+      local _, guid = UnitExists(this.unit)
+      query = guid or query
+    end
+
+    local cast, nameSubtext, text, texture, startTime, endTime, isTradeSkill = UnitCastingInfo(query)
     if not cast then
       -- scan for channel spells if no cast was found
-      cast, nameSubtext, text, texture, startTime, endTime, isTradeSkill = UnitChannelInfo(this.unit)
+      channel, nameSubtext, text, texture, startTime, endTime, isTradeSkill = UnitChannelInfo(query)
+      cast = channel
     end
 
     if cast then

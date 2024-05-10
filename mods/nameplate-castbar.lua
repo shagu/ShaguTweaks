@@ -79,6 +79,11 @@ module.enable = function(self)
     local name = this.name:GetText()
     local cast, nameSubtext, text, texture, startTime, endTime, isTradeSkill = UnitCastingInfo(name)
 
+    -- read enemy casts from SuperWoW if enabled
+    if ShaguTweaks.superwow_active then
+      cast, nameSubtext, text, texture, startTime, endTime, isTradeSkill = UnitCastingInfo(this:GetName(1))
+    end
+
     if cast then
       local duration = endTime - startTime
       local max = duration / 1000
