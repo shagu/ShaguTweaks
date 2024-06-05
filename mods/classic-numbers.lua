@@ -17,15 +17,20 @@ module.enable = function(self)
   TargetFrame.StatusTexts:SetAllPoints(TargetFrame)
 
   TargetFrameHealthBar.TextStringPercent = TargetFrame.StatusTexts:CreateFontString("TargetFrameHealthBarText", "OVERLAY")
-  TargetFrameHealthBar.TextStringPercent:SetPoint("TOP", TargetFrameHealthBar, "BOTTOM", -20, 23)
+  TargetFrameHealthBar.TextStringPercent:SetPoint("TOP", TargetFrameHealthBar, "BOTTOM", -45, 23)
   TargetFrameHealthBar.TextStringPercent:SetJustifyH("LEFT")
 
   TargetFrameHealthBar.TextStringNumber = TargetFrame.StatusTexts:CreateFontString("TargetFrameHealthBarText", "OVERLAY")
-  TargetFrameHealthBar.TextStringNumber:SetPoint("TOP", TargetFrameHealthBar, "BOTTOM", 20, 23)
+  TargetFrameHealthBar.TextStringNumber:SetPoint("TOP", TargetFrameHealthBar, "BOTTOM", 42, 23)
   TargetFrameHealthBar.TextStringNumber:SetJustifyH("RIGHT")
 
-  --TargetFrameManaBar.TextString = TargetFrame.StatusTexts:CreateFontString("TargetFrameManaBarText", "OVERLAY")
-  --TargetFrameManaBar.TextString:SetPoint("TOP", TargetFrameManaBar, "BOTTOM", -2, 22)
+  TargetFrameManaBar.TextStringPercent = TargetFrame.StatusTexts:CreateFontString("TargetFrameManaBarText", "OVERLAY")
+  TargetFrameManaBar.TextStringPercent:SetPoint("TOP", TargetFrameManaBar, "BOTTOM", -45, 22)
+  TargetFrameManaBar.TextStringPercent:SetJustifyH("LEFT")
+
+  TargetFrameManaBar.TextStringNumber = TargetFrame.StatusTexts:CreateFontString("TargetFrameManaBarText", "OVERLAY")
+  TargetFrameManaBar.TextStringNumber:SetPoint("TOP", TargetFrameManaBar, "BOTTOM", 42, 22)
+  TargetFrameManaBar.TextStringNumber:SetJustifyH("RIGHT")
 
   --PetFrameHealthBar.TextString:SetPoint("CENTER", PetFrameHealthBar, "CENTER", -2, 0)
   --PetFrameManaBar.TextString:SetPoint("CENTER", PetFrameManaBar, "CENTER", -2, -2)
