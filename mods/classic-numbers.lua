@@ -13,32 +13,26 @@ local module = ShaguTweaks:register({
 })
 
 module.enable = function(self)
-  TargetFrame.StatusTexts = CreateFrame("Frame", nil, TargetFrame)
-  TargetFrame.StatusTexts:SetAllPoints(TargetFrame)
 
-  TargetFrameHealthBar.TextStringPercent = TargetFrame.StatusTexts:CreateFontString("TargetFrameHealthBarText", "OVERLAY")
-  TargetFrameHealthBar.TextStringPercent:SetPoint("TOP", TargetFrameHealthBar, "BOTTOM", -45, 23)
+  function TextStatusBar_SetupFrames(parentFrame, childHealthFrame, childManaFrame, unit)
+    parentFrame.StatusTexts = CreateFrame("Frame", nil, parentFrame)
+    parentFrame.StatusTexts:SetAllPoints(parentFrame)
 
-  TargetFrameHealthBar.TextStringNumber = TargetFrame.StatusTexts:CreateFontString("TargetFrameHealthBarText", "OVERLAY")
-  TargetFrameHealthBar.TextStringNumber:SetPoint("TOP", TargetFrameHealthBar, "BOTTOM", 42, 23)
+    childHealthFrame.TextStringPercent = parentFrame.StatusTexts:CreateFontString(unit .. "FrameHealthBarText", "OVERLAY")
+    childHealthFrame.TextStringPercent:SetPoint("TOP", childHealthFrame, "BOTTOM", -45, 23)
 
-  TargetFrameManaBar.TextStringPercent = TargetFrame.StatusTexts:CreateFontString("TargetFrameManaBarText", "OVERLAY")
-  TargetFrameManaBar.TextStringPercent:SetPoint("TOP", TargetFrameManaBar, "BOTTOM", -45, 22)
+    childHealthFrame.TextStringNumber = parentFrame.StatusTexts:CreateFontString(unit .. "FrameHealthBarText", "OVERLAY")
+    childHealthFrame.TextStringNumber:SetPoint("TOP", childHealthFrame, "BOTTOM", 42, 23)
 
-  TargetFrameManaBar.TextStringNumber = TargetFrame.StatusTexts:CreateFontString("TargetFrameManaBarText", "OVERLAY")
-  TargetFrameManaBar.TextStringNumber:SetPoint("TOP", TargetFrameManaBar, "BOTTOM", 42, 22)
+    childManaFrame.TextStringPercent = parentFrame.StatusTexts:CreateFontString(unit .. "FrameManaBarText", "OVERLAY")
+    childManaFrame.TextStringPercent:SetPoint("TOP", childManaFrame, "BOTTOM", -45, 22)
 
-  PlayerFrameHealthBar.TextStringPercent = PlayerFrame.StatusTexts:CreateFontString("PlayerFrameHealthBarText", "OVERLAY")
-  PlayerFrameHealthBar.TextStringPercent:SetPoint("TOP", PlayerFrameHealthBar, "BOTTOM", -45, 23)
+    childManaFrame.TextStringNumber = parentFrame.StatusTexts:CreateFontString(unit .. "FrameManaBarText", "OVERLAY")
+    childManaFrame.TextStringNumber:SetPoint("TOP", childManaFrame, "BOTTOM", 42, 22)
+  end
 
-  PlayerFrameHealthBar.TextStringNumber = PlayerFrame.StatusTexts:CreateFontString("PlayerFrameHealthBarText", "OVERLAY")
-  PlayerFrameHealthBar.TextStringNumber:SetPoint("TOP", PlayerFrameHealthBar, "BOTTOM", 42, 23)
-
-  PlayerFrameManaBar.TextStringPercent = PlayerFrame.StatusTexts:CreateFontString("PlayerFrameManaBarText", "OVERLAY")
-  PlayerFrameManaBar.TextStringPercent:SetPoint("TOP", PlayerFrameManaBar, "BOTTOM", -45, 22)
-
-  PlayerFrameManaBar.TextStringNumber = PlayerFrame.StatusTexts:CreateFontString("PlayerFrameManaBarText", "OVERLAY")
-  PlayerFrameManaBar.TextStringNumber:SetPoint("TOP", PlayerFrameManaBar, "BOTTOM", 42, 22)
+  TextStatusBar_SetupFrames(TargetFrame, TargetFrameHealthBar, TargetFrameManaBar, "Target")
+  TextStatusBar_SetupFrames(PlayerFrame, PlayerFrameHealthBar, PlayerFrameManaBar, "Player")
 
   --PetFrameHealthBar.TextString:SetPoint("CENTER", PetFrameHealthBar, "CENTER", -2, 0)
   --PetFrameManaBar.TextString:SetPoint("CENTER", PetFrameManaBar, "CENTER", -2, -2)
