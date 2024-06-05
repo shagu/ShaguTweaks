@@ -18,31 +18,41 @@ module.enable = function(self)
 
   TargetFrameHealthBar.TextStringPercent = TargetFrame.StatusTexts:CreateFontString("TargetFrameHealthBarText", "OVERLAY")
   TargetFrameHealthBar.TextStringPercent:SetPoint("TOP", TargetFrameHealthBar, "BOTTOM", -45, 23)
-  TargetFrameHealthBar.TextStringPercent:SetJustifyH("LEFT")
 
   TargetFrameHealthBar.TextStringNumber = TargetFrame.StatusTexts:CreateFontString("TargetFrameHealthBarText", "OVERLAY")
   TargetFrameHealthBar.TextStringNumber:SetPoint("TOP", TargetFrameHealthBar, "BOTTOM", 42, 23)
-  TargetFrameHealthBar.TextStringNumber:SetJustifyH("RIGHT")
 
   TargetFrameManaBar.TextStringPercent = TargetFrame.StatusTexts:CreateFontString("TargetFrameManaBarText", "OVERLAY")
   TargetFrameManaBar.TextStringPercent:SetPoint("TOP", TargetFrameManaBar, "BOTTOM", -45, 22)
-  TargetFrameManaBar.TextStringPercent:SetJustifyH("LEFT")
 
   TargetFrameManaBar.TextStringNumber = TargetFrame.StatusTexts:CreateFontString("TargetFrameManaBarText", "OVERLAY")
   TargetFrameManaBar.TextStringNumber:SetPoint("TOP", TargetFrameManaBar, "BOTTOM", 42, 22)
-  TargetFrameManaBar.TextStringNumber:SetJustifyH("RIGHT")
+
+  PlayerFrameHealthBar.TextStringPercent = PlayerFrame.StatusTexts:CreateFontString("PlayerFrameHealthBarText", "OVERLAY")
+  PlayerFrameHealthBar.TextStringPercent:SetPoint("TOP", PlayerFrameHealthBar, "BOTTOM", -45, 23)
+
+  PlayerFrameHealthBar.TextStringNumber = PlayerFrame.StatusTexts:CreateFontString("PlayerFrameHealthBarText", "OVERLAY")
+  PlayerFrameHealthBar.TextStringNumber:SetPoint("TOP", PlayerFrameHealthBar, "BOTTOM", 42, 23)
+
+  PlayerFrameManaBar.TextStringPercent = PlayerFrame.StatusTexts:CreateFontString("PlayerFrameManaBarText", "OVERLAY")
+  PlayerFrameManaBar.TextStringPercent:SetPoint("TOP", PlayerFrameManaBar, "BOTTOM", -45, 22)
+
+  PlayerFrameManaBar.TextStringNumber = PlayerFrame.StatusTexts:CreateFontString("PlayerFrameManaBarText", "OVERLAY")
+  PlayerFrameManaBar.TextStringNumber:SetPoint("TOP", PlayerFrameManaBar, "BOTTOM", 42, 22)
 
   --PetFrameHealthBar.TextString:SetPoint("CENTER", PetFrameHealthBar, "CENTER", -2, 0)
   --PetFrameManaBar.TextString:SetPoint("CENTER", PetFrameManaBar, "CENTER", -2, -2)
 
-  for _, frame in pairs( { TargetFrameHealthBar--[[, TargetFrameManaBar, PlayerFrameHealthBar, PlayerFrameManaBar]] }) do
+  for _, frame in pairs( { TargetFrameHealthBar, TargetFrameManaBar, PlayerFrameHealthBar, PlayerFrameManaBar }) do
     frame.TextStringPercent:SetFontObject("GameFontWhite")
     frame.TextStringPercent:SetFont(STANDARD_TEXT_FONT, 10, "OUTLINE")
     frame.TextStringPercent:SetHeight(32)
+    frame.TextStringPercent:SetJustifyH("RIGHT")
 
     frame.TextStringNumber:SetFontObject("GameFontWhite")
     frame.TextStringNumber:SetFont(STANDARD_TEXT_FONT, 10, "OUTLINE")
     frame.TextStringNumber:SetHeight(32)
+    frame.TextStringNumber:SetJustifyH("RIGHT")
   end
 
   --for _, frame in pairs( { PetFrameHealthBar, PetFrameManaBar }) do
