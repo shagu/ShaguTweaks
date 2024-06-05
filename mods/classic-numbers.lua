@@ -52,10 +52,10 @@ module.enable = function(self)
     if not sb then sb = this end
 
     HookTextStatusBar_UpdateTextString(sb)
-    local percent = sb.TextStringPercent
-    local number = sb.TextStringNumber
+    local stringPercent = sb.TextStringPercent
+    local stringNumber = sb.TextStringNumber
 
-    if percent and number and sb.unit then
+    if stringPercent and stringNumber and sb.unit then
       -- hide tbc text string element
       if not vanilla then
         TargetFrameHealthBarText:Hide()
@@ -72,19 +72,19 @@ module.enable = function(self)
         cur, max = ShaguTweaks.libhealth:GetUnitHealth(sb.unit)
       end
 
-      percent:SetText(percent .. "%")
-      number:SetText(Abbreviate(cur))
+      stringPercent:SetText(percent .. "%")
+      stringNumber:SetText(Abbreviate(cur))
 
       local hide = max == 0 or (sb.unit == "target" and UnitIsDead("target")) or sb.unit == "target" and UnitIsGhost("target")
 
       if hide then
-        percent:Hide()
-        percent:SetText("")
-        number:Hide()
-        number:SetText("")
+        stringPercent:Hide()
+        stringPercent:SetText("")
+        stringNumber:Hide()
+        stringNumber:SetText("")
       else
-        percent:Show()
-        number:Show()
+        stringPercent:Show()
+        stringNumber:Show()
       end
     end
   end
