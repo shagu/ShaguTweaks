@@ -18,17 +18,28 @@ module.enable = function(self)
     parentFrame.StatusTexts = CreateFrame("Frame", nil, parentFrame)
     parentFrame.StatusTexts:SetAllPoints(parentFrame)
 
-    childHealthFrame.TextStringPercent = parentFrame.StatusTexts:CreateFontString(unit .. "FrameHealthBarText", "OVERLAY")
-    childHealthFrame.TextStringPercent:SetPoint("TOP", childHealthFrame, "BOTTOM", -45, 23)
+    local playerOffset = 0
+    local targetOffset = 0
 
+    if unit == "Player" then
+      playerOffset = 4
+    end
+
+    if unit == "Target" then
+      targetOffset = -4
+    end
+
+    childHealthFrame.TextStringPercent = parentFrame.StatusTexts:CreateFontString(unit .. "FrameHealthBarText", "OVERLAY")
+    childHealthFrame.TextStringPercent:SetPoint("TOP", childHealthFrame, "BOTTOM", -40+targetOffset, 23)
     childHealthFrame.TextStringNumber = parentFrame.StatusTexts:CreateFontString(unit .. "FrameHealthBarText", "OVERLAY")
-    childHealthFrame.TextStringNumber:SetPoint("TOP", childHealthFrame, "BOTTOM", 42, 23)
+    childHealthFrame.TextStringNumber:SetPoint("TOP", childHealthFrame, "BOTTOM", 40+playerOffset, 23)
+    childHealthFrame.TextString = nil
 
     childManaFrame.TextStringPercent = parentFrame.StatusTexts:CreateFontString(unit .. "FrameManaBarText", "OVERLAY")
-    childManaFrame.TextStringPercent:SetPoint("TOP", childManaFrame, "BOTTOM", -45, 22)
-
+    childManaFrame.TextStringPercent:SetPoint("TOP", childManaFrame, "BOTTOM", -40+targetOffset, 22)
     childManaFrame.TextStringNumber = parentFrame.StatusTexts:CreateFontString(unit .. "FrameManaBarText", "OVERLAY")
-    childManaFrame.TextStringNumber:SetPoint("TOP", childManaFrame, "BOTTOM", 42, 22)
+    childManaFrame.TextStringNumber:SetPoint("TOP", childManaFrame, "BOTTOM", 40+playerOffset, 22)
+    childManaFrame.TextString = nil
   end
 
   TextStatusBar_SetupFrames(TargetFrame, TargetFrameHealthBar, TargetFrameManaBar, "Target")
@@ -41,11 +52,13 @@ module.enable = function(self)
     frame.TextStringPercent:SetFontObject("GameFontWhite")
     frame.TextStringPercent:SetFont(STANDARD_TEXT_FONT, 10, "OUTLINE")
     frame.TextStringPercent:SetHeight(32)
+    frame.TextStringPercent:SetWidth(30)
     frame.TextStringPercent:SetJustifyH("RIGHT")
 
     frame.TextStringNumber:SetFontObject("GameFontWhite")
     frame.TextStringNumber:SetFont(STANDARD_TEXT_FONT, 10, "OUTLINE")
     frame.TextStringNumber:SetHeight(32)
+    frame.TextStringNumber:SetWidth(30)
     frame.TextStringNumber:SetJustifyH("RIGHT")
   end
 
@@ -87,13 +100,13 @@ module.enable = function(self)
       local hide = max == 0 or (sb.unit == "target" and UnitIsDead("target")) or sb.unit == "target" and UnitIsGhost("target")
 
       if hide then
-        stringPercent:Hide()
-        stringPercent:SetText("")
         stringNumber:Hide()
         stringNumber:SetText("")
+        stringPercent:Hide()
+        stringPercent:SetText("")
       else
-        stringPercent:Show()
         stringNumber:Show()
+        stringPercent:Show()
       end
     end
   end
