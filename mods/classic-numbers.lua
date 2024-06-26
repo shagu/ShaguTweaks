@@ -32,13 +32,13 @@ module.enable = function(self)
     childHealthFrame.TextStringPercent = parentFrame.StatusTexts:CreateFontString(unit .. "FrameHealthBarText", "OVERLAY")
     childHealthFrame.TextStringPercent:SetPoint("TOP", childHealthFrame, "BOTTOM", -40+targetOffset, 23)
     childHealthFrame.TextStringNumber = parentFrame.StatusTexts:CreateFontString(unit .. "FrameHealthBarText", "OVERLAY")
-    childHealthFrame.TextStringNumber:SetPoint("TOP", childHealthFrame, "BOTTOM", 40+playerOffset, 23)
+    childHealthFrame.TextStringNumber:SetPoint("TOP", childHealthFrame, "BOTTOM", 35+playerOffset, 23)
     childHealthFrame.TextString = nil
 
     childManaFrame.TextStringPercent = parentFrame.StatusTexts:CreateFontString(unit .. "FrameManaBarText", "OVERLAY")
     childManaFrame.TextStringPercent:SetPoint("TOP", childManaFrame, "BOTTOM", -40+targetOffset, 22)
     childManaFrame.TextStringNumber = parentFrame.StatusTexts:CreateFontString(unit .. "FrameManaBarText", "OVERLAY")
-    childManaFrame.TextStringNumber:SetPoint("TOP", childManaFrame, "BOTTOM", 40+playerOffset, 22)
+    childManaFrame.TextStringNumber:SetPoint("TOP", childManaFrame, "BOTTOM", 35+playerOffset, 22)
     childManaFrame.TextString = nil
   end
 
@@ -58,7 +58,7 @@ module.enable = function(self)
     frame.TextStringNumber:SetFontObject("GameFontWhite")
     frame.TextStringNumber:SetFont(STANDARD_TEXT_FONT, 10, "OUTLINE")
     frame.TextStringNumber:SetHeight(32)
-    frame.TextStringNumber:SetWidth(30)
+    frame.TextStringNumber:SetWidth(40)
     frame.TextStringNumber:SetJustifyH("RIGHT")
   end
 
