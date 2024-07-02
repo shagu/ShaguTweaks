@@ -4,7 +4,7 @@
 ## Notes: A collection of tweaks and enhancements to the Default UI
 ## Notes-ruRU: Коллекция настроек и улучшений для стандартного пользовательского интерфейса.
 ## Version: GIT
-## SavedVariablesPerCharacter: ShaguTweaks_config, ShaguTweaks_cache
+## SavedVariables: ShaguTweaks_config, ShaguTweaks_cache
 
 # locales
 locales\locales_deDE.lua
