@@ -4,6 +4,7 @@ local GetExpansion = ShaguTweaks.GetExpansion
 local libtipscan = ShaguTweaks.libtipscan
 local libspell = ShaguTweaks.libspell
 local hooksecurefunc = ShaguTweaks.hooksecurefunc
+local strsplit = ShaguTweaks.strsplit
 local cmatch = ShaguTweaks.cmatch
 
 local senttarget
