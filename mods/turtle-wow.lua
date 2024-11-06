@@ -88,6 +88,16 @@ libdebuff_twow:SetScript("OnEvent", function()
       end
     end
   end
+
+  -- refresh Immolate duration after cast Conflagrate
+  if string.find(arg1, "Conflagrate") then
+    local name = UnitName("target")
+    local level = UnitLevel("target")
+    if libdebuff.objects[name] and libdebuff.objects[name][level] and libdebuff.objects[name][level]["Immolate"] then
+      local duration = libdebuff.objects[name][level]["Immolate"].duration
+      libdebuff:UpdateDuration(name, level, "Immolate", duration - 3)
+    end
+  end
 end)
 
 -- Turtle WoW Item Vendor Prices
