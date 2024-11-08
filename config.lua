@@ -20,6 +20,12 @@ settings:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
 settings:SetWidth(max_width)
 settings:SetHeight(max_height)
 
+settings:SetMovable(true)
+settings:EnableMouse(true)
+settings:RegisterForDrag("LeftButton")
+settings:SetScript("OnDragStart", function() this:StartMoving() end)
+settings:SetScript("OnDragStop", function() this:StopMovingOrSizing() end)
+
 settings:SetBackdrop({
   bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
   edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
