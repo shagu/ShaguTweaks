@@ -176,7 +176,7 @@ module.enable = function(self)
             defcolor["bank"] = { button.ShaguTweaks_border:GetBackdropBorderColor() }
           end
 
-          button.ShaguTweaks_border:SetBackdropBorderColor(defcolor["bag"][1], defcolor["bag"][2], defcolor["bag"][3], 1)
+          button.ShaguTweaks_border:SetBackdropBorderColor(defcolor["bank"][1], defcolor["bank"][2], defcolor["bank"][3], 1)
 
           if link then
             local _, _, istring = string.find(link, "|H(.+)|h")
