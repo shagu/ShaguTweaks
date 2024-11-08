@@ -18,8 +18,6 @@ end)
 
 settings:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
 settings:SetWidth(max_width)
-settings:SetHeight(max_height)
-
 settings:SetMovable(true)
 settings:EnableMouse(true)
 settings:RegisterForDrag("LeftButton")
@@ -34,15 +32,11 @@ settings:SetBackdrop({
 })
 
 settings.scrollframe = CreateFrame('ScrollFrame', 'AdvancedSettingsGUIScrollframe', settings, 'UIPanelScrollFrameTemplate')
-settings.scrollframe:SetHeight(max_height - 80)
 settings.scrollframe:SetWidth(max_width - 50)
 settings.scrollframe:SetPoint('CENTER', settings, -16, 15)
 settings.scrollframe:Hide()
 
 settings.container = CreateFrame("Frame", "AdvancedSettingsGUIContainer", settings)
-settings.container:SetPoint("CENTER", settings, 0, 20)
-settings.container:SetHeight(max_height - 30)
-settings.container:SetWidth(max_width - 20)
 
 settings.title = CreateFrame("Frame", "AdvancedSettingsGUITtitle", settings)
 settings.title:SetPoint("TOP", settings, "TOP", 0, 12)
@@ -102,6 +96,14 @@ settings.defaults:SetScript("OnClick", function()
 end)
 
 settings.load = function(self)
+  -- never use more than 3/4 of the screen size
+  max_height = math.min(UIParent:GetHeight()/UIParent:GetScale()*0.75, 680)
+
+  -- update window sizing according to screen
+  settings:SetHeight(max_height)
+  settings.scrollframe:SetHeight(max_height - 80)
+  settings.container:SetHeight(max_height - 30)
+
   settings.entries = settings.entries or {}
   local expansion = ShaguTweaks:GetExpansion()
 
@@ -196,6 +198,12 @@ settings.load = function(self)
   if yoff < max_height then
     -- reduce base frame if possible
     settings:SetHeight(yoff + 60)
+    settings.container:SetParent(settings)
+    settings.container:ClearAllPoints()
+    settings.container:SetPoint("CENTER", settings, 0, 20)
+    settings.container:SetWidth(max_width - 20)
+
+    settings.scrollframe:Hide()
   elseif yoff > max_height then
     -- set up scrollframe when needed
     settings.container:SetParent(settings.scrollframe)
