@@ -151,6 +151,12 @@ module.enable = function(self)
     CastingBarFrame:SetPoint("BOTTOM", anchor, "TOP", 0, 10 + pet_offset)
   end
 
+  -- restore frame positions when UIParent becomes visible
+  local restore = CreateFrame("Frame", nil, UIParent)
+  restore:SetScript("OnShow", function()
+    UIParent_ManageFramePositions()
+  end)
+
   -- enable picking up/replacing bags by clicking on the container frame portrait
   for i = 1, 5 do
     _G["ContainerFrame" .. i .. "PortraitButton"]:SetScript("OnClick", ReplaceBag)
