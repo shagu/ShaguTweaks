@@ -16,7 +16,7 @@ settings:SetScript("OnHide", function()
   UpdateMicroButtons()
 end)
 
-settings:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
+settings:SetPoint("CENTER", UIParent, "CENTER", 0, 32)
 settings:SetWidth(max_width)
 settings:SetMovable(true)
 settings:EnableMouse(true)
