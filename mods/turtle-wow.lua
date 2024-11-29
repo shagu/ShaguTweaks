@@ -79,9 +79,9 @@ libdebuff_twow:SetScript("OnEvent", function()
   -- Break early on invalid data
   if not arg1 or not arg2 then return end
 
-  -- Holy Strike is a spell, but can refresh paladin judgements
+  -- Holy Strike and Crusader Strike is a spell, but can refresh paladin judgements
   -- Credits to @geojak
-  if string.find(arg1, "Holy Strike") then
+  if string.find(arg1, "Holy Strike") or string.find(arg1, "Crusader Strike") then
     for seal in ShaguTweaks.L["judgements"] do
       local name = UnitName("target")
       local level = UnitLevel("target")
