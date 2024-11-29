@@ -22,7 +22,7 @@ local function CreateTextCooldown(cooldown)
   cooldown.readable.text = cooldown.readable:CreateFontString("pfCooldownFrameText", "OVERLAY")
 
   cooldown.readable.text:SetFont(STANDARD_TEXT_FONT, 10, "OUTLINE")
-  cooldown.readable.text:SetPoint("CENTER", cooldown.readable, "CENTER", 0, 0)
+  cooldown.readable.text:SetPoint("CENTER", cooldown.readable, "CENTER", -1.5, 4)
   cooldown.readable:SetScript("OnUpdate", function()
     parent = this:GetParent()
     if not parent then this:Hide() end
