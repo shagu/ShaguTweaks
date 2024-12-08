@@ -45,8 +45,10 @@ module.enable = function(self)
         local scale  = WorldMapButton:GetEffectiveScale()
         local x, y   = GetCursorPosition()
 
-        mx = (( x / scale ) - ( mx - width / 2)) / width * 100
-        my = (( my + height / 2 ) - ( y / scale )) / height * 100
+        if mx and my then
+          mx = (( x / scale ) - ( mx - width / 2)) / width * 100
+          my = (( my + height / 2 ) - ( y / scale )) / height * 100
+        end
 
         local px, py = GetPlayerMapPosition("player")
         if px > 0 and py > 0 then
@@ -55,7 +57,7 @@ module.enable = function(self)
           WorldMapButton.player.text:SetText(string.format("|cffffcc00" .. T["Player"] .. ": |r" .. T["N/A"]))
         end
 
-        if MouseIsOver(WorldMapButton) then
+        if mx and my and MouseIsOver(WorldMapButton) then
           WorldMapButton.coords.text:SetText(string.format("|cffffcc00" .. T["Cursor"] .. ": |r%.1f / %.1f", mx, my))
         else
           WorldMapButton.coords.text:SetText(string.format("|cffffcc00" .. T["Cursor"] .. ": |r" .. T["N/A"]))
