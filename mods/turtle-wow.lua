@@ -30,6 +30,36 @@ module.enable = function(self)
     TargetHPPercText.Show  = function() return end
   end
 
+  if ShaguTweaks_config[T["MiniMap Clock"]] == 1 then
+    MinimapClock:SetScript("OnEnter", function()
+      -- read game time
+      local zh, zm = GetGameTime()
+      local sh, sm = zh, zm
+
+      -- convert custom zonetime to servertime
+      SetMapToCurrentZone()
+      if GetCurrentMapContinent() == 1 then
+        sh = sh + 12
+        sh = sh >= 24 and sh - 24 or sh
+      end
+
+      -- format time to strings
+      local zonetime = string.format("%.2d:%.2d", zh, zm)
+      local servertime = string.format("%.2d:%.2d", sh, sm)
+      local time = date("%H:%M")
+
+      -- create the tooltip
+      GameTooltip:ClearLines()
+      GameTooltip:SetOwner(this, ANCHOR_BOTTOMLEFT)
+
+      GameTooltip:AddLine(T["Clock"])
+      GameTooltip:AddDoubleLine(T["Localtime"], time, 1,1,1,1,1,1)
+      GameTooltip:AddDoubleLine(T["Servertime"], servertime, 1,1,1,1,1,1)
+      GameTooltip:AddDoubleLine(T["Zonetime"], zonetime, 1,1,1,1,1,1)
+      GameTooltip:Show()
+    end)
+  end
+
   -- compatibility for turtle-wow's worldmap window
   local HookWorldMapFrame_Maximize = WorldMapFrame_Maximize
   WorldMapFrame_Maximize = function()
