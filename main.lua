@@ -33,8 +33,11 @@ end})
 ShaguTweaks:RegisterEvent("ADDON_LOADED")
 ShaguTweaks:RegisterEvent("VARIABLES_LOADED")
 ShaguTweaks:SetScript("OnEvent", function()
-  -- flag all other modules as unofficial
-  if event == "ADDON_LOADED" then official = false end
+  -- flag all external modules as unofficial
+  if event == "ADDON_LOADED" then
+    official = false
+    return
+  end
 
   -- load current expansion
   local expansion = ShaguTweaks:GetExpansion()
