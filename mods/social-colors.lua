@@ -63,8 +63,11 @@ module.enable = function(self)
     hooksecurefunc("GuildStatus_Update", function()
       local playerzone = GetRealZoneText()
       local off = FauxScrollFrame_GetOffset(GuildListScrollFrame)
+      local _, _, playerrankindex = GetGuildInfo("player")
+
       for i=1, GUILDMEMBERS_TO_DISPLAY, 1 do
-        local name, _, _, level, class, zone, _, _, online = GetGuildRosterInfo(off + i)
+        local name, _, rankindex, level, class, zone, _, _, online = GetGuildRosterInfo(off + i)
+
         class = L["class"][class]
 
         if name then
@@ -73,9 +76,11 @@ module.enable = function(self)
             if online then
               _G["GuildFrameButton"..i.."Name"]:SetTextColor(color.r,color.g,color.b,1)
               _G["GuildFrameButton"..i.."Class"]:SetTextColor(color.r,color.g,color.b,1)
+              _G["GuildFrameGuildStatusButton"..i.."Name"]:SetTextColor(color.r,color.g,color.b,1)
             else
               _G["GuildFrameButton"..i.."Name"]:SetTextColor(color.r,color.g,color.b,.5)
               _G["GuildFrameButton"..i.."Class"]:SetTextColor(color.r,color.g,color.b,.5)
+              _G["GuildFrameGuildStatusButton"..i.."Name"]:SetTextColor(color.r,color.g,color.b,.5)
             end
           end
 
@@ -93,6 +98,14 @@ module.enable = function(self)
               _G["GuildFrameButton"..i.."Zone"]:SetTextColor(.5, 1, 1, 1)
             else
               _G["GuildFrameButton"..i.."Zone"]:SetTextColor(.5, 1, 1, .5)
+            end
+          end
+
+          if rankindex and rankindex == playerrankindex then
+            if online then
+                _G["GuildFrameGuildStatusButton"..i.."Rank"]:SetTextColor(.5, 1, 1, 1)
+            else
+                _G["GuildFrameGuildStatusButton"..i.."Rank"]:SetTextColor(.5, 1, 1, .5)
             end
           end
         end
