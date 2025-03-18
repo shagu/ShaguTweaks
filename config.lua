@@ -117,16 +117,77 @@ settings.load = function(self)
     end
   end
 
-  local yoff = 25
-  local entrysize = 25
+  local topspace = 10
+  local required_height = topspace
+  local entrysize = 22
+  local previous = nil
+
   for category, entries in ShaguTweaks.spairs(gui) do
-    local entry, spacing = 1, 20
-    yoff = yoff + 12
+    local entry, spacing = 1, 22
+    local height = 0
 
     -- add category background
     settings.category = settings.category or {}
     settings.category[category] = settings.category[category] or CreateFrame("Frame", nil, settings.container)
-    settings.category[category]:SetPoint("TOPLEFT", settings.container, "TOPLEFT", spacing, -yoff)
+
+    if not previous then
+      settings.category[category]:SetPoint("TOPLEFT", settings.container, "TOPLEFT", spacing, -spacing - topspace)
+      settings.category[category]:SetPoint("TOPRIGHT", settings.container, "TOPRIGHT", -spacing, -spacing - topspace)
+    else
+      settings.category[category]:SetPoint("TOPLEFT", previous, "BOTTOMLEFT", 0, -spacing)
+      settings.category[category]:SetPoint("TOPRIGHT", previous, "BOTTOMRIGHT", 0, -spacing)
+    end
+
+    previous = settings.category[category]
+
+    -- create category title collapse button
+    local collapse = function(frame, expand)
+      local parent = frame or this.parent
+
+      if expand then
+        local height = parent.collapse or parent:GetHeight()
+        parent.collapse = height
+      end
+
+      if not parent.collapse then
+        local height = parent:GetHeight()
+        parent.collapse = height
+        parent:SetHeight(1)
+
+        for button in pairs(parent.buttons) do button:Hide() end
+        parent.button:SetNormalTexture("Interface\\Buttons\\UI-SpellbookIcon-NextPage-Up")
+        parent.button:SetPushedTexture("Interface\\Buttons\\UI-SpellbookIcon-NextPage-Down")
+        parent.button:SetDisabledTexture("Interface\\Buttons\\UI-SpellbookIcon-NextPage-Disabled")
+        parent.button:SetHighlightTexture("Interface\\Buttons\\UI-Common-MouseHilight")
+        parent:SetAlpha(0)
+      else
+        local height = parent.collapse
+        parent.collapse = nil
+        parent:SetHeight(height)
+
+        for button in pairs(parent.buttons) do button:Show() end
+        parent.button:SetNormalTexture("Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Up")
+        parent.button:SetPushedTexture("Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Down")
+        parent.button:SetDisabledTexture("Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Disabled")
+        parent.button:SetHighlightTexture("Interface\\Buttons\\UI-Common-MouseHilight")
+        parent:SetAlpha(1)
+      end
+    end
+
+    settings.category[category].button = settings.category[category].button or CreateFrame("Button", nil, settings.container)
+    settings.category[category].button:SetPoint("TOPLEFT", settings.category[category], "TOPLEFT", 0, entrysize-4)
+    settings.category[category].button:SetWidth(22)
+    settings.category[category].button:SetHeight(22)
+    settings.category[category].button.parent = settings.category[category]
+    settings.category[category].button:SetScript("OnClick", collapse)
+
+    settings.category[category].title = settings.category[category].title or CreateFrame("Button", nil, settings.container)
+    settings.category[category].title:SetPoint("TOPLEFT", settings.category[category], "TOPLEFT", 22, entrysize-4)
+    settings.category[category].title:SetWidth(200)
+    settings.category[category].title:SetHeight(entrysize)
+    settings.category[category].title.parent = settings.category[category]
+    settings.category[category].title:SetScript("OnClick", collapse)
+
     settings.category[category]:SetBackdrop({
       bgFile = "Interface\\Tooltips\\UI-Tooltip-Background",
       edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
@@ -143,10 +204,10 @@ settings.load = function(self)
     end
 
     -- add category title
-    settings.category[category].text = settings.category[category].text or settings.category[category]:CreateFontString(nil, "HIGH", "GameFontHighlightSmall")
+    settings.category[category].text = settings.category[category].text or settings.category[category].title:CreateFontString(nil, "HIGH", "GameFontHighlightSmall")
+    settings.category[category].text:SetJustifyH("LEFT")
+    settings.category[category].text:SetAllPoints()
     settings.category[category].text:SetText(category)
-    settings.category[category].text:SetPoint("TOPLEFT", 5, 10)
-    yoff = yoff + spacing/2
 
     for title, module in ShaguTweaks.spairs(entries) do
       if not settings.entries[title] then
@@ -158,18 +219,22 @@ settings.load = function(self)
       local button = _G["AdvancedSettingsGUI" .. title]
       local text = _G["AdvancedSettingsGUI" .. title .. "Text"]
 
+      settings.category[category].buttons = settings.category[category].buttons or {}
+      settings.category[category].buttons[button] = true
+
       button.title = title
       button:SetChecked(current_config[title] == 1 and true or nil)
-
       button:SetPoint("TOPLEFT", settings.category[category], "TOPLEFT", mod(entry, 2) == 1 and 17 or 17+200, math.ceil(entry/2-1)*-entrysize-spacing/2)
 
-      -- add another yoff row
-      if mod(entry, 2) == 1 then yoff = yoff + entrysize end
+      -- add another row to height
+      if mod(entry, 2) == 1 then height = height + entrysize end
 
+      local title = module.title
       local description = module.description
       button:SetScript("OnEnter", function()
         GameTooltip:SetOwner(this, "ANCHOR_TOPLEFT");
-        GameTooltip:SetText(description, nil, nil, nil, nil, 1)
+        GameTooltip:SetText(title, nil, nil, nil, nil, 1)
+        GameTooltip:AddLine(description, 1, 1, 1, 1, 1)
         GameTooltip:Show()
       end)
 
@@ -188,23 +253,27 @@ settings.load = function(self)
       entry = entry + 1
     end
 
-    yoff = yoff + spacing/2
-    settings.category[category]:SetPoint("BOTTOMRIGHT", settings.container, "TOPRIGHT", -spacing, -yoff)
+    collapse(settings.category[category], true)
+
+    height = height + spacing
+    settings.category[category]:SetHeight(height)
+
+    required_height = required_height + height + spacing
   end
 
   -- set container size to required height
-  settings.container:SetHeight(yoff)
+  settings.container:SetHeight(required_height)
 
-  if yoff < max_height then
+  if required_height < max_height then
     -- reduce base frame if possible
-    settings:SetHeight(yoff + 60)
+    settings:SetHeight(required_height + 60)
     settings.container:SetParent(settings)
     settings.container:ClearAllPoints()
     settings.container:SetPoint("CENTER", settings, 0, 20)
     settings.container:SetWidth(max_width - 20)
 
     settings.scrollframe:Hide()
-  elseif yoff > max_height then
+  elseif required_height > max_height then
     -- set up scrollframe when needed
     settings.container:SetParent(settings.scrollframe)
     settings.container:SetHeight(settings.scrollframe:GetHeight())
