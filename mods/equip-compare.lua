@@ -160,14 +160,14 @@ module.enable = function(self)
 
           -- determine screen part
           local x = GetCursorPosition() / UIParent:GetEffectiveScale()
-          local anchor = x < GetScreenWidth() / 2 and "BOTTOMLEFT" or "BOTTOMRIGHT"
-          local relative = x < GetScreenWidth() / 2 and "BOTTOMRIGHT" or "BOTTOMLEFT"
+          local anchor = x < GetScreenWidth() / 2 and "TOPLEFT" or "TOPRIGHT"
+          local relative = x < GetScreenWidth() / 2 and "TOPRIGHT" or "TOPLEFT"
 
           -- overwrite position for tooltips without owner
           local pos, parent = tooltip:GetPoint()
-          if parent and parent == UIParent and pos == "BOTTOMRIGHT" then
-            anchor = "BOTTOMRIGHT"
-            relative = "BOTTOMLEFT"
+          if parent and parent == UIParent and pos == "TOPRIGHT" then
+            anchor = "TOPRIGHT"
+            relative = "TOPLEFT"
           end
 
           -- first tooltip
