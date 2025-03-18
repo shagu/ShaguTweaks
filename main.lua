@@ -16,21 +16,27 @@ seterrorhandler(error)
 ShaguTweaks = CreateFrame("Frame")
 ShaguTweaks.mods = {}
 
- -- load translation tables
- ShaguTweaks.L = (ShaguTweaks_locale[GetLocale()] or ShaguTweaks_locale["enUS"])
- ShaguTweaks.T = (ShaguTweaks_translation[GetLocale()] or ShaguTweaks_translation["enUS"])
+-- flag official modules
+local official = true
 
- -- use table index key as translation fallback
- ShaguTweaks.T = setmetatable(ShaguTweaks.T, { __index = function(tab,key)
-   local value = tostring(key)
-   rawset(tab, key, value)
-   return value
- end})
+-- load translation tables
+ShaguTweaks.L = (ShaguTweaks_locale[GetLocale()] or ShaguTweaks_locale["enUS"])
+ShaguTweaks.T = (ShaguTweaks_translation[GetLocale()] or ShaguTweaks_translation["enUS"])
 
- ShaguTweaks:RegisterEvent("VARIABLES_LOADED")
- ShaguTweaks:SetScript("OnEvent", function()
+-- use table index key as translation fallback
+ShaguTweaks.T = setmetatable(ShaguTweaks.T, { __index = function(tab,key)
+  local value = tostring(key)
+  rawset(tab, key, value)
+  return value
+end})
 
-   -- load current expansion
+ShaguTweaks:RegisterEvent("ADDON_LOADED")
+ShaguTweaks:RegisterEvent("VARIABLES_LOADED")
+ShaguTweaks:SetScript("OnEvent", function()
+  -- flag all other modules as unofficial
+  if event == "ADDON_LOADED" then official = false end
+
+  -- load current expansion
   local expansion = ShaguTweaks:GetExpansion()
 
   -- initialize empty config
@@ -51,6 +57,12 @@ ShaguTweaks.mods = {}
 end)
 
 ShaguTweaks.register = function(self, mod)
+  -- add fallback captions and providers to categories
+  local provider = ShaguTweaks.provider or "|cffFF5555Mods:|r"
+  local category = mod.category or ShaguTweaks.T["General"]
+  mod.category = official and category or provider .. " " .. category
+
+  -- register mod
   ShaguTweaks.mods[mod.title] = mod
   return ShaguTweaks.mods[mod.title]
 end
