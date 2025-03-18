@@ -102,6 +102,14 @@ module.enable = function(self)
     [INVTYPE_THROWN] = "RangedSlot",
   }
 
+  ShoppingTooltip1:SetClampedToScreen(1)
+  ShoppingTooltip1TextLeft1:SetFontObject(GameFontNormal)
+  ShoppingTooltip1TextLeft2:SetFontObject(GameFontHighlightSmall)
+
+  ShoppingTooltip2:SetClampedToScreen(1)
+  ShoppingTooltip2TextLeft1:SetFontObject(GameFontNormal)
+  ShoppingTooltip2TextLeft2:SetFontObject(GameFontHighlightSmall)
+
   local function ShowCompare(tooltip)
     -- abort if shift is not pressed
     if not IsShiftKeyDown() then
@@ -119,14 +127,14 @@ module.enable = function(self)
 
           -- determine screen part
           local x = GetCursorPosition() / UIParent:GetEffectiveScale()
-          local anchor = x < GetScreenWidth() / 2 and "BOTTOMLEFT" or "BOTTOMRIGHT"
-          local relative = x < GetScreenWidth() / 2 and "BOTTOMRIGHT" or "BOTTOMLEFT"
+          local anchor = x < GetScreenWidth() / 2 and "TOPLEFT" or "TOPRIGHT"
+          local relative = x < GetScreenWidth() / 2 and "TOPRIGHT" or "TOPLEFT"
 
           -- overwrite position for tooltips without owner
           local pos, parent = tooltip:GetPoint()
-          if parent and parent == UIParent and pos == "BOTTOMRIGHT" then
-            anchor = "BOTTOMRIGHT"
-            relative = "BOTTOMLEFT"
+          if parent and parent == UIParent and pos == "TOPRIGHT" then
+            anchor = "TOPRIGHT"
+            relative = "TOPLEFT"
           end
 
           -- first tooltip
@@ -141,7 +149,11 @@ module.enable = function(self)
             local slotID_other = GetInventorySlotInfo(slots[slotType .. "_other"])
             ShoppingTooltip2:SetOwner(tooltip, "ANCHOR_NONE");
             ShoppingTooltip2:ClearAllPoints();
-            ShoppingTooltip2:SetPoint(anchor, ShoppingTooltip1, relative, 0, 0);
+            if ShoppingTooltip1:IsShown() then
+                ShoppingTooltip2:SetPoint(anchor, ShoppingTooltip1, relative, 0, 0);
+            else
+                ShoppingTooltip2:SetPoint(anchor, tooltip, relative, 0, 0);
+            end
             ShoppingTooltip2:SetInventoryItem("player", slotID_other)
             ShoppingTooltip2:Show();
           end
