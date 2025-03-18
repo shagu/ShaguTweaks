@@ -143,6 +143,9 @@ module.enable = function(self)
     [INVTYPE_THROWN] = "RangedSlot",
   }
 
+  ShoppingTooltip1:SetClampedToScreen(true)
+  ShoppingTooltip2:SetClampedToScreen(true)
+
   local function ShowCompare(tooltip)
     -- abort if shift is not pressed
     if not IsShiftKeyDown() then
