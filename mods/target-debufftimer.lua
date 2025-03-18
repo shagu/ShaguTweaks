@@ -22,9 +22,9 @@ local function CreateTextCooldown(cooldown)
   cooldown.readable.text = cooldown.readable:CreateFontString("pfCooldownFrameText", "OVERLAY")
 
   cooldown.readable.text:SetFont(STANDARD_TEXT_FONT, 10, "OUTLINE")
-  cooldown.readable.text:SetPoint("CENTER", cooldown.readable, "CENTER", 0, 0)
+  cooldown.readable.text:SetPoint("CENTER", cooldown.readable, "BOTTOM", 0, 1)
   cooldown.readable:SetScript("OnUpdate", function()
-    parent = this:GetParent()
+    local parent = this:GetParent()
     if not parent then this:Hide() end
 
     if not this.next then this.next = GetTime() + .1 end
@@ -64,7 +64,7 @@ module.enable = function(self)
       if button and dCount then
         if not dCount.fixup then
           dCount.fixup = true
-          dCount:SetPoint("BOTTOMRIGHT", "TargetFrameDebuff" .. i, "BOTTOMRIGHT", 6, -3)
+          dCount:SetPoint("BOTTOMRIGHT", "TargetFrameDebuff" .. i .. "Border", "RIGHT", 3, -2)
         end
         if stacks and stacks > 1 then
           dCount:SetText("|c0000ff3b" .. stacks)
