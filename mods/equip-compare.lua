@@ -10,6 +10,47 @@ local module = ShaguTweaks:register({
 })
 
 module.enable = function(self)
+  local function AddHeader(tooltip)
+    local name = tooltip:GetName()
+    local sides = { "Left", "Right" }
+
+    -- shift all entries one line down
+    for i=tooltip:NumLines(), 1, -1 do
+      for _, side in pairs(sides) do
+        local current = _G[name.."Text"..side..i]
+        local below = _G[name.."Text"..side..i+1]
+
+        if current and current:IsShown() then
+          local text = current:GetText()
+          local r, g, b, a = current:GetTextColor()
+
+          if text and text ~= "" then
+            if tooltip:NumLines() < i+1 then
+              -- add new line if required
+              tooltip:AddLine(text, r, g, b, a)
+            else
+              -- update existing lines
+              below:SetText(text)
+              below:SetTextColor(r, g, b, a)
+              below:Show()
+
+              -- hide processed line
+              current:Hide()
+            end
+          end
+        end
+      end
+    end
+
+    -- add label to first line
+    _G[name.."TextLeft1"]:SetTextColor(.5, .5, .5, 1)
+    _G[name.."TextLeft1"]:SetText(CURRENTLY_EQUIPPED)
+    _G[name.."TextLeft1"]:Show()
+
+    -- update tooltip sizes
+    tooltip:Show()
+  end
+
   local itemtypes = {
     ["deDE"] = {
       ["INVTYPE_WAND"] = "Zauberstab",
@@ -135,6 +176,7 @@ module.enable = function(self)
           ShoppingTooltip1:SetPoint(anchor, tooltip, relative, 0, 0)
           ShoppingTooltip1:SetInventoryItem("player", slotID)
           ShoppingTooltip1:Show()
+          AddHeader(ShoppingTooltip1)
 
           -- second tooltip
           if slots[slotType .. "_other"] then
@@ -144,6 +186,7 @@ module.enable = function(self)
             ShoppingTooltip2:SetPoint(anchor, ShoppingTooltip1, relative, 0, 0)
             ShoppingTooltip2:SetInventoryItem("player", slotID_other)
             ShoppingTooltip2:Show()
+            AddHeader(ShoppingTooltip2)
           end
         end
       end
