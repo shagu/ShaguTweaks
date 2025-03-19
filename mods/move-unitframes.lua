@@ -15,6 +15,10 @@ module.enable = function(self)
   local unlocker = CreateFrame("Frame", nil, UIParent)
   unlocker:SetAllPoints(UIParent)
 
+  for _, frame in pairs(movables) do
+    _G[frame]:SetClampedToScreen(true)
+  end
+
   unlocker.movable = nil
   unlocker:SetScript("OnUpdate", function()
     if IsShiftKeyDown() and IsControlKeyDown() then
