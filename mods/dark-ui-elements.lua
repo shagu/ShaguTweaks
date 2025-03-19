@@ -119,6 +119,9 @@ local function AddSpecialBackground(frame, w, h, x, y)
 end
 
 local function DarkenFrame(frame, r, g, b, a)
+  -- dont't do anything if disabled
+  if not ShaguTweaks.DarkMode then return end
+
   -- set defaults
   if not r and not g and not b then
     r, g, b, a = module.color.r, module.color.g, module.color.b, module.color.a
@@ -166,6 +169,9 @@ local function DarkenFrame(frame, r, g, b, a)
     end
   end
 end
+
+-- register darken frame to global
+ShaguTweaks.DarkenFrame = DarkenFrame
 
 module.enable = function(self)
   local name, original, r, g, b
