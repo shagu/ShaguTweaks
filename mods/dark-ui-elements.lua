@@ -174,6 +174,8 @@ end
 ShaguTweaks.DarkenFrame = DarkenFrame
 
 module.enable = function(self)
+  ShaguTweaks.DarkMode = true
+
   local name, original, r, g, b
   local hookBuffButton_Update = BuffButton_Update
   function BuffButton_Update(buttonName, index, filter)
@@ -207,8 +209,6 @@ module.enable = function(self)
   DarkenFrame(DropDownList1)
   DarkenFrame(DropDownList2)
   DarkenFrame(DropDownList3)
-
-  ShaguTweaks.DarkMode = true
 
   for _, button in pairs({ MinimapZoomOut, MinimapZoomIn }) do
     for _, func in pairs({ "GetNormalTexture", "GetDisabledTexture", "GetPushedTexture" }) do
