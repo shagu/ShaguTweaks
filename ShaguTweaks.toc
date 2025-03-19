@@ -38,6 +38,7 @@ libs\libdebuff.lua
 libs\libunitscan.lua
 libs\libhealth.lua
 libs\libnameplate.lua
+libs\libpredict.lua
 
 # custom
 mods\custom.lua
