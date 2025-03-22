@@ -35,6 +35,7 @@ ShaguTweaks:RegisterEvent("VARIABLES_LOADED")
 ShaguTweaks:SetScript("OnEvent", function()
   -- flag all external modules as unofficial
   if event == "ADDON_LOADED" then
+    ShaguTweaks.provider = nil
     official = false
     return
   end
