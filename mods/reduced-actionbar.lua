@@ -148,7 +148,8 @@ module.enable = function(self)
     anchor = MultiBarBottomLeft:IsVisible() and MultiBarBottomLeft or anchor
     anchor = MultiBarBottomRight:IsVisible() and MultiBarBottomRight or anchor
     local pet_offset = PetActionBarFrame:IsVisible() and 40 or 0
-    CastingBarFrame:SetPoint("BOTTOM", anchor, "TOP", 0, 10 + pet_offset)
+    local stance_offset = ShapeshiftBarFrame:IsVisible() and 40 or 0
+    CastingBarFrame:SetPoint("BOTTOM", anchor, "TOP", 0, 10 + pet_offset + stance_offset)
   end
 
   -- restore frame positions when UIParent becomes visible
