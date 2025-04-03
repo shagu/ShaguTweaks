@@ -304,13 +304,8 @@ settings:SetScript("OnShow", function()
 end)
 
 -- Add "Advanced Settings" Button to the Game Menu
-GameMenuFrame:SetWidth(GameMenuFrame:GetWidth() - 30)
-if GetExpansion() == 'tbc' then
-  GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + 10)
-elseif GetExpansion() == 'vanilla' then
-  GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + 6)
-end
-
+GameMenuFrame:SetWidth(GameMenuFrame:GetWidth() - 10)
+GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + 10)
 local advanced = CreateFrame("Button", "GameMenuButtonAdvancedOptions", GameMenuFrame, "GameMenuButtonTemplate")
 advanced:SetPoint("TOP", GameMenuButtonUIOptions, "BOTTOM", 0, -1)
 advanced:SetText(T["Advanced Options"] .. "|cffffff00*")
