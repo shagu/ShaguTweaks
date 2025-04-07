@@ -186,7 +186,11 @@ module.enable = function(self)
             local slotID_other = GetInventorySlotInfo(slots[slotType .. "_other"])
             ShoppingTooltip2:SetOwner(tooltip, "ANCHOR_NONE")
             ShoppingTooltip2:ClearAllPoints()
-            ShoppingTooltip2:SetPoint(anchor, ShoppingTooltip1, relative, 0, 0)
+            if ShoppingTooltip1:IsShown() then
+                ShoppingTooltip2:SetPoint(anchor, ShoppingTooltip1, relative, 0, 0)
+            else
+                ShoppingTooltip2:SetPoint(anchor, tooltip, relative, 0, 0)
+            end
             ShoppingTooltip2:SetInventoryItem("player", slotID_other)
             ShoppingTooltip2:Show()
             AddHeader(ShoppingTooltip2)
