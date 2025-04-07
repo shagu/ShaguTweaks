@@ -9,7 +9,154 @@ local module = ShaguTweaks:register({
   enabled = true,
 })
 
-module.enable = function(self)
+module.enable = function()
+  local lastSearchName
+  local lastSearchID
+
+  local function GetItemIDByName(name)
+    if not name then return nil end
+    if name ~= lastSearchName then
+      for itemID = 1, 99999 do
+        local itemName = GetItemInfo(itemID)
+        if (itemName and itemName == name) then
+          lastSearchID = itemID
+          break
+        end
+      end
+      lastSearchName = name
+    end
+    return lastSearchID
+  end
+
+  local function HookTooltip(tooltip)
+    local original_SetLootRollItem    = tooltip.SetLootRollItem
+    local original_SetLootItem        = tooltip.SetLootItem
+    local original_SetMerchantItem    = tooltip.SetMerchantItem
+    local original_SetQuestLogItem    = tooltip.SetQuestLogItem
+    local original_SetQuestItem       = tooltip.SetQuestItem
+    local original_SetHyperlink       = tooltip.SetHyperlink
+    local original_SetBagItem         = tooltip.SetBagItem
+    local original_SetInboxItem       = tooltip.SetInboxItem
+    local original_SetInventoryItem   = tooltip.SetInventoryItem
+    local original_SetCraftItem       = tooltip.SetCraftItem
+    local original_SetCraftSpell      = tooltip.SetCraftSpell
+    local original_SetTradeSkillItem  = tooltip.SetTradeSkillItem
+    local original_SetAuctionItem     = tooltip.SetAuctionItem
+    local original_SetAuctionSellItem = tooltip.SetAuctionSellItem
+    local original_SetTradePlayerItem = tooltip.SetTradePlayerItem
+    local original_SetTradeTargetItem = tooltip.SetTradeTargetItem
+
+    local original_OnHide = tooltip:GetScript("OnHide")
+
+    tooltip:SetScript("OnHide", function()
+      if original_OnHide then original_OnHide() end
+      this.itemID = nil
+    end)
+
+    function tooltip.SetLootRollItem(self, rollID)
+      original_SetLootRollItem(self, rollID)
+      local _, _, id = strfind(GetLootRollItemLink(rollID) or "", "item:(%d+)")
+      self.itemID = tonumber(id)
+    end
+
+    function tooltip.SetLootItem(self, slot)
+      original_SetLootItem(self, slot)
+      local _, _, id = strfind(GetLootSlotLink(slot) or "", "item:(%d+)")
+      self.itemID = tonumber(id)
+    end
+
+    function tooltip.SetMerchantItem(self, merchantIndex)
+      original_SetMerchantItem(self, merchantIndex)
+      local _, _, id = strfind(GetMerchantItemLink(merchantIndex) or "", "item:(%d+)")
+      self.itemID = tonumber(id)
+    end
+
+    function tooltip.SetQuestLogItem(self, itemType, index)
+      original_SetQuestLogItem(self, itemType, index)
+      local _, _, id = strfind(GetQuestLogItemLink(itemType, index) or "", "item:(%d+)")
+      self.itemID = tonumber(id)
+    end
+
+    function tooltip.SetQuestItem(self, itemType, index)
+      original_SetQuestItem(self, itemType, index)
+      local _, _, id = strfind(GetQuestItemLink(itemType, index) or "", "item:(%d+)")
+      self.itemID = tonumber(id)
+    end
+
+    function tooltip.SetHyperlink(self, arg1)
+      original_SetHyperlink(self, arg1)
+      local _, _, id = strfind(arg1 or "", "item:(%d+)")
+      self.itemID = tonumber(id)
+    end
+
+    function tooltip.SetBagItem(self, container, slot)
+      local hasCooldown, repairCost = original_SetBagItem(self, container, slot)
+      local _, _, id = strfind(GetContainerItemLink(container, slot) or "", "item:(%d+)")
+      self.itemID = tonumber(id)
+      return hasCooldown, repairCost
+    end
+
+    function tooltip.SetInboxItem(self, mailID, attachmentIndex)
+      original_SetInboxItem(self, mailID, attachmentIndex)
+      local itemName = GetInboxItem(mailID)
+      self.itemID = GetItemIDByName(itemName)
+    end
+
+    function tooltip.SetInventoryItem(self, unit, slot)
+      local hasItem, hasCooldown, repairCost = original_SetInventoryItem(self, unit, slot)
+      local _, _, id = strfind(GetInventoryItemLink(unit, slot) or "", "item:(%d+)")
+      self.itemID = tonumber(id)
+      return hasItem, hasCooldown, repairCost
+    end
+
+    function tooltip.SetCraftItem(self, skill, slot)
+      original_SetCraftItem(self, skill, slot)
+      local _, _, id = strfind(GetCraftReagentItemLink(skill, slot) or "", "item:(%d+)")
+      self.itemID = tonumber(id)
+    end
+
+    function tooltip.SetCraftSpell(self, slot)
+      original_SetCraftSpell(self, slot)
+      local _, _, id = strfind(GetCraftItemLink(slot) or "", "item:(%d+)")
+      self.itemID = tonumber(id)
+    end
+
+    function tooltip.SetTradeSkillItem(self, skillIndex, reagentIndex)
+      original_SetTradeSkillItem(self, skillIndex, reagentIndex)
+      if reagentIndex then
+        local _, _, id = strfind(GetTradeSkillReagentItemLink(skillIndex, reagentIndex) or "", "item:(%d+)")
+        self.itemID = tonumber(id)
+      else
+        local _, _, id = strfind(GetTradeSkillItemLink(skillIndex) or "", "item:(%d+)")
+        self.itemID = tonumber(id)
+      end
+    end
+
+    function tooltip.SetAuctionItem(self, atype, index)
+      original_SetAuctionItem(self, atype, index)
+      local itemName = GetAuctionItemInfo(atype, index)
+      self.itemID = GetItemIDByName(itemName)
+    end
+
+    function tooltip.SetAuctionSellItem(self)
+      original_SetAuctionSellItem(self)
+      local itemName = GetAuctionSellItemInfo()
+      self.itemID = GetItemIDByName(itemName)
+    end
+
+    function tooltip.SetTradePlayerItem(self, index)
+      original_SetTradePlayerItem(self, index)
+      local _, _, id = strfind(GetTradePlayerItemLink(index) or "", "item:(%d+)")
+      self.itemID = tonumber(id)
+    end
+
+    function tooltip.SetTradeTargetItem(self, index)
+      original_SetTradeTargetItem(self, index)
+      local _, _, id = strfind(GetTradeTargetItemLink(index) or "", "item:(%d+)")
+      self.itemID = tonumber(id)
+    end
+  end
+
   local sides = { "Left", "Right" }
 
   local function AddHeader(tooltip)
@@ -52,97 +199,39 @@ module.enable = function(self)
     tooltip:Show()
   end
 
-  local itemtypes = {
-    ["deDE"] = {
-      ["INVTYPE_WAND"] = "Zauberstab",
-      ["INVTYPE_THROWN"] = "Wurfwaffe",
-      ["INVTYPE_GUN"] = "Schusswaffe",
-      ["INVTYPE_CROSSBOW"] = "Armbrust",
-      ["INVTYPE_PROJECTILE"] = "Projektil",
-    },
-    ["enUS"] = {
-      ["INVTYPE_WAND"] = "Wand",
-      ["INVTYPE_THROWN"] = "Thrown",
-      ["INVTYPE_GUN"] = "Gun",
-      ["INVTYPE_CROSSBOW"] = "Crossbow",
-      ["INVTYPE_PROJECTILE"] = "Projectile",
-    },
-    ["esES"] = {
-      ["INVTYPE_WAND"] = "Varita",
-      ["INVTYPE_THROWN"] = "Arma arrojadiza",
-      ["INVTYPE_GUN"] = "Arma de fuego",
-      ["INVTYPE_CROSSBOW"] = "Ballesta",
-      ["INVTYPE_PROJECTILE"] = "Proyectil",
-    },
-    ["frFR"] = {
-      ["INVTYPE_WAND"] = "Baguette",
-      ["INVTYPE_THROWN"] = "Armes de jet",
-      ["INVTYPE_GUN"] = "Arme à feu",
-      ["INVTYPE_CROSSBOW"] = "Arbalète",
-      ["INVTYPE_PROJECTILE"] = "Projectile",
-    },
-    ["koKR"] = {
-      ["INVTYPE_WAND"] = "마법봉",
-      ["INVTYPE_THROWN"] = "투척 무기",
-      ["INVTYPE_GUN"] = "총",
-      ["INVTYPE_CROSSBOW"] = "석궁",
-      ["INVTYPE_PROJECTILE"] = "투사체",
-    },
-    ["ruRU"] = {
-      ["INVTYPE_WAND"] = "Жезл",
-      ["INVTYPE_THROWN"] = "Метательное",
-      ["INVTYPE_GUN"] = "Огнестрельное",
-      ["INVTYPE_CROSSBOW"] = "Арбалет",
-      ["INVTYPE_PROJECTILE"] = "Боеприпасы",
-    },
-    ["zhCN"] = {
-      ["INVTYPE_WAND"] = "魔杖",
-      ["INVTYPE_THROWN"] = "投掷武器",
-      ["INVTYPE_GUN"] = "枪械",
-      ["INVTYPE_CROSSBOW"] = "弩",
-      ["INVTYPE_PROJECTILE"] = "弹药",
-    }
-   }
-
-  -- set globals for all inventory types
-  for key, value in pairs(itemtypes[GetLocale()]) do setglobal(key, value) end
-  INVTYPE_WEAPON_OTHER = INVTYPE_WEAPON.."_other"
-  INVTYPE_FINGER_OTHER = INVTYPE_FINGER.."_other"
-  INVTYPE_TRINKET_OTHER = INVTYPE_TRINKET.."_other"
-
-  local slots = {
-    [INVTYPE_2HWEAPON] = "MainHandSlot",
-    [INVTYPE_BODY] = "ShirtSlot",
-    [INVTYPE_CHEST] = "ChestSlot",
-    [INVTYPE_CLOAK] = "BackSlot",
-    [INVTYPE_FEET] = "FeetSlot",
-    [INVTYPE_FINGER] = "Finger0Slot",
-    [INVTYPE_FINGER_OTHER] = "Finger1Slot",
-    [INVTYPE_HAND] = "HandsSlot",
-    [INVTYPE_HEAD] = "HeadSlot",
-    [INVTYPE_HOLDABLE] = "SecondaryHandSlot",
-    [INVTYPE_LEGS] = "LegsSlot",
-    [INVTYPE_NECK] = "NeckSlot",
-    [INVTYPE_RANGED] = "RangedSlot",
-    [INVTYPE_RELIC] = "RangedSlot",
-    [INVTYPE_ROBE] = "ChestSlot",
-    [INVTYPE_SHIELD] = "SecondaryHandSlot",
-    [INVTYPE_SHOULDER] = "ShoulderSlot",
-    [INVTYPE_TABARD] = "TabardSlot",
-    [INVTYPE_TRINKET] = "Trinket0Slot",
-    [INVTYPE_TRINKET_OTHER] = "Trinket1Slot",
-    [INVTYPE_WAIST] = "WaistSlot",
-    [INVTYPE_WEAPON] = "MainHandSlot",
-    [INVTYPE_WEAPON_OTHER] = "SecondaryHandSlot",
-    [INVTYPE_WEAPONMAINHAND] = "MainHandSlot",
-    [INVTYPE_WEAPONOFFHAND] = "SecondaryHandSlot",
-    [INVTYPE_WRIST] = "WristSlot",
-    [INVTYPE_WAND] = "RangedSlot",
-    [INVTYPE_GUN] = "RangedSlot",
-    [INVTYPE_PROJECTILE] = "AmmoSlot",
-    [INVTYPE_CROSSBOW] = "RangedSlot",
-    [INVTYPE_THROWN] = "RangedSlot",
+  local invtype_to_index = {
+    INVTYPE_AMMO = {0},
+    INVTYPE_HEAD = {1},
+    INVTYPE_NECK = {2},
+    INVTYPE_SHOULDER = {3},
+    INVTYPE_BODY = {4},
+    INVTYPE_CHEST = {5},
+    INVTYPE_ROBE = {5},
+    INVTYPE_WAIST = {6},
+    INVTYPE_LEGS = {7},
+    INVTYPE_FEET = {8},
+    INVTYPE_WRIST = {9},
+    INVTYPE_HAND = {10},
+    INVTYPE_FINGER = {11, 12},
+    INVTYPE_TRINKET = {13, 14},
+    INVTYPE_CLOAK = {15},
+    INVTYPE_2HWEAPON = {16, 17},
+    INVTYPE_WEAPONMAINHAND = {16, 17},
+    INVTYPE_WEAPON = {16, 17},
+    INVTYPE_WEAPONOFFHAND = {16, 17},
+    INVTYPE_HOLDABLE = {16, 17},
+    INVTYPE_SHIELD = {16, 17},
+    INVTYPE_RANGED = {18},
+    INVTYPE_RANGEDRIGHT = {18},
+    INVTYPE_TABARD = {19},
   }
+
+  local function SlotIndex(invtype)
+    if not invtype_to_index[invtype] then
+      return
+    end
+    return unpack(invtype_to_index[invtype])
+  end
 
   ShoppingTooltip1:SetClampedToScreen(true)
   ShoppingTooltip2:SetClampedToScreen(true)
@@ -155,53 +244,50 @@ module.enable = function(self)
       return
     end
 
-    for i=1,tooltip:NumLines() do
-      local tmpText = _G[tooltip:GetName() .. "TextLeft"..i]
+    if not tooltip.itemID then return end
 
-      for slotType, slotName in pairs(slots) do
-        if tmpText:GetText() == slotType then
-          local slotID = GetInventorySlotInfo(slotName)
+    local itemName, itemLink, itemQuality, itemLevel, itemType, itemSubType, itemCount, itemEquipLoc, itemTexture = GetItemInfo(tooltip.itemID)
+    local index1, index2 = SlotIndex(itemEquipLoc)
 
-          -- determine screen part
-          local x = GetCursorPosition() / UIParent:GetEffectiveScale()
-          local anchor = x < GetScreenWidth() / 2 and "TOPLEFT" or "TOPRIGHT"
-          local relative = x < GetScreenWidth() / 2 and "TOPRIGHT" or "TOPLEFT"
+    if not index1 then return end
 
-          -- overwrite position for tooltips without owner
-          local pos, parent = tooltip:GetPoint()
-          if parent and parent == UIParent and pos == "TOPRIGHT" then
-            anchor = "TOPRIGHT"
-            relative = "TOPLEFT"
-          end
+    -- determine screen part
+    local x = GetCursorPosition() / UIParent:GetEffectiveScale()
+    local anchor = x < GetScreenWidth() / 2 and "TOPLEFT" or "TOPRIGHT"
+    local relative = x < GetScreenWidth() / 2 and "TOPRIGHT" or "TOPLEFT"
 
-          -- first tooltip
-          ShoppingTooltip1:SetOwner(tooltip, "ANCHOR_NONE")
-          ShoppingTooltip1:ClearAllPoints()
-          ShoppingTooltip1:SetPoint(anchor, tooltip, relative, 0, 0)
-          ShoppingTooltip1:SetInventoryItem("player", slotID)
-          ShoppingTooltip1:Show()
-          AddHeader(ShoppingTooltip1)
+    -- overwrite position for tooltips without owner
+    local pos, parent = tooltip:GetPoint()
+    if parent and parent == UIParent and pos == "TOPRIGHT" then
+      anchor = "TOPRIGHT"
+      relative = "TOPLEFT"
+    end
 
-          -- second tooltip
-          if slots[slotType .. "_other"] then
-            local slotID_other = GetInventorySlotInfo(slots[slotType .. "_other"])
-            ShoppingTooltip2:SetOwner(tooltip, "ANCHOR_NONE")
-            ShoppingTooltip2:ClearAllPoints()
-            if ShoppingTooltip1:IsShown() then
-                ShoppingTooltip2:SetPoint(anchor, ShoppingTooltip1, relative, 0, 0)
-            else
-                ShoppingTooltip2:SetPoint(anchor, tooltip, relative, 0, 0)
-            end
-            ShoppingTooltip2:SetInventoryItem("player", slotID_other)
-            ShoppingTooltip2:Show()
-            AddHeader(ShoppingTooltip2)
-          end
-        end
+    -- first tooltip
+    ShoppingTooltip1:SetOwner(tooltip, "ANCHOR_NONE")
+    ShoppingTooltip1:ClearAllPoints()
+    ShoppingTooltip1:SetPoint(anchor, tooltip, relative, 0, 0)
+    ShoppingTooltip1:SetInventoryItem("player", index1)
+    ShoppingTooltip1:Show()
+    AddHeader(ShoppingTooltip1)
+
+    -- second tooltip
+    if index2 and GetInventoryItemLink("player", index2) then
+      ShoppingTooltip2:SetOwner(tooltip, "ANCHOR_NONE")
+      ShoppingTooltip2:ClearAllPoints()
+      if ShoppingTooltip1:IsShown() then
+        ShoppingTooltip2:SetPoint(anchor, ShoppingTooltip1, relative, 0, 0)
+      else
+        ShoppingTooltip2:SetPoint(anchor, tooltip, relative, 0, 0)
       end
+      ShoppingTooltip2:SetInventoryItem("player", index2)
+      ShoppingTooltip2:Show()
+      AddHeader(ShoppingTooltip2)
     end
   end
 
   -- show item compare on default tooltips
+  HookTooltip(GameTooltip)
   local default = CreateFrame("Frame", nil, GameTooltip)
   default:SetScript("OnUpdate", function()
     ShowCompare(GameTooltip)
@@ -209,6 +295,8 @@ module.enable = function(self)
 
   -- show compare on atlas tooltips
   ShaguTweaks.HookAddonOrVariable("AtlasLoot", function()
+    HookTooltip(AtlasLootTooltip)
+    HookTooltip(AtlasLootTooltip2)
     local atlas = CreateFrame("Frame", nil, AtlasLootTooltip)
     atlas:SetScript("OnUpdate", function()
       ShowCompare(AtlasLootTooltip)
