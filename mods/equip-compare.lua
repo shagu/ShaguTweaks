@@ -207,6 +207,7 @@ module.enable = function(self)
     local atlas = CreateFrame("Frame", nil, AtlasLootTooltip)
     atlas:SetScript("OnUpdate", function()
       ShowCompare(AtlasLootTooltip)
+      ShowCompare(AtlasLootTooltip2)
     end)
   end)
 end
