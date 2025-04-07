@@ -10,9 +10,10 @@ local module = ShaguTweaks:register({
 })
 
 module.enable = function(self)
+  local sides = { "Left", "Right" }
+
   local function AddHeader(tooltip)
     local name = tooltip:GetName()
-    local sides = { "Left", "Right" }
 
     -- shift all entries one line down
     for i=tooltip:NumLines(), 1, -1 do
