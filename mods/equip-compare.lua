@@ -157,43 +157,41 @@ module.enable = function()
     end
   end
 
-  local sides = { "Left", "Right" }
-
+  local lines = {}
+  for i = 1, 30 do
+    lines[i] = {}
+  end
   local function AddHeader(tooltip)
     local name = tooltip:GetName()
-
-    -- shift all entries one line down
-    for i=tooltip:NumLines(), 1, -1 do
-      for _, side in pairs(sides) do
-        local current = _G[name.."Text"..side..i]
-        local below = _G[name.."Text"..side..i+1]
-
-        if current and current:IsShown() then
-          local text = current:GetText()
-          local r, g, b = current:GetTextColor()
-
-          if text and text ~= "" then
-            if tooltip:NumLines() < i+1 then
-              -- add new line if required
-              tooltip:AddLine(text, r, g, b, true)
-            else
-              -- update existing lines
-              below:SetText(text)
-              below:SetTextColor(r, g, b)
-              below:Show()
-
-              -- hide processed line
-              current:Hide()
-            end
-          end
-        end
+    for i in pairs(lines) do
+      for j in pairs(lines[i]) do
+        lines[i][j] = nil
       end
     end
+    for i = 1, tooltip:NumLines() do
+      local leftText = _G[name.."TextLeft"..i]:GetText()
+      local rightText = _G[name.."TextRight"..i]:IsShown() and _G[name.."TextRight"..i]:GetText()
+      local rL, gL, bL = _G[name.."TextLeft"..i]:GetTextColor()
+      local rR, gR, bR = _G[name.."TextRight"..i]:GetTextColor()
+      lines[i][1], lines[i][2], lines[i][3], lines[i][4], lines[i][5], lines[i][6], lines[i][7], lines[i][8] = leftText, rightText, rL, gL, bL, rR, gR, bR
+    end
 
-    -- add label to first line
-    _G[name.."TextLeft1"]:SetTextColor(.5, .5, .5, 1)
-    _G[name.."TextLeft1"]:SetText(CURRENTLY_EQUIPPED)
-    _G[name.."TextLeft1"]:Show()
+    tooltip:SetText(CURRENTLY_EQUIPPED, .5, .5, .5, 1, true)
+    for _, line in ipairs(lines) do
+      if line[2] then
+        tooltip:AddDoubleLine(line[1], line[2], line[3], line[4], line[5], line[6], line[7], line[8])
+      else
+        tooltip:AddLine(line[1], line[3], line[4], line[5], true)
+      end
+    end
+    for i = 1, getn(lines) do
+      if _G[name.."TextLeft"..i] then
+        _G[name.."TextLeft"..i]:SetJustifyH("LEFT")
+      end
+      if _G[name.."TextRight"..i] then
+        _G[name.."TextRight"..i]:SetJustifyH("LEFT")
+      end
+    end
 
     -- update tooltip sizes
     tooltip:Show()
