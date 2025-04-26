@@ -12,7 +12,8 @@ local module = ShaguTweaks:register({
 module.enable = function()
   local lastSearchName
   local lastSearchID
-
+  -- cache previous result to avoid potentially
+  -- doing massive for loop on each frame
   local function GetItemIDByName(name)
     if not name then return nil end
     if name ~= lastSearchName then
@@ -28,6 +29,7 @@ module.enable = function()
     return lastSearchID
   end
 
+  -- hook tooltip methods to extract item ID
   local function HookTooltip(tooltip)
     local original_SetLootRollItem    = tooltip.SetLootRollItem
     local original_SetLootItem        = tooltip.SetLootItem
@@ -157,39 +159,48 @@ module.enable = function()
     end
   end
 
+  -- tooltip data cache
   local lines = {}
-  for i = 1, 30 do
-    lines[i] = {}
-  end
+  for i = 1, 30 do lines[i] = {} end
+
   local function AddHeader(tooltip)
     local name = tooltip:GetName()
+
+    -- remove previous tooltip data
     for i in pairs(lines) do
-      for j in pairs(lines[i]) do
-        lines[i][j] = nil
-      end
-    end
-    for i = 1, tooltip:NumLines() do
-      local leftText = _G[name.."TextLeft"..i]:GetText()
-      local rightText = _G[name.."TextRight"..i]:IsShown() and _G[name.."TextRight"..i]:GetText()
-      local rL, gL, bL = _G[name.."TextLeft"..i]:GetTextColor()
-      local rR, gR, bR = _G[name.."TextRight"..i]:GetTextColor()
-      lines[i][1], lines[i][2], lines[i][3], lines[i][4], lines[i][5], lines[i][6], lines[i][7], lines[i][8] = leftText, rightText, rL, gL, bL, rR, gR, bR
+      for j in pairs(lines[i]) do lines[i][j] = nil end
     end
 
-    tooltip:SetText(CURRENTLY_EQUIPPED, .5, .5, .5, 1, true)
-    for _, line in ipairs(lines) do
-      if line[2] then
-        tooltip:AddDoubleLine(line[1], line[2], line[3], line[4], line[5], line[6], line[7], line[8])
-      else
-        tooltip:AddLine(line[1], line[3], line[4], line[5], true)
-      end
+    -- stored current tooltip data
+    for i = 1, tooltip:NumLines() do
+      local left = _G[name.."TextLeft"..i]
+      local right =  _G[name.."TextRight"..i]
+      local leftText = left:GetText()
+      local rightText = right:IsShown() and right:GetText()
+      local rL, gL, bL = left:GetTextColor()
+      local rR, gR, bR = right:GetTextColor()
+      lines[i][1] = leftText
+      lines[i][2] = rightText
+      lines[i][3] = rL
+      lines[i][4] = gL
+      lines[i][5] = bL
+      lines[i][6] = rR
+      lines[i][7] = gR
+      lines[i][8] = bR
     end
-    for i = 1, getn(lines) do
-      if _G[name.."TextLeft"..i] then
-        _G[name.."TextLeft"..i]:SetJustifyH("LEFT")
-      end
-      if _G[name.."TextRight"..i] then
-        _G[name.."TextRight"..i]:SetJustifyH("LEFT")
+
+    -- reconstruct tooltip from the top
+    -- add "Currently Equipped" header
+    tooltip:SetText(CURRENTLY_EQUIPPED, .5, .5, .5, 1, false)
+    for _, data in ipairs(lines) do
+      -- add the rest 
+      if data[2] then
+        tooltip:AddDoubleLine(data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8])
+      else
+        -- set pieces do not wrap apparently
+        local wrap = true
+        if string.sub(data[1] or "", 1, 1) == " " then wrap = false end
+        tooltip:AddLine(data[1], data[3], data[4], data[5], wrap)
       end
     end
 
@@ -225,14 +236,22 @@ module.enable = function()
   }
 
   local function SlotIndex(invtype)
-    if not invtype_to_index[invtype] then
-      return
-    end
+    if not invtype_to_index[invtype] then return end
     return unpack(invtype_to_index[invtype])
   end
 
+  -- prevent tooltips from going off screen
   ShoppingTooltip1:SetClampedToScreen(true)
   ShoppingTooltip2:SetClampedToScreen(true)
+
+  -- restore horizontal alignment caused by AddHeader function
+  for t = 1, 2 do
+    local tooltip = "ShoppingTooltip"..t
+    for i = 1, 30 do
+      _G[tooltip.."TextLeft"..i]:SetJustifyH("LEFT")
+      _G[tooltip.."TextRight"..i]:SetJustifyH("LEFT")
+    end
+  end
 
   local function ShowCompare(tooltip)
     -- abort if shift is not pressed
@@ -247,6 +266,7 @@ module.enable = function()
     local itemName, itemLink, itemQuality, itemLevel, itemType, itemSubType, itemCount, itemEquipLoc, itemTexture = GetItemInfo(tooltip.itemID)
     local index1, index2 = SlotIndex(itemEquipLoc)
 
+    -- abort if not a piece of gear
     if not index1 then return end
 
     -- determine screen part
