@@ -15,6 +15,7 @@ seterrorhandler(error)
 
 ShaguTweaks = CreateFrame("Frame")
 ShaguTweaks.mods = {}
+ShaguTweaks.overwrites = {}
 
 -- flag official modules
 local official = true
@@ -53,10 +54,18 @@ ShaguTweaks:SetScript("OnEvent", function()
       ShaguTweaks_config[title] = mod.enabled and 1 or 0
     end
 
+    -- load possible overwrites
+    if mod.config then
+      for name, value in pairs(mod.config) do
+        ShaguTweaks.overwrites[name] = value
+      end
+    end
+
     -- apply custom overwrites
     if mod.config and ShaguTweaks_config.overwrites then
-      for name, entries in pairs(ShaguTweaks_config.overwrites) do
-        mod.config[name] = entries
+      for name, value in pairs(ShaguTweaks_config.overwrites) do
+        ShaguTweaks.overwrites[name] = value
+        mod.config[name] = value
       end
     end
 
