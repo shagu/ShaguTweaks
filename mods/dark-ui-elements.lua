@@ -155,7 +155,7 @@ local function DarkenFrame(frame, r, g, b, a)
 
     -- add black borders around specified buttons
     for pattern, inset in pairs(borders) do
-      if name and string.find(name, pattern) then AddBorder(frame, inset, module.config.darkmode) end
+      if name and string.find(name, pattern) then AddBorder(frame, inset, module.config.darkmode.color) end
     end
 
     -- scan through all regions (textures)
@@ -198,7 +198,7 @@ module.enable = function(self)
     elseif not original and _G[name] then
       -- tbc buff buttons don't have borders, so we
       -- need to manually add a dark one.
-      AddBorder(_G[name], 2, module.config.darkmode)
+      AddBorder(_G[name], 2, module.config.darkmode.color)
     end
   end
 
