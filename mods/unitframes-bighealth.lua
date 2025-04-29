@@ -53,10 +53,9 @@ module.enable = function(self)
   local wait = CreateFrame("Frame")
   wait:RegisterEvent("PLAYER_ENTERING_WORLD")
   wait:SetScript("OnEvent", function()
-    if ShaguTweaks.DarkMode then
-      PlayerFrameTexture:SetVertexColor(.3,.3,.3,.9)
-      TargetFrameTexture:SetVertexColor(.3,.3,.3,.9)
-    end
+    -- apply darkmode if required
+    ShaguTweaks.DarkenFrame(PlayerFrameTexture)
+    ShaguTweaks.DarkenFrame(TargetFrameTexture)
 
     -- adjust healthbar colors to frame colors
     local original = TargetFrame_CheckFaction
