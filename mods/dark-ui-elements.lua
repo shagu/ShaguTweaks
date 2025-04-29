@@ -9,7 +9,13 @@ local module = ShaguTweaks:register({
   description = T["Turns the entire interface into darker colors."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
   enabled = nil,
-  color = { r = .3, g = .3, b = .3, a = .9}
+  config = {
+    darkmode = {
+      color = {
+        r = .3, g = .3, b = .3, a = .9,
+      }
+    }
+  }
 })
 
 local blacklist = {
@@ -124,7 +130,7 @@ local function DarkenFrame(frame, r, g, b, a)
 
   -- set defaults
   if not r and not g and not b then
-    r, g, b, a = module.color.r, module.color.g, module.color.b, module.color.a
+    r, g, b, a = module.config.darkmode.color.r, module.config.darkmode.color.g, module.config.darkmode.color.b, module.config.darkmode.color.a
   end
 
   -- iterate through all subframes
@@ -140,7 +146,7 @@ local function DarkenFrame(frame, r, g, b, a)
     local name = frame.GetName and frame:GetName()
 
     -- set a dark backdrop border color everywhere
-    frame:SetBackdropBorderColor(module.color.r, module.color.g, module.color.b, module.color.a)
+    frame:SetBackdropBorderColor(module.config.darkmode.color.r, module.config.darkmode.color.g, module.config.darkmode.color.b, module.config.darkmode.color.a)
 
     -- add special backgrounds to quests and such
     for pattern, inset in pairs(backgrounds) do
@@ -149,7 +155,7 @@ local function DarkenFrame(frame, r, g, b, a)
 
     -- add black borders around specified buttons
     for pattern, inset in pairs(borders) do
-      if name and string.find(name, pattern) then AddBorder(frame, inset, module.color) end
+      if name and string.find(name, pattern) then AddBorder(frame, inset, module.config.darkmode) end
     end
 
     -- scan through all regions (textures)
@@ -192,17 +198,17 @@ module.enable = function(self)
     elseif not original and _G[name] then
       -- tbc buff buttons don't have borders, so we
       -- need to manually add a dark one.
-      AddBorder(_G[name], 2, self.color)
+      AddBorder(_G[name], 2, module.config.darkmode)
     end
   end
 
-  TOOLTIP_DEFAULT_COLOR.r = self.color.r
-  TOOLTIP_DEFAULT_COLOR.g = self.color.g
-  TOOLTIP_DEFAULT_COLOR.b = self.color.b
+  TOOLTIP_DEFAULT_COLOR.r = module.config.darkmode.color.r
+  TOOLTIP_DEFAULT_COLOR.g = module.config.darkmode.color.g
+  TOOLTIP_DEFAULT_COLOR.b = module.config.darkmode.color.b
 
-  TOOLTIP_DEFAULT_BACKGROUND_COLOR.r = self.color.r
-  TOOLTIP_DEFAULT_BACKGROUND_COLOR.g = self.color.g
-  TOOLTIP_DEFAULT_BACKGROUND_COLOR.b = self.color.b
+  TOOLTIP_DEFAULT_BACKGROUND_COLOR.r = module.config.darkmode.color.r
+  TOOLTIP_DEFAULT_BACKGROUND_COLOR.g = module.config.darkmode.color.g
+  TOOLTIP_DEFAULT_BACKGROUND_COLOR.b = module.config.darkmode.color.b
 
   DarkenFrame(UIParent)
   DarkenFrame(WorldMapFrame)
@@ -215,7 +221,7 @@ module.enable = function(self)
       if button[func] then
         local tex = button[func](button)
         if tex then
-          tex:SetVertexColor(self.color.r+.2, self.color.g+.2, self.color.b+.2, 1)
+          tex:SetVertexColor(module.config.darkmode.color.r+.2, module.config.darkmode.color.g+.2, module.config.darkmode.color.b+.2, 1)
         end
       end
     end
@@ -224,12 +230,12 @@ module.enable = function(self)
   HookAddonOrVariable("Blizzard_AuctionUI", function()
     for i = 1, 15 do
       local tex = _G["AuctionFilterButton"..i]:GetNormalTexture()
-      tex:SetVertexColor(self.color.r, self.color.g, self.color.b, 1)
+      tex:SetVertexColor(module.config.darkmode.color.r, module.config.darkmode.color.g, module.config.darkmode.color.b, 1)
     end
 
     for i = 1, 8 do
-      _G["BrowseButton"..i.."Left"]:SetVertexColor(self.color.r, self.color.g, self.color.b, 1)
-      _G["BrowseButton"..i.."Right"]:SetVertexColor(self.color.r, self.color.g, self.color.b, 1)
+      _G["BrowseButton"..i.."Left"]:SetVertexColor(module.config.darkmode.color.r, module.config.darkmode.color.g, module.config.darkmode.color.b, 1)
+      _G["BrowseButton"..i.."Right"]:SetVertexColor(module.config.darkmode.color.r, module.config.darkmode.color.g, module.config.darkmode.color.b, 1)
     end
   end)
 

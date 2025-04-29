@@ -53,6 +53,13 @@ ShaguTweaks:SetScript("OnEvent", function()
       ShaguTweaks_config[title] = mod.enabled and 1 or 0
     end
 
+    -- apply custom overwrites
+    if mod.config and ShaguTweaks_config.overwrites then
+      for name, entries in pairs(ShaguTweaks_config.overwrites) do
+        mod.config[name] = entries
+      end
+    end
+
     -- load enabled mods
     if mod.expansions[expansion] and ShaguTweaks_config[title] == 1 then
       mod:enable()
