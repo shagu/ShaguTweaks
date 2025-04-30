@@ -47,6 +47,9 @@ ShaguTweaks:SetScript("OnEvent", function()
   -- initialize empty config
   if not ShaguTweaks_config then ShaguTweaks_config = {} end
 
+  -- initialize overwrites
+  ShaguTweaks_config.overwrites = ShaguTweaks_config.overwrites or {}
+
   -- read all registered mods
   for title, mod in pairs(ShaguTweaks.mods) do
     -- write initial default config
