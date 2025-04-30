@@ -86,3 +86,50 @@ ShaguTweaks.register = function(self, mod)
   ShaguTweaks.mods[mod.title] = mod
   return ShaguTweaks.mods[mod.title]
 end
+
+local GetConfigValue = function(conf)
+  if type(conf) == "table" and conf.r and conf.g and conf.b then
+    return string.format("%s,%s,%s,%s", conf.r, conf.g, conf.b, (conf.a or 1))
+  elseif type(conf) == "number" or type(conf) == "string" then
+    return conf
+  end
+
+  return ""
+end
+
+SLASH_STWEAKS1, SLASH_STWEAKS2, SLASH_STWEAKS3 = "/st", "/stweaks", "/shagutweaks"
+SlashCmdList["STWEAKS"] = function(msg)
+  local cmd = { ShaguTweaks.strsplit(" ", msg) }
+  if cmd[1] == "reset" then
+    ShaguTweaks_config.overwrites = {}
+    ReloadUI()
+  elseif cmd[1] and cmd[2] then
+    local value
+    local rgba, _, r, g, b, a = string.find(cmd[2], "(.+),(.+),(.+),(.+)")
+    local index = cmd[1]
+
+    -- detect best value format
+    value = rgba and { r = r, g = g, b = b, a = a }
+    value = value or tonumber(cmd[2]) and tonumber(cmd[2])
+    value = value or cmd[2]
+
+    -- validate input and set config
+    if not ShaguTweaks.overwrites[index] then
+      local text = "|cffff5555Error:|r Overwrite |cffffcc00%s|r does not exists.|r"
+      DEFAULT_CHAT_FRAME:AddMessage(string.format(text, index), 1, 1, 1, 1)
+    elseif type(ShaguTweaks.overwrites[index]) ~= type(value) then
+      local text = "|cffff5555Error:|r Overwrite |cffffcc00%s|r requires to be type: |cffffcc00%s|r"
+      DEFAULT_CHAT_FRAME:AddMessage(string.format(text, index, type(ShaguTweaks.overwrites[index])), 1, 1, 1, 1)
+    else
+      ShaguTweaks_config.overwrites[index] = value
+      local text = "Overwrite |cffffcc00%s|r is now set to: |cffffcc00%s|r"
+      DEFAULT_CHAT_FRAME:AddMessage(string.format(text, index, cmd[2]), 1, 1, 1, 1)
+    end
+  else
+    DEFAULT_CHAT_FRAME:AddMessage("|cffffcc00Shagu|rTweaks overwrites:", 1, 1, 1, 1)
+    for name, value in ShaguTweaks.spairs(ShaguTweaks.overwrites) do
+      DEFAULT_CHAT_FRAME:AddMessage("  |cffaaaaaa/st|r " .. name .. " |cffffcc00" .. GetConfigValue(value), 1, 1, 1, 1)
+    end
+    DEFAULT_CHAT_FRAME:AddMessage("  |cffaaaaaa/st|r reset", 1, 1, 1, 1)
+  end
+end
