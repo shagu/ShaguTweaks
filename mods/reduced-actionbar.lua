@@ -120,9 +120,9 @@ module.enable = function(self)
     MultiBarBottomLeft:ClearAllPoints()
     if MainMenuExpBar:IsVisible() or ReputationWatchBar:IsVisible() then
       local anchor = GetWatchedFactionInfo() and ReputationWatchBar or MainMenuExpBar
-      MultiBarBottomLeft:SetPoint("BOTTOM", anchor, "TOP", 0, 3)
+      MultiBarBottomLeft:SetPoint("BOTTOM", anchor, "TOP", 2, 3)
     else
-      MultiBarBottomLeft:SetPoint("BOTTOM", MainMenuBar, "TOP", 0, -3)
+      MultiBarBottomLeft:SetPoint("BOTTOM", MainMenuBar, "TOP", 2, -3)
     end
 
     -- move pet actionbar above other actionbars
