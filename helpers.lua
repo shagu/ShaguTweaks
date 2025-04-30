@@ -231,7 +231,7 @@ end
 
 local border = {
   edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
-  tile = true, tileSize = 8, edgeSize = 12,
+  tile = true, tileSize = 8, edgeSize = 16,
   insets = { left = 0, right = 0, top = 0, bottom = 0 }
 }
 ShaguTweaks.AddBorder = function(frame, inset, color)

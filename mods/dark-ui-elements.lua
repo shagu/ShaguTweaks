@@ -56,21 +56,25 @@ local backgrounds = {
 }
 
 local borders = {
-  ["ShapeshiftButton"] = 2,
-  ["BuffButton"] = 2,
-  ["TargetFrameBuff"] = 2,
-  ["TempEnchant"] = 2,
-  ["SpellButton"] = 2,
-  ["SpellBookSkillLineTab"] = 2,
-  ["ActionButton%d+$"] = 2,
-  ["MultiBar(.+)Button%d+$"] = 2,
-  ["Character(.+)Slot$"] = 2,
-  ["Inspect(.+)Slot$"] = 2,
-  ["ContainerFrame(.+)Item"] = 2,
-  ["MainMenuBarBackpackButton$"] = 2,
-  ["CharacterBag(.+)Slot$"] = 2,
-  ["ChatFrame(.+)Button"] = -3,
-  ["PetFrameHappiness"] = 1,
+  ["ShapeshiftButton"] = 3,
+  ["BuffButton"] = 3,
+  ["TargetFrameBuff"] = 3,
+  ["TempEnchant"] = 3,
+  ["SpellButton"] = 3,
+  ["SpellBookSkillLineTab"] = 3,
+  ["ActionButton%d+$"] = 3,
+  ["MultiBar(.+)Button%d+$"] = 3,
+  ["KeyRingButton"] = 2,
+  ["ActionBarUpButton"] = -3,
+  ["ActionBarDownButton"] = -3,
+  ["MainMenuBarPerformanceBarFrameButton"] = { -12, -1, -8, 4 },
+  ["Character(.+)Slot$"] = 3,
+  ["Inspect(.+)Slot$"] = 3,
+  ["ContainerFrame(.+)Item"] = 3,
+  ["MainMenuBarBackpackButton$"] = 3,
+  ["CharacterBag(.+)Slot$"] = 3,
+  ["ChatFrame(.+)Button"] = -2,
+  ["PetFrameHappiness"] = 2,
   ["MicroButton"] = { -21, 0, 0, 0 },
 }
 
@@ -90,7 +94,7 @@ local addonframes = {
 if GetExpansion() == "tbc" then
   borders["BuffButton"] = 2
   borders["TempEnchant"] = 2
-  borders["MicroButton"] = { -22, -1, -1, -1 }
+  borders["MicroButton"] = { -21, 0, 0, 0 }
 end
 
 local function IsBlacklisted(texture)
@@ -211,6 +215,22 @@ module.enable = function(self)
   DarkenFrame(DropDownList1)
   DarkenFrame(DropDownList2)
   DarkenFrame(DropDownList3)
+
+  -- align all actionbutton textures
+  local bars = { "Action", "BonusAction", "MultiBarBottomLeft", "MultiBarBottomRight", "MultiBarLeft", "MultiBarRight", "Shapeshift" }
+  for _, prefix in pairs(bars) do
+    for i = 1, NUM_ACTIONBAR_BUTTONS do
+      local button = _G[prefix .. "Button" .. i]
+      local texture = _G[prefix.."Button"..i.."NormalTexture"]
+
+      if button and texture then
+        texture:SetWidth(60)
+        texture:SetHeight(60)
+        texture:SetPoint("CENTER", 0, 0)
+        ShaguTweaks.AddBorder(button, 3)
+      end
+    end
+  end
 
   for _, button in pairs({ MinimapZoomOut, MinimapZoomIn }) do
     for _, func in pairs({ "GetNormalTexture", "GetDisabledTexture", "GetPushedTexture" }) do
