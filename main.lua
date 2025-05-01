@@ -130,6 +130,9 @@ SlashCmdList["STWEAKS"] = function(msg)
     end
   else
     DEFAULT_CHAT_FRAME:AddMessage("|cffffcc00Shagu|rTweaks overwrites:", 1, 1, 1, 1)
+    DEFAULT_CHAT_FRAME:AddMessage("|cffffcc00|r", 1, 1, 1, 1)
+    DEFAULT_CHAT_FRAME:AddMessage("|cffff5555Warning:|r This is for experienced users only. Do not change values unless you know what you're doing. Use '/st reset' before submitting any bug.", 1, .8, .8, 1)
+    DEFAULT_CHAT_FRAME:AddMessage("|cffffcc00|r", 1, 1, 1, 1)
     for name, value in ShaguTweaks.spairs(ShaguTweaks.overwrites) do
       DEFAULT_CHAT_FRAME:AddMessage("  |cffaaaaaa/st|r " .. name .. " |cffffcc00" .. GetConfigValue(value), 1, 1, 1, 1)
     end
