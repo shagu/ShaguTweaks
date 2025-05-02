@@ -166,6 +166,8 @@ local function DarkenFrame(frame, r, g, b, a)
           -- region:SetDesaturated(true)
         elseif name and id and regionskips[name] and regionskips[name][id] then
           -- skip special regions
+        elseif region.GetBlendMode and region:GetBlendMode() == "ADD" then
+          -- skip blend over textures
         elseif IsBlacklisted(region) then
           -- skip blacklisted texture names
         else
