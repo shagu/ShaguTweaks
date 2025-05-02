@@ -35,6 +35,9 @@ module.enable = function(self)
     "Riding",
     "根据骑术技能提高速度。",
     "又慢又稳......",
+	"velocidad según tu",
+	"Lento y constante...",
+	"Montar",
   }
 
   -- shapeshift buff icons
