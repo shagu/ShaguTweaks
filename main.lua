@@ -100,42 +100,51 @@ local GetConfigValue = function(conf)
   return ""
 end
 
+-- print message without applied hooks
+local originalAddMessage = DEFAULT_CHAT_FRAME.AddMessage
+local stdout = function(msg)
+  originalAddMessage(DEFAULT_CHAT_FRAME, msg)
+end
+
+-- add /st slash command for custom config overwrites
 SLASH_STWEAKS1, SLASH_STWEAKS2, SLASH_STWEAKS3 = "/st", "/stweaks", "/shagutweaks"
 SlashCmdList["STWEAKS"] = function(msg)
   local cmd = { ShaguTweaks.strsplit(" ", msg) }
   if cmd[1] == "reset" then
     ShaguTweaks_config.overwrites = {}
     ReloadUI()
-  elseif cmd[1] and cmd[2] then
-    local value
-    local rgba, _, r, g, b, a = string.find(cmd[2], "(.+),(.+),(.+),(.+)")
+  elseif cmd[1] then
     local index = cmd[1]
+    local input = cmd[2] or ""
 
     -- detect best value format
+    local value
+    local rgba, _, r, g, b, a = string.find(input, "(.+),(.+),(.+),(.+)")
+
     value = rgba and { r = r, g = g, b = b, a = a }
-    value = value or tonumber(cmd[2]) and tonumber(cmd[2])
-    value = value or cmd[2]
+    value = value or tonumber(input) and tonumber(input)
+    value = value or input
 
     -- validate input and set config
     if not ShaguTweaks.overwrites[index] then
       local text = "|cffff5555Error:|r Overwrite |cffffcc00%s|r does not exists.|r"
-      DEFAULT_CHAT_FRAME:AddMessage(string.format(text, index), 1, 1, 1, 1)
+      stdout(string.format(text, index), 1, 1, 1, 1)
     elseif type(ShaguTweaks.overwrites[index]) ~= type(value) then
       local text = "|cffff5555Error:|r Overwrite |cffffcc00%s|r requires to be type: |cffffcc00%s|r"
-      DEFAULT_CHAT_FRAME:AddMessage(string.format(text, index, type(ShaguTweaks.overwrites[index])), 1, 1, 1, 1)
+      stdout(string.format(text, index, type(ShaguTweaks.overwrites[index])), 1, 1, 1, 1)
     else
       ShaguTweaks_config.overwrites[index] = value
       local text = "Overwrite |cffffcc00%s|r is now set to: |cffffcc00%s|r"
-      DEFAULT_CHAT_FRAME:AddMessage(string.format(text, index, cmd[2]), 1, 1, 1, 1)
+      stdout(string.format(text, index, input), 1, 1, 1, 1)
     end
   else
-    DEFAULT_CHAT_FRAME:AddMessage("|cffffcc00Shagu|rTweaks overwrites:", 1, 1, 1, 1)
-    DEFAULT_CHAT_FRAME:AddMessage("|cffffcc00|r", 1, 1, 1, 1)
-    DEFAULT_CHAT_FRAME:AddMessage("|cffff5555Warning:|r This is for experienced users only. Do not change values unless you know what you're doing. Use '/st reset' before submitting any bug.", 1, .8, .8, 1)
-    DEFAULT_CHAT_FRAME:AddMessage("|cffffcc00|r", 1, 1, 1, 1)
+    stdout("|cffffcc00Shagu|rTweaks overwrites:", 1, 1, 1, 1)
+    stdout("|cffffcc00|r", 1, 1, 1, 1)
+    stdout("|cffff5555Warning:|r This is for experienced users only. Do not change values unless you know what you're doing. Use '/st reset' before submitting any bug.", 1, .8, .8, 1)
+    stdout("|cffffcc00|r", 1, 1, 1, 1)
     for name, value in ShaguTweaks.spairs(ShaguTweaks.overwrites) do
-      DEFAULT_CHAT_FRAME:AddMessage("  |cffaaaaaa/st|r " .. name .. " |cffffcc00" .. GetConfigValue(value), 1, 1, 1, 1)
+      stdout("  |cffaaaaaa/st|r " .. name .. " |cffffcc00" .. GetConfigValue(value), 1, 1, 1, 1)
     end
-    DEFAULT_CHAT_FRAME:AddMessage("  |cffaaaaaa/st|r reset", 1, 1, 1, 1)
+    stdout("  |cffaaaaaa/st|r reset", 1, 1, 1, 1)
   end
 end
