@@ -9,7 +9,7 @@ local module = ShaguTweaks:register({
   description = T["Display health, class color, guild name, guild rank and current target on unit tooltips."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
   category = T["Tooltip & Items"],
-  enabled = nil,
+  enabled = true,
 })
 
 local backdrop = {

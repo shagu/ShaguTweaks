@@ -6,7 +6,7 @@ local module = ShaguTweaks:register({
   description = T["Adds coordinates to the bottom of the World Map."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
   category = T["World & MiniMap"],
-  enabled = nil,
+  enabled = true,
 })
 
 module.enable = function(self)

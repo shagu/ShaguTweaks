@@ -6,7 +6,7 @@ local module = ShaguTweaks:register({
   description = T["Hides unnecessary mini map buttons and allows to zoom using the mouse wheel."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
   category = T["World & MiniMap"],
-  enabled = nil,
+  enabled = true,
 })
 
 module.enable = function(self)

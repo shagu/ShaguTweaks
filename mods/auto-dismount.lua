@@ -5,7 +5,7 @@ local module = ShaguTweaks:register({
   title = T["Auto Dismount"],
   description = T["Automatically dismounts whenever a spell is casted."],
   expansions = { ["vanilla"] = true, ["tbc"] = nil },
-  enabled = nil,
+  enabled = true,
 })
 
 module.enable = function(self)

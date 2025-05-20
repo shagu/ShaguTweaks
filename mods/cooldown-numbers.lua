@@ -9,7 +9,7 @@ local module = ShaguTweaks:register({
   title = T["Cooldown Numbers"],
   description = T["Display  the remaining duration as text on every cooldown."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
-  enabled = nil,
+  enabled = true,
   color = { r = .3, g = .3, b = .3, a = .9}
 })
 

@@ -15,7 +15,7 @@ local module = ShaguTweaks:register({
   description = T["Show class colors in Who, Guild, Friends and Chat."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
   category = T["Social & Chat"],
-  enabled = nil,
+  enabled = true,
 })
 
 module.enable = function(self)
