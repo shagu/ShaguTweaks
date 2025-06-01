@@ -44,6 +44,7 @@ end
 -- return:      [number],[string]   spell index and spellbook id
 local spellindex = {}
 function libspell.GetSpellIndex(name, rank)
+  if not name then return end
   local cache = spellindex[name..(rank or "")]
   if cache then return cache[1], cache[2] end
 
