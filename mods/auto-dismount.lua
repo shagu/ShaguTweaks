@@ -28,13 +28,10 @@ module.enable = function(self)
     "^이동 속도 (.+)%%만큼 증가",
     -- zhCN
     "^速度提高(.+)%%",
-
     -- turtle-wow
-    "speed based on",
-    "Slow and steady...",
-    "Riding",
-    "根据骑术技能提高速度。",
-    "又慢又稳......",
+    "speed based on", "Slow and steady...", "Riding",
+    "Lento y constante...", "Aumenta la velocidad según tu habilidad de Montar.",
+    "根据您的骑行技能提高速度。", "根据骑术技能提高速度。", "又慢又稳......",
   }
 
   -- shapeshift buff icons
