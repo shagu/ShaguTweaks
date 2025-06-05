@@ -6,7 +6,7 @@ function SlashCmdList.RELOAD(msg, editbox) ReloadUI() end
 message = function(msg)
   DEFAULT_CHAT_FRAME:AddMessage("|cffffff00" .. ( msg or "nil" ))
 end
-print = message
+print = print or message
 
 error = function(msg)
   DEFAULT_CHAT_FRAME:AddMessage("|cffff0000".. (msg or "nil" ))
