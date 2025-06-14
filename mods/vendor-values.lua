@@ -3898,7 +3898,7 @@ module.enable = function(self)
     if GameTooltip.itemLink and (GameTooltip.ignoreMerchant or not MerchantFrame:IsShown()) then
       local _, _, id = string.find(GameTooltip.itemLink, "item:(%d+):%d+:%d+:%d+")
       local count = GameTooltip.itemCount or 1
-      AddVendorPrices(GameTooltip, tonumber(id), count)
+      AddVendorPrices(GameTooltip, tonumber(id), math.max(count, 1))
     end
   end)
 
