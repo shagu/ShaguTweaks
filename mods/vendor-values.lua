@@ -3897,7 +3897,7 @@ module.enable = function(self)
   tooltip:SetScript("OnShow", function()
     if GameTooltip.itemLink and (GameTooltip.ignoreMerchant or not MerchantFrame:IsShown()) then
       local _, _, id = string.find(GameTooltip.itemLink, "item:(%d+):%d+:%d+:%d+")
-      local count = GameTooltip.itemCount or 1
+      local count = tonumber(GameTooltip.itemCount) or 1
       AddVendorPrices(GameTooltip, tonumber(id), math.max(count, 1))
     end
   end)
@@ -3997,18 +3997,16 @@ module.enable = function(self)
 
   local HookSetAuctionItem = GameTooltip.SetAuctionItem
   function GameTooltip.SetAuctionItem(self, atype, index)
-    local itemName, _, itemCount = GetAuctionItemInfo(atype, index)
-    GameTooltip.itemCount = itemCount
-    GameTooltip.itemLink = GetItemLinkByName(itemName)
+    _, GameTooltip.itemCount = GetAuctionItemInfo(atype, index)
+    GameTooltip.itemLink = GetAuctionItemLink(atype, index)
     GameTooltip.ignoreMerchant = true
     return HookSetAuctionItem(self, atype, index)
   end
 
   local HookSetAuctionSellItem = GameTooltip.SetAuctionSellItem
   function GameTooltip.SetAuctionSellItem(self)
-    local itemName, _, itemCount = GetAuctionSellItemInfo()
-    GameTooltip.itemCount = itemCount
-    GameTooltip.itemLink = GetItemLinkByName(itemName)
+    _, GameTooltip.itemCount = GetAuctionSellItemInfo()
+    GameTooltip.itemLink = GetAuctionSellItemLink()
     GameTooltip.ignoreMerchant = true
     return HookSetAuctionSellItem(self)
   end
