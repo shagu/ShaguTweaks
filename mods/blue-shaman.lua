@@ -18,7 +18,7 @@ module.enable = function(self)
     ["ROGUE"]   = { r = 1,    g = 0.96, b = 0.41, colorStr = "fffff569" },
     ["DRUID"]   = { r = 1,    g = 0.49, b = 0.04, colorStr = "ffff7d0a" },
     ["HUNTER"]  = { r = 0.67, g = 0.83, b = 0.45, colorStr = "ffabd473" },
-    ["SHAMAN"]  = { r = 0.14, g = 0.35, b = 1.0,  colorStr = "ff0070de" },
+    ["SHAMAN"]  = { r = 0.14, g = 0.35, b = 1.0,  colorStr = "ff2459ff" },
     ["PRIEST"]  = { r = 1,    g = 1,    b = 1,    colorStr = "ffffffff" },
     ["WARLOCK"] = { r = 0.58, g = 0.51, b = 0.79, colorStr = "ff9482c9" },
     ["PALADIN"] = { r = 0.96, g = 0.55, b = 0.73, colorStr = "fff58cba" },
