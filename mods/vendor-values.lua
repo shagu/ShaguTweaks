@@ -4005,8 +4005,9 @@ module.enable = function(self)
 
   local HookSetAuctionSellItem = GameTooltip.SetAuctionSellItem
   function GameTooltip.SetAuctionSellItem(self)
-    _, GameTooltip.itemCount = GetAuctionSellItemInfo()
-    GameTooltip.itemLink = GetAuctionSellItemLink()
+    local itemName, _, itemCount = GetAuctionSellItemInfo()
+    GameTooltip.itemCount = itemCount
+    GameTooltip.itemLink = GetItemLinkByName(itemName)
     GameTooltip.ignoreMerchant = true
     return HookSetAuctionSellItem(self)
   end
