@@ -133,7 +133,8 @@ module.enable = function(self)
     local anchor = MainMenuBarArtFrame
     anchor = MultiBarBottomLeft:IsVisible() and MultiBarBottomLeft or anchor
     anchor = MultiBarBottomRight:IsVisible() and MultiBarBottomRight or anchor
-    PetActionBarFrame:SetPoint("BOTTOM", anchor, "TOP", 0, 3)
+    anchor = ShapeshiftBarFrame:IsVisible() and ShapeshiftBarFrame or anchor
+    PetActionBarFrame:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, 4)
 
     -- ShapeshiftBarFrame
     ShapeshiftBarFrame:ClearAllPoints()
@@ -143,8 +144,8 @@ module.enable = function(self)
     anchor = MultiBarBottomRight:IsVisible() and MultiBarBottomRight or anchor
 
     offset = anchor == ActionButton1 and ( MainMenuExpBar:IsVisible() or ReputationWatchBar:IsVisible() ) and 6 or 0
-    offset = anchor == ActionButton1 and offset + 6 or offset
-    ShapeshiftBarFrame:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 8, 2 + offset)
+    offset = anchor == ActionButton1 and offset + 4 or offset
+    ShapeshiftBarFrame:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 8, 4 + offset)
 
     -- move castbar ontop of other bars
     local anchor = MainMenuBarArtFrame
