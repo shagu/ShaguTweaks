@@ -70,6 +70,9 @@ module.enable = function(self)
     ShapeshiftButton1, ShapeshiftButton2,
     ShapeshiftButton3, ShapeshiftButton4,
     ShapeshiftButton5, ShapeshiftButton6,
+    ShapeshiftButton7, ShapeshiftButton8,
+    ShapeshiftButton9, ShapeshiftButton10,
+    ShapeshiftButton11, ShapeshiftButton12,
   }
 
   -- elements that shall be resized to 511px
