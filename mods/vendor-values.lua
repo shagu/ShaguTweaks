@@ -3878,9 +3878,12 @@ local function GetItemLinkByName(name)
   end
 end
 
-local function AddVendorPrices(frame, id, count)
+local function AddVendorPrices(frame, id, count, price)
   if ShaguTweaks.SellValueDB[id] and ShaguTweaks.SellValueDB[id] > 0 then
     SetTooltipMoney(frame, ShaguTweaks.SellValueDB[id] * count)
+    frame:Show()
+  elseif price then
+    SetTooltipMoney(frame, price)
     frame:Show()
   end
 end
@@ -3892,13 +3895,18 @@ module.enable = function(self)
     GameTooltip.itemLink = nil
     GameTooltip.itemCount = nil
     GameTooltip.ignoreMerchant = nil
+    GameTooltip.vendorPrice = nil
   end)
 
   tooltip:SetScript("OnShow", function()
     if GameTooltip.itemLink and (GameTooltip.ignoreMerchant or not MerchantFrame:IsShown()) then
       local _, _, id = string.find(GameTooltip.itemLink, "item:(%d+):%d+:%d+:%d+")
       local count = tonumber(GameTooltip.itemCount) or 1
-      AddVendorPrices(GameTooltip, tonumber(id), math.max(count, 1))
+      AddVendorPrices(GameTooltip, tonumber(id), math.max(count, 1), nil)
+    elseif GameTooltip.vendorPrice and (GameTooltip.ignoreMerchant or not MerchantFrame:IsShown()) then
+      local count = tonumber(GameTooltip.itemCount) or 1
+      local price = tonumber(GameTooltip.vendorPrice)
+      AddVendorPrices(GameTooltip, nil, nil, price)
     end
   end)
 
@@ -3907,7 +3915,7 @@ module.enable = function(self)
     local item, _, id = string.find(link, "item:(%d+):.*")
     HookSetItemRef(link, text, button)
     if not IsAltKeyDown() and not IsShiftKeyDown() and not IsControlKeyDown() and item then
-      AddVendorPrices(ItemRefTooltip, tonumber(id), 1)
+      AddVendorPrices(ItemRefTooltip, tonumber(id), 1, nil)
     end
   end
 
@@ -3943,7 +3951,8 @@ module.enable = function(self)
 
   local HookSetInboxItem = GameTooltip.SetInboxItem
   function GameTooltip.SetInboxItem(self, mailID, attachmentIndex)
-    local itemName, itemTexture, inboxItemCount, inboxItemQuality = GetInboxItem(mailID)
+    local itemName, _, inboxItemCount, _ = GetInboxItem(mailID)
+    GameTooltip.itemCount = inboxItemCount
     GameTooltip.itemLink = GetItemLinkByName(itemName)
     GameTooltip.ignoreMerchant = true
     return HookSetInboxItem(self, mailID, attachmentIndex)
@@ -4005,9 +4014,7 @@ module.enable = function(self)
 
   local HookSetAuctionSellItem = GameTooltip.SetAuctionSellItem
   function GameTooltip.SetAuctionSellItem(self)
-    local itemName, _, itemCount = GetAuctionSellItemInfo()
-    GameTooltip.itemCount = itemCount
-    GameTooltip.itemLink = GetItemLinkByName(itemName)
+    _, _, GameTooltip.itemCount, _, _, GameTooltip.vendorPrice = GetAuctionSellItemInfo()
     GameTooltip.ignoreMerchant = true
     return HookSetAuctionSellItem(self)
   end
