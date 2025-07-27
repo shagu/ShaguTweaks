@@ -62,20 +62,6 @@ ShaguTweaks.GetColorGradient = function(perc)
     gradientcolors[index].h
 end
 
-ShaguTweaks.GetExpansion = function()
-  local _, _, _, client = GetBuildInfo()
-  client = client or 11200
-
-  -- detect client expansion
-  if client >= 20000 and client <= 20400 then
-    return "tbc"
-  elseif client >= 30000 and client <= 30300 then
-    return "wotlk"
-  else
-    return "vanilla"
-  end
-end
-
 ShaguTweaks.HookScript = function(f, script, func)
   local prev = f:GetScript(script)
   f:SetScript(script, function(a1,a2,a3,a4,a5,a6,a7,a8,a9)
