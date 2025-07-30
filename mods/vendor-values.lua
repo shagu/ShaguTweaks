@@ -1,6 +1,7 @@
 local _G = ShaguTweaks.GetGlobalEnv()
 local T = ShaguTweaks.T
 local GetExpansion = ShaguTweaks.GetExpansion
+local GetItemLinkByName = ShaguTweaks.GetItemLinkByName
 
 local module = ShaguTweaks:register({
   title = T["Vendor Values"],
@@ -3934,7 +3935,7 @@ module.enable = function(self)
   local HookSetInboxItem = GameTooltip.SetInboxItem
   function GameTooltip.SetInboxItem(self, mailID, attachmentIndex)
     local itemName, itemTexture, inboxItemCount, inboxItemQuality = GetInboxItem(mailID)
-    GameTooltip.itemLink = ShaguTweaks.GetItemLinkByName(itemName)
+    GameTooltip.itemLink = GetItemLinkByName(itemName)
     GameTooltip.ignoreMerchant = true
     return HookSetInboxItem(self, mailID, attachmentIndex)
   end
@@ -3997,7 +3998,7 @@ module.enable = function(self)
   function GameTooltip.SetAuctionSellItem(self)
     local itemName, _, itemCount = GetAuctionSellItemInfo()
     GameTooltip.itemCount = itemCount
-    GameTooltip.itemLink = ShaguTweaks.GetItemLinkByName(itemName)
+    GameTooltip.itemLink = GetItemLinkByName(itemName)
     GameTooltip.ignoreMerchant = true
     return HookSetAuctionSellItem(self)
   end
