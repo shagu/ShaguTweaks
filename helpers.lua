@@ -85,9 +85,9 @@ ShaguTweaks.HookAddonOrVariable = function(addon, func)
 end
 
 local hooks = {}
-ShaguTweaks.hooksecurefunc = function(tbl, name, func, append)
+ShaguTweaks.hooksecurefunc = function(tbl, name, func, prepend)
   if type(tbl) == "string" then
-    append, func, name, tbl = func, name, tbl, _G
+    prepend, func, name, tbl = func, name, tbl, _G
   end
 
   if not tbl or not tbl[name] then return end
@@ -96,15 +96,15 @@ ShaguTweaks.hooksecurefunc = function(tbl, name, func, append)
   hooks[tostring(func)]["old"] = tbl[name]
   hooks[tostring(func)]["new"] = func
 
-  if append then
+  if prepend then
     hooks[tostring(func)]["function"] = function(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
-      hooks[tostring(func)]["old"](a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
       hooks[tostring(func)]["new"](a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
+      hooks[tostring(func)]["old"](a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
     end
   else
     hooks[tostring(func)]["function"] = function(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
-      hooks[tostring(func)]["new"](a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
       hooks[tostring(func)]["old"](a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
+      hooks[tostring(func)]["new"](a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
     end
   end
 

@@ -1,7 +1,6 @@
 local _G = ShaguTweaks.GetGlobalEnv()
 local GetExpansion = ShaguTweaks.GetExpansion
 local libtipscan = ShaguTweaks.libtipscan
-local hooksecurefunc = ShaguTweaks.hooksecurefunc
 
 local scanner = libtipscan:GetScanner("libspell")
 local libspell = {}
