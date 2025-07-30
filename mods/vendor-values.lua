@@ -1,6 +1,7 @@
 local _G = ShaguTweaks.GetGlobalEnv()
 local T = ShaguTweaks.T
 local GetExpansion = ShaguTweaks.GetExpansion
+local GetItemLinkByName = ShaguTweaks.GetItemLinkByName
 
 local module = ShaguTweaks:register({
   title = T["Vendor Values"],
@@ -3867,16 +3868,6 @@ if GetExpansion() == "tbc" then
 end
 
 ShaguTweaks.SellValueDB = data
-
-local function GetItemLinkByName(name)
-  for itemID = 1, 25818 do
-    local itemName, hyperLink, itemQuality = GetItemInfo(itemID)
-    if (itemName and itemName == name) then
-      local _, _, _, hex = GetItemQualityColor(tonumber(itemQuality))
-      return hex.. "|H"..hyperLink.."|h["..itemName.."]|h|r"
-    end
-  end
-end
 
 local function AddVendorPrices(frame, id, count)
   if ShaguTweaks.SellValueDB[id] and ShaguTweaks.SellValueDB[id] > 0 then

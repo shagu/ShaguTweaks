@@ -346,3 +346,20 @@ ShaguTweaks.GetItemCount = function(itemName)
 
   return count
 end
+
+local itemLinkByNameCache = {}
+ShaguTweaks.GetItemLinkByName = function(name)
+  if itemLinkByNameCache[name] then
+    return itemLinkByNameCache[name]
+  end
+
+  for itemID = 1, 25818 do
+    local itemName, itemLink, itemQuality = GetItemInfo(itemID)
+    if (itemName and itemName == name) then
+      local _, _, _, hex = GetItemQualityColor(tonumber(itemQuality))
+      local hyperLink = hex.. "|H".. itemLink .."|h["..itemName.."]|h" .. FONT_COLOR_CODE_CLOSE
+      itemLinkByNameCache[name] = hyperLink
+      return hyperLink
+    end
+  end
+end
