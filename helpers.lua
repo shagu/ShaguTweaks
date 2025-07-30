@@ -85,26 +85,45 @@ ShaguTweaks.HookAddonOrVariable = function(addon, func)
 end
 
 local hooks = {}
-ShaguTweaks.hooksecurefunc = function(name, func, append)
-  if not _G[name] then return end
+ShaguTweaks.hooksecurefunc = function(name, arg1, arg2, arg3)
+  local oldFunc
+  local newFunc
+  local append
+  if type(name) == "string" then
+    oldFunc = _G[name]
+    newFunc = arg1
+    append = arg2
+  end
+  if type(name) == "table" then
+    oldFunc = name[arg1]
+    newFunc = arg2
+    append = arg3
+  end
 
-  hooks[tostring(func)] = {}
-  hooks[tostring(func)]["old"] = _G[name]
-  hooks[tostring(func)]["new"] = func
+  if not oldFunc then return end
+
+  hooks[tostring(newFunc)] = {}
+  hooks[tostring(newFunc)]["old"] = oldFunc
+  hooks[tostring(newFunc)]["new"] = newFunc
 
   if append then
-    hooks[tostring(func)]["function"] = function(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
-      hooks[tostring(func)]["old"](a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
-      hooks[tostring(func)]["new"](a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
+    hooks[tostring(newFunc)]["function"] = function(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
+      hooks[tostring(newFunc)]["old"](a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
+      hooks[tostring(newFunc)]["new"](a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
     end
   else
-    hooks[tostring(func)]["function"] = function(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
-      hooks[tostring(func)]["new"](a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
-      hooks[tostring(func)]["old"](a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
+    hooks[tostring(newFunc)]["function"] = function(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
+      hooks[tostring(newFunc)]["new"](a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
+      hooks[tostring(newFunc)]["old"](a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
     end
   end
 
-  _G[name] = hooks[tostring(func)]["function"]
+  if type(name) == "string" then
+    _G[name] = hooks[tostring(newFunc)]["function"]
+  end
+  if type(name) == "table" then
+    name[arg1] = hooks[tostring(newFunc)]["function"]
+  end
 end
 
 local sanitize_cache = {}
