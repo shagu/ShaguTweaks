@@ -3868,16 +3868,6 @@ end
 
 ShaguTweaks.SellValueDB = data
 
-local function GetItemLinkByName(name)
-  for itemID = 1, 25818 do
-    local itemName, hyperLink, itemQuality = GetItemInfo(itemID)
-    if (itemName and itemName == name) then
-      local _, _, _, hex = GetItemQualityColor(tonumber(itemQuality))
-      return hex.. "|H"..hyperLink.."|h["..itemName.."]|h|r"
-    end
-  end
-end
-
 local function AddVendorPrices(frame, id, count)
   if ShaguTweaks.SellValueDB[id] and ShaguTweaks.SellValueDB[id] > 0 then
     SetTooltipMoney(frame, ShaguTweaks.SellValueDB[id] * count)
@@ -3944,7 +3934,7 @@ module.enable = function(self)
   local HookSetInboxItem = GameTooltip.SetInboxItem
   function GameTooltip.SetInboxItem(self, mailID, attachmentIndex)
     local itemName, itemTexture, inboxItemCount, inboxItemQuality = GetInboxItem(mailID)
-    GameTooltip.itemLink = GetItemLinkByName(itemName)
+    GameTooltip.itemLink = ShaguTweaks.GetItemLinkByName(itemName)
     GameTooltip.ignoreMerchant = true
     return HookSetInboxItem(self, mailID, attachmentIndex)
   end
@@ -4007,7 +3997,7 @@ module.enable = function(self)
   function GameTooltip.SetAuctionSellItem(self)
     local itemName, _, itemCount = GetAuctionSellItemInfo()
     GameTooltip.itemCount = itemCount
-    GameTooltip.itemLink = GetItemLinkByName(itemName)
+    GameTooltip.itemLink = ShaguTweaks.GetItemLinkByName(itemName)
     GameTooltip.ignoreMerchant = true
     return HookSetAuctionSellItem(self)
   end
