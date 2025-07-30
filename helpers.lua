@@ -85,11 +85,15 @@ ShaguTweaks.HookAddonOrVariable = function(addon, func)
 end
 
 local hooks = {}
-ShaguTweaks.hooksecurefunc = function(name, func, append)
-  if not _G[name] then return end
+ShaguTweaks.hooksecurefunc = function(tbl, name, func, append)
+  if type(tbl) == "string" then
+    append, func, name, tbl = func, name, tbl, _G
+  end
+
+  if not tbl or not tbl[name] then return end
 
   hooks[tostring(func)] = {}
-  hooks[tostring(func)]["old"] = _G[name]
+  hooks[tostring(func)]["old"] = tbl[name]
   hooks[tostring(func)]["new"] = func
 
   if append then
@@ -104,7 +108,7 @@ ShaguTweaks.hooksecurefunc = function(name, func, append)
     end
   end
 
-  _G[name] = hooks[tostring(func)]["function"]
+  tbl[name] = hooks[tostring(func)]["function"]
 end
 
 local sanitize_cache = {}
