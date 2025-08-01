@@ -16,7 +16,6 @@ local module = ShaguTweaks:register({
   title = T["Turtle WoW Compatibility"],
   description = T["Adds compatibility to Turtle WoW's custom changes."],
   expansions = { ["vanilla"] = true, ["tbc"] = false },
-  category = T["General"],
   enabled = true,
 })
 
