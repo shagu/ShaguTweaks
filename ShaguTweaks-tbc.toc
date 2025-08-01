@@ -75,3 +75,4 @@ mods\unitframes-bighealth.lua
 mods\unitframes-classportrait.lua
 mods\cooldown-numbers.lua
 mods\reduced-actionbar.lua
+mods\lockpicking-skills.lua
