@@ -75,9 +75,12 @@ local function AddLockPickingSkill(frame, itemLink)
         lineString = string.format("Opens lock up to (%d) lockpicking skill", canOpenPickPocketSkill[itemID])
     end
 
-    -- Ensure line is added above the money line
     local moneyFrame = _G[frame:GetName().."MoneyFrame"]
-    if moneyFrame and moneyFrame.staticMoney then
+    local isMoneyShownOnTooltip = MerchantFrame:IsVisible()
+            or moneyFrame and moneyFrame.staticMoney > 0 and moneyFrame.staticMoney ~= GetMoney()
+
+    -- Ensure line is added above the money line
+    if isMoneyShownOnTooltip then
         moneyFrame:Hide()
         for i = frame:NumLines(), 1, -1 do
             local line = _G[frame:GetName().."TextLeft"..i]
@@ -88,7 +91,7 @@ local function AddLockPickingSkill(frame, itemLink)
         end
         SetTooltipMoney(frame, moneyFrame.staticMoney) -- add the money one line down
     else
-        frame:AddLine(lineString)
+        frame:AddLine(lineString, 1.0, 1.0, 1.0)
     end
 
     frame:Show()
