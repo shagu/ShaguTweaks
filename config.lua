@@ -118,12 +118,24 @@ settings.load = function(self)
     end
   end
 
+  local sortedKeys = {}
+  for key, value in pairs(gui) do
+    table.insert(sortedKeys, key)
+  end
+
+  table.sort(sortedKeys, function(a, b)
+    if a == T["General"] then return true end
+    if b == T["General"] then return false end
+    return a < b
+  end)
+
   local topspace = 10
   local required_height = topspace
   local entrysize = 22
   local previous = nil
 
-  for category, entries in ShaguTweaks.spairs(gui) do
+  for _, category in ipairs(sortedKeys) do
+    local entries = gui[category]
     local entry, spacing = 1, 22
     local height = 0
 
