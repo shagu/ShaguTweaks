@@ -25,11 +25,14 @@ local requirePickPocketSkill = {
     [5759]  = 225, -- Thorium Lockbox
     [5760]  = 225, -- Eternium Lockbox
     [31952] = 325, -- Khorium Lockbox - TBC
+    [43622] = 375, -- Froststeel Lockbox - WotLK
+    [43624] = 400, -- Titanium Lockbox - WotLK
     -- Fishing
     [6354]  = 1,   -- Small Locked Chest
     [6355]  = 70,  -- Sturdy Locked Chest
     [13875] = 175, -- Ironbound Locked Chest
     [13918] = 250, -- Reinforced Locked Chest
+    [45986] = 400, -- Tiny Titanium Lockbox - WotLK
     -- Engineering
     [6712]  = 1    -- Practice Lock
 }
