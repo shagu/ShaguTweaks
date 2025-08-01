@@ -330,6 +330,20 @@ ShaguTweaks.spairs = function(t)
   return orderedNext, t, nil
 end
 
+ShaguTweaks.GetItemIDFromLink = function(itemLink)
+  if not itemLink then
+    return
+  end
+
+  local foundID, _ , itemID = string.find(itemLink, "item:(%d+)")
+  if not foundID then
+    return
+  end
+
+  return tonumber(itemID)
+end
+
+
 ShaguTweaks.GetItemCount = function(itemName)
   local count = 0
   for bag = 4, 0, -1 do
@@ -337,8 +351,8 @@ ShaguTweaks.GetItemCount = function(itemName)
       local _, itemCount = GetContainerItemInfo(bag, slot)
       if itemCount then
         local itemLink = GetContainerItemLink(bag,slot)
-        local _, _, itemParse = strfind(itemLink, "(%d+):")
-        local queryName = GetItemInfo(itemParse)
+        local itemID = ShaguTweaks.GetItemIDFromLink(itemLink)
+        local queryName = GetItemInfo(itemID)
         if queryName and queryName ~= "" then
           if queryName == itemName then
             count = count + itemCount
@@ -366,17 +380,4 @@ ShaguTweaks.GetItemLinkByName = function(name)
       return hyperLink
     end
   end
-end
-
-ShaguTweaks.GetItemIDFromLink = function(itemLink)
-  if not itemLink then
-    return
-  end
-
-  local foundID, _ , itemID = string.find(itemLink, "item:(%d+)")
-  if not foundID then
-    return
-  end
-
-  return tonumber(itemID)
 end
