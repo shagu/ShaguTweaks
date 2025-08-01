@@ -59,6 +59,11 @@ if GetExpansion() == "tbc" then
     end
 end
 
+-- In WotLK keys already say what level they can open, but Seaforium does not.
+if GetExpansion() == "wotlk" then
+    canOpenPickPocketSkill = tbcSeaforiumCharge
+end
+
 local function AddLockPickingSkill(frame, itemLink)
     if not frame then return end
 
