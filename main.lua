@@ -83,7 +83,7 @@ ShaguTweaks.register = function(self, mod)
   -- add fallback captions and providers to categories
   local provider = ShaguTweaks.provider or "|cffFF5555Mods:|r"
   local category = mod.category or ShaguTweaks.T["General"]
-  mod.category = official and category or provider .. " " .. category
+  mod.category = category or provider .. " " .. category
 
   -- register mod
   ShaguTweaks.mods[mod.title] = mod
