@@ -6,6 +6,7 @@ local module = ShaguTweaks:register({
   title = T["Nameplate Class Colors"],
   description = T["Changes the nameplate health bar color to the class color."],
   expansions = { ["vanilla"] = true, ["tbc"] = true },
+  category = T["Nameplates"],
   enabled = true,
 })
 

@@ -5,6 +5,7 @@ local module = ShaguTweaks:register({
   title = T["Nameplate Scale"],
   description = T["Makes all nameplates honor the UI-Scale setting."],
   expansions = { ["vanilla"] = true, ["tbc"] = nil },
+  category = T["Nameplates"],
   enabled = true,
 })
 

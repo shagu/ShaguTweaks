@@ -48,6 +48,7 @@ ShaguTweaks_translation["deDE"] = {
   ["Nameplate Castbar"] = nil,
   ["Nameplate Class Colors"] = nil,
   ["Nameplate Scale"] = nil,
+  ["Nameplates"] = nil,
   ["Player"] = nil,
   ["Player and Target unit frames can be moved while <Shift> and <Ctrl> are pressed together."] = nil,
   ["Real Health Numbers"] = nil,

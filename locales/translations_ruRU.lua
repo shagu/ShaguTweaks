@@ -48,6 +48,7 @@ ShaguTweaks_translation["ruRU"] = {
   ["Nameplate Castbar"] = "Панель применения индикатора здоровья",
   ["Nameplate Class Colors"] = "Классы индикатора здоровья",
   ["Nameplate Scale"] = "Масштаб индикаторов здоровья",
+  ["Nameplates"] = nil,
   ["Player"] = "Игрок",
   ["Player and Target unit frames can be moved while <Shift> and <Ctrl> are pressed together."] = "Окна игрока и цели можно перемещать, удерживая клавиши <Shift> и <Ctrl> вместе.",
   ["Real Health Numbers"] = "Реальные цифры здоровья",
