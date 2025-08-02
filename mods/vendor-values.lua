@@ -2,6 +2,7 @@ local _G = ShaguTweaks.GetGlobalEnv()
 local T = ShaguTweaks.T
 local GetExpansion = ShaguTweaks.GetExpansion
 local GetItemLinkByName = ShaguTweaks.GetItemLinkByName
+local GetItemIDFromLink = ShaguTweaks.GetItemIDFromLink
 
 local module = ShaguTweaks:register({
   title = T["Vendor Values"],
@@ -3887,18 +3888,18 @@ module.enable = function(self)
 
   tooltip:SetScript("OnShow", function()
     if GameTooltip.itemLink and (GameTooltip.ignoreMerchant or not MerchantFrame:IsShown()) then
-      local _, _, id = string.find(GameTooltip.itemLink, "item:(%d+):%d+:%d+:%d+")
+      local itemID = GetItemIDFromLink(GameTooltip.itemLink)
       local count = tonumber(GameTooltip.itemCount) or 1
-      AddVendorPrices(GameTooltip, tonumber(id), math.max(count, 1))
+      AddVendorPrices(GameTooltip, itemID, math.max(count, 1))
     end
   end)
 
   local HookSetItemRef = SetItemRef
   SetItemRef = function(link, text, button)
-    local item, _, id = string.find(link, "item:(%d+):.*")
+    local itemID = GetItemIDFromLink(GameTooltip.itemLink)
     HookSetItemRef(link, text, button)
-    if not IsAltKeyDown() and not IsShiftKeyDown() and not IsControlKeyDown() and item then
-      AddVendorPrices(ItemRefTooltip, tonumber(id), 1)
+    if not IsAltKeyDown() and not IsShiftKeyDown() and not IsControlKeyDown() and itemID then
+      AddVendorPrices(ItemRefTooltip, itemID, 1)
     end
   end
 
