@@ -118,6 +118,11 @@ settings.load = function(self)
     end
   end
 
+  local topspace = 10
+  local required_height = topspace
+  local entrysize = 22
+  local previous = nil
+
   local sortedKeys = {}
   for key, value in pairs(gui) do
     table.insert(sortedKeys, key)
@@ -128,11 +133,6 @@ settings.load = function(self)
     if b == T["General"] then return false end
     return a < b
   end)
-
-  local topspace = 10
-  local required_height = topspace
-  local entrysize = 22
-  local previous = nil
 
   for _, category in ipairs(sortedKeys) do
     local entries = gui[category]

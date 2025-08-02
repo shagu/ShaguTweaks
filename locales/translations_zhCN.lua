@@ -48,6 +48,7 @@ ShaguTweaks_translation["zhCN"] = {
   ["Nameplate Castbar"] = "姓名板施法条",
   ["Nameplate Class Colors"] = "姓名板职业着色",
   ["Nameplate Scale"] = "姓名板缩放",
+  ["Nameplates"] = nil,
   ["Player"] = "玩家",
   ["Player and Target unit frames can be moved while <Shift> and <Ctrl> are pressed together."] = "当<Shift>和<Ctrl>键同时按下时，玩家与目标单位的头像可移动。",
   ["Real Health Numbers"] = "显示预估生命值",

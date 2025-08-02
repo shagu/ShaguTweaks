@@ -1,5 +1,6 @@
 local _G = ShaguTweaks.GetGlobalEnv()
 local T = ShaguTweaks.T
+local GetItemIDFromLink = ShaguTweaks.GetItemIDFromLink
 
 local module = ShaguTweaks:register({
   title = T["Sell Junk"],
@@ -85,8 +86,8 @@ module.enable = function(self)
 
     -- get value
     local _, icount = GetContainerItemInfo(bag, slot)
-    local _, _, id = string.find(GetContainerItemLink(bag, slot), "item:(%d+):%d+:%d+:%d+")
-    local price = ShaguTweaks.SellValueDB[tonumber(id)] or 0
+    local itemID = GetItemIDFromLink(GetContainerItemLink(bag, slot))
+    local price = ShaguTweaks.SellValueDB[itemID] or 0
     if this.price then
       this.price = this.price + ( price * ( icount or 1 ) )
       this.count = this.count + 1
