@@ -5,6 +5,7 @@ local module = ShaguTweaks:register({
   title = T["Reduced Actionbar Size"],
   description = T["Reduces the actionbar size by removing several items such as the bag panel and microbar"],
   expansions = { ["vanilla"] = true, ["tbc"] = nil },
+  category = T["Action Bar"],
   enabled = nil,
 })
 

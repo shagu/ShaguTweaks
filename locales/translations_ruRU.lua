@@ -1,5 +1,6 @@
 ShaguTweaks_translation = ShaguTweaks_translation or {}
 ShaguTweaks_translation["ruRU"] = {
+  ["Action Bar"] = nil,
   ["Adds a castbar to the nameplate based on combat log estimations."] = "Добавляет панель применения к индикатору здоровья на основе оценок журнала боя.",
   ["Adds a “Sell Junk” button to every merchant window, that sells all grey items."] = "Добавляет кнопку «Продать серые предметы» в каждое окно торговца, в котором продаются все серые предметы.",
   ["Adds a small 24h clock to the mini map."] = "Добавляет небольшие 24-часовые часы на мини-карту.",
