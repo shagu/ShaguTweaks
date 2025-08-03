@@ -3943,10 +3943,10 @@ module.enable = function(self)
 
   local HookSetInventoryItem = GameTooltip.SetInventoryItem
   function GameTooltip.SetInventoryItem(self, unit, slot)
-      GameTooltip.itemLink = GetInventoryItemLink(unit, slot)
-      GameTooltip.ignoreMerchant = true
-      return HookSetInventoryItem(self, unit, slot)
-    end
+    GameTooltip.itemLink = GetInventoryItemLink(unit, slot)
+    GameTooltip.ignoreMerchant = true
+    return HookSetInventoryItem(self, unit, slot)
+  end
 
   local HookSetLootRollItem = GameTooltip.SetLootRollItem
   function GameTooltip.SetLootRollItem(self, id)
