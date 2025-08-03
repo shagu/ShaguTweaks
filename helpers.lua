@@ -105,7 +105,6 @@ ShaguTweaks.hooksecurefunc = function(tbl, name, func, prepend)
     hooks[tostring(func)]["function"] = function(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
       local returns = {hooks[tostring(func)]["old"](a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)}
       hooks[tostring(func)]["new"](a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
-
       return unpack(returns)
     end
   end
