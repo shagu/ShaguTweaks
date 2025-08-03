@@ -3941,10 +3941,12 @@ module.enable = function(self)
     return HookSetInboxItem(self, mailID, attachmentIndex)
   end
 
-  ShaguTweaks.hooksecurefunc(GameTooltip, "SetInventoryItem", function(tip, unit, slot)
-    GameTooltip.itemLink = GetInventoryItemLink(unit, slot)
-    GameTooltip.ignoreMerchant = true
-  end, true)
+  local HookSetInventoryItem = GameTooltip.SetInventoryItem
+  function GameTooltip.SetInventoryItem(self, unit, slot)
+      GameTooltip.itemLink = GetInventoryItemLink(unit, slot)
+      GameTooltip.ignoreMerchant = true
+      return HookSetInventoryItem(self, unit, slot)
+    end
 
   local HookSetLootRollItem = GameTooltip.SetLootRollItem
   function GameTooltip.SetLootRollItem(self, id)
