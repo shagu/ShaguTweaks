@@ -296,19 +296,18 @@ ShaguTweaks.TimeConvert = function(remaining)
 end
 
 -- http://lua-users.org/wiki/SortedIteration
-local function __genOrderedIndex( t )
+local function __genOrderedIndex(t, sortFunc)
   local orderedIndex = {}
   for key in pairs(t) do
     table.insert( orderedIndex, key )
   end
-  table.sort( orderedIndex )
+  table.sort(orderedIndex, sortFunc)
   return orderedIndex
 end
 
 local function orderedNext(t, state)
   local key = nil
   if state == nil then
-    t.__orderedIndex = __genOrderedIndex( t )
     key = t.__orderedIndex[1]
   else
     for i = 1,table.getn(t.__orderedIndex) do
@@ -326,7 +325,12 @@ local function orderedNext(t, state)
   return
 end
 
-ShaguTweaks.spairs = function(t)
+ShaguTweaks.spairs = function(t, sortFunc)
+  if sortFunc ~= nil and type(sortFunc) ~= "function" then
+    error("ShaguTweaks.spairs: expected a function for sortFunc, got " .. type(sortFunc))
+  end
+
+  t.__orderedIndex = __genOrderedIndex(t, sortFunc)
   return orderedNext, t, nil
 end
 
