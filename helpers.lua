@@ -326,10 +326,6 @@ local function orderedNext(t, state)
 end
 
 ShaguTweaks.spairs = function(t, sortFunc)
-  if sortFunc ~= nil and type(sortFunc) ~= "function" then
-    error("ShaguTweaks.spairs: expected a function for sortFunc, got " .. type(sortFunc))
-  end
-
   t.__orderedIndex = __genOrderedIndex(t, sortFunc)
   return orderedNext, t, nil
 end
