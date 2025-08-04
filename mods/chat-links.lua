@@ -194,7 +194,16 @@ module.enable = function(self)
 
   do -- add class colors to chat
     for i=1,NUM_CHAT_WINDOWS do
-      if _G["ChatFrame"..i] and not _G["ChatFrame"..i].HookAddMessage then
+      local isCombat = 0
+      if _G["ChatFrame"..i] and _G["ChatFrame"..i].messageTypeList then
+        for _, msg in pairs(_G["ChatFrame"..i].messageTypeList) do
+          if strfind(msg, "SPELL", 1) or strfind(msg, "COMBAT", 1) then
+            isCombat = isCombat + 1
+          end
+        end
+      end
+
+      if _G["ChatFrame"..i] and not _G["ChatFrame"..i].HookAddMessage and isCombat < 5 then
         _G["ChatFrame"..i].HookAddMessage = _G["ChatFrame"..i].AddMessage
         _G["ChatFrame"..i].AddMessage = function(frame, text, a1, a2, a3, a4, a5)
           if text then
