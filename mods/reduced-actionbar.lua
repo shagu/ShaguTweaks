@@ -1,5 +1,6 @@
 local _G = ShaguTweaks.GetGlobalEnv()
 local T = ShaguTweaks.T
+local hooksecurefunc = hooksecurefunc or ShaguTweaks.hooksecurefunc
 
 local module = ShaguTweaks:register({
   title = T["Reduced Actionbar Size"],
@@ -133,7 +134,7 @@ module.enable = function(self)
     anchor = MultiBarBottomLeft:IsVisible() and MultiBarBottomLeft or anchor
     anchor = MultiBarBottomRight:IsVisible() and MultiBarBottomRight or anchor
     anchor = ShapeshiftBarFrame:IsVisible() and ShapeshiftBarFrame or anchor
-    PetActionBarFrame:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 0, 4)
+    PetActionBarFrame:SetPoint("BOTTOMLEFT", anchor, "TOPLEFT", 20, 4)
 
     -- ShapeshiftBarFrame
     ShapeshiftBarFrame:ClearAllPoints()
@@ -157,8 +158,11 @@ module.enable = function(self)
 
   -- restore frame positions when UIParent becomes visible
   local restore = CreateFrame("Frame", nil, UIParent)
-  restore:SetScript("OnShow", function()
-    UIParent_ManageFramePositions()
+  restore:SetScript("OnShow", UIParent_ManageFramePositions)
+
+  -- enforce pet actionbar offset after pet actionbar becomes visible
+  hooksecurefunc("ShowPetActionBar", function()
+    PETACTIONBAR_XPOS = 36
   end)
 
   -- enable picking up/replacing bags by clicking on the container frame portrait
