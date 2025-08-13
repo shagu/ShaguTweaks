@@ -33,6 +33,7 @@ module.enable = function(self)
   MinimapClock.text:SetAllPoints(MinimapClock)
   MinimapClock.text:SetFontObject(GameFontWhite)
   MinimapClock:SetScript("OnUpdate", function()
+    if ( this.tick or 1) > GetTime() then return else this.tick = GetTime() + 1 end
     this.text:SetText(date("%H:%M"))
   end)
 
