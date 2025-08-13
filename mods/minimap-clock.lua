@@ -32,8 +32,12 @@ module.enable = function(self)
   MinimapClock.text:SetFont(STANDARD_TEXT_FONT, 12, "OUTLINE")
   MinimapClock.text:SetAllPoints(MinimapClock)
   MinimapClock.text:SetFontObject(GameFontWhite)
+  local nextUpdate = 0
   MinimapClock:SetScript("OnUpdate", function()
-    this.text:SetText(date("%H:%M"))
+    if nextUpdate <= GetTime() then
+      nextUpdate = GetTime() + 1
+      this.text:SetText(date("%H:%M"))
+    end
   end)
 
   MinimapClock:SetScript("OnEnter", function()
