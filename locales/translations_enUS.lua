@@ -31,6 +31,7 @@ ShaguTweaks_translation["enUS"] = {
   ["Equip Compare"] = nil,
   ["Estimates health numbers, and shows numbers on player, pet and target unit frames."] = nil,
   ["General"] = nil,
+  ["Health"] = nil,
   ["Hide Errors"] = nil,
   ["Hide Gryphons"] = nil,
   ["Hides and ignores all Lua errors produced by broken addons."] = nil,
